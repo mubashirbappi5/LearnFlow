@@ -8,12 +8,6 @@ import { signOut } from 'next-auth/react';
 const navItems = [
   { name: 'Dashboard', href: '/admin' },
   { name: 'Careers', href: '/admin/careers' },
-  { name: 'Courses', href: '/admin/courses' },
-  { name: 'Modules', href: '/admin/modules' },
-  { name: 'Lessons', href: '/admin/lessons' },
-  { name: 'Resources', href: '/admin/resources' },
-  { name: 'Quizzes', href: '/admin/quizzes' },
-  { name: 'Assignments', href: '/admin/assignments' },
   { name: 'Users', href: '/admin/users' },
 ];
 
