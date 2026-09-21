@@ -21,25 +21,21 @@ export default function AdminSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-64 bg-[#121214] border-r border-[#27272a] h-full flex flex-col">
-      <div className="h-16 flex items-center px-6 border-b border-[#27272a]">
-        <Link href="/" className="text-xl font-bold text-white text-gradient">
+    <aside className="admin-sidebar">
+      <div className="admin-sidebar-header">
+        <Link href="/" className="text-gradient" style={{ fontSize: '1.25rem', fontWeight: 700 }}>
           LearnFlow
         </Link>
       </div>
 
-      <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-1">
+      <nav className="admin-sidebar-nav">
         {navItems.map((item) => {
           const isActive = pathname === item.href || (pathname.startsWith(item.href) && item.href !== '/admin');
           return (
             <Link
               key={item.name}
               href={item.href}
-              className={`block px-4 py-2 rounded-md transition-colors ${
-                isActive
-                  ? 'bg-[#6366f1] text-white'
-                  : 'text-gray-400 hover:text-white hover:bg-[#27272a]'
-              }`}
+              className={`admin-nav-item ${isActive ? 'active' : ''}`}
             >
               {item.name}
             </Link>
@@ -47,10 +43,10 @@ export default function AdminSidebar() {
         })}
       </nav>
 
-      <div className="p-4 border-t border-[#27272a]">
+      <div className="admin-sidebar-footer">
         <button
           onClick={() => signOut({ callbackUrl: '/' })}
-          className="w-full text-left px-4 py-2 text-gray-400 hover:text-white hover:bg-[#27272a] rounded-md transition-colors"
+          className="logout-btn"
         >
           Logout
         </button>

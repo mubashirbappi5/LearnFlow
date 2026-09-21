@@ -16,16 +16,18 @@ export default async function AdminLayout({
   }
 
   return (
-    <div className="flex h-screen bg-[#0a0a0b] overflow-hidden">
+    <div className="admin-layout">
       <AdminSidebar />
-      <div className="flex-1 flex flex-col overflow-y-auto overflow-x-hidden relative">
-        <header className="h-16 border-b border-[#27272a] bg-[#121214] flex items-center px-6 sticky top-0 z-10">
-          <h2 className="text-xl font-semibold text-white">Admin Dashboard</h2>
-          <div className="ml-auto flex items-center gap-4">
-            <span className="text-sm text-gray-400">Logged in as {session.user.name}</span>
+      <div className="admin-main">
+        <header className="admin-header">
+          <h2>Admin Dashboard</h2>
+          <div>
+            <span style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem' }}>
+              Logged in as {session.user.name}
+            </span>
           </div>
         </header>
-        <main className="p-6 md:p-8 max-w-7xl mx-auto w-full">
+        <main className="admin-content">
           {children}
         </main>
       </div>
