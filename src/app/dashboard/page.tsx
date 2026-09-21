@@ -126,7 +126,7 @@ export default async function StudentDashboardPage() {
             </p>
           </div>
           <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-            <div style={{ 
+            <div className="hover-lift" style={{ 
               textAlign: 'center', 
               padding: '20px 32px', 
               background: 'rgba(30, 30, 40, 0.6)', 
@@ -136,14 +136,11 @@ export default async function StudentDashboardPage() {
               boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
               transition: 'transform 0.2s',
               cursor: 'default'
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
-            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-            >
+            }}>
               <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#60a5fa', textShadow: '0 0 20px rgba(96,165,250,0.4)' }}>{xp}</div>
               <div style={{ fontSize: '0.875rem', color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600, marginTop: '4px' }}>Total XP</div>
             </div>
-            <div style={{ 
+            <div className="hover-lift" style={{ 
               textAlign: 'center', 
               padding: '20px 32px', 
               background: 'rgba(30, 30, 40, 0.6)', 
@@ -153,10 +150,7 @@ export default async function StudentDashboardPage() {
               boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
               transition: 'transform 0.2s',
               cursor: 'default'
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
-            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-            >
+            }}>
               <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#a78bfa', textShadow: '0 0 20px rgba(167,139,250,0.4)' }}>{completedItems}</div>
               <div style={{ fontSize: '0.875rem', color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600, marginTop: '4px' }}>Lessons Done</div>
             </div>
@@ -289,7 +283,7 @@ export default async function StudentDashboardPage() {
                 ) : (
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                     {recentLessons.map((progress) => (
-                      <div key={progress.id} style={{ 
+                      <div key={progress.id} className="hover-bg" style={{ 
                         padding: '20px 24px', 
                         display: 'flex', 
                         justifyContent: 'space-between', 
@@ -298,10 +292,7 @@ export default async function StudentDashboardPage() {
                         borderRadius: '16px',
                         border: '1px solid rgba(255,255,255,0.05)',
                         transition: 'background 0.2s'
-                      }}
-                      onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.06)'}
-                      onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.03)'}
-                      >
+                      }}>
                         <div>
                           <div style={{ fontSize: '0.875rem', color: '#a78bfa', marginBottom: '6px', fontWeight: 600 }}>
                             {progress.lesson.module.course.title}

@@ -306,3 +306,11 @@ p { color: var(--color-text-secondary); }
   background-color: transparent;
   border: 0;
 }
+
+.hover-lift:hover {
+  transform: translateY(-4px) !important;
+}
+
+.hover-bg:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
+}
