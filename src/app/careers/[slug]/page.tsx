@@ -85,7 +85,14 @@ export default async function CareerRoadmapPage({ params }: { params: Promise<{ 
                   {index + 1}
                 </div>
                 
-                <h3 style={{ fontSize: '1.5rem', marginBottom: '8px', marginLeft: '16px' }}>{course.title}</h3>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginLeft: '16px', marginBottom: '8px' }}>
+                  <h3 style={{ fontSize: '1.5rem' }}>{course.title}</h3>
+                  {isEnrolled && (
+                    <Link href={`/learn/${course.slug}`} className="btn btn-secondary" style={{ padding: '8px 16px', fontSize: '0.875rem' }}>
+                      Start Course &rarr;
+                    </Link>
+                  )}
+                </div>
                 <p style={{ color: 'var(--color-text-secondary)', marginBottom: '24px', marginLeft: '16px' }}>{course.description}</p>
                 
                 <div style={{ marginLeft: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
