@@ -20,6 +20,12 @@ export default async function StudentDashboardPage() {
     include: { careerGoal: true }
   });
 
+  const firstCourseId = profile?.careerGoal ? (await prisma.course.findFirst({ where: { careerPathId: profile.careerGoal.id }, orderBy: { order: 'asc' } }))?.id : undefined;
+
+  const certificate = firstCourseId ? await prisma.certificate.findFirst({
+    where: { userId: session.user.id, courseId: firstCourseId }
+  }) : null;
+
   // Gamification Metrics Fetch
   const completedLessons = await prisma.lessonProgress.findMany({ where: { userId: session.user.id } });
   const completedAssignments = await prisma.assignmentSubmission.findMany({ where: { userId: session.user.id } }); // Treat submitted as points for now, or require COMPLETED
@@ -154,9 +160,28 @@ export default async function StudentDashboardPage() {
                 </div>
 
                 <div style={{ display: 'flex', gap: '16px' }}>
-                  <Link href={nextActionUrl} className="btn btn-primary" style={{ padding: '12px 32px', fontSize: '1.125rem' }}>
-                    {nextActionLabel} &rarr;
-                  </Link>
+                  {progressPercent === 100 ? (
+                    certificate ? (
+                      <Link href={`/certificates/${certificate.id}`} className="btn btn-primary" style={{ padding: '12px 32px', fontSize: '1.125rem', backgroundColor: 'var(--color-success)', borderColor: 'var(--color-success)' }}>
+                        View Certificate 🏆
+                      </Link>
+                    ) : (
+                      <form action={async () => {
+                        'use server';
+                        const { issueCourseCertificate } = await import('@/actions/learning/certificate');
+                        const certId = await issueCourseCertificate(firstCourseId!);
+                        redirect(`/certificates/${certId}`);
+                      }}>
+                        <button type="submit" className="btn btn-primary" style={{ padding: '12px 32px', fontSize: '1.125rem', backgroundColor: 'var(--color-brand-primary)' }}>
+                          Claim Certificate 🎓
+                        </button>
+                      </form>
+                    )
+                  ) : (
+                    <Link href={nextActionUrl} className="btn btn-primary" style={{ padding: '12px 32px', fontSize: '1.125rem' }}>
+                      {nextActionLabel} &rarr;
+                    </Link>
+                  )}
                 </div>
               </section>
 

@@ -24,6 +24,25 @@ export default async function Navbar() {
       </Link>
       
       <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
+        
+        <form action="/search" method="GET" style={{ position: 'relative' }}>
+          <input 
+            type="text" 
+            name="q"
+            placeholder="Search courses..." 
+            style={{ 
+              padding: '8px 16px', 
+              borderRadius: '20px', 
+              border: '1px solid var(--color-border)', 
+              backgroundColor: 'var(--color-bg-secondary)', 
+              color: 'var(--color-text-primary)',
+              fontSize: '0.875rem',
+              outline: 'none',
+              width: '200px'
+            }} 
+          />
+        </form>
+
         <Link href="/careers" style={{ color: 'var(--color-text-secondary)', fontWeight: 500 }} className="hover-white">
           Explore Careers
         </Link>
