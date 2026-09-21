@@ -5,6 +5,10 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import Link from 'next/link';
 import { Status } from '@prisma/client';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
+import { getLockedModuleIds } from '@/lib/courseProgress';
+import { redirect } from 'next/navigation';
 
 export default async function LessonPage({ params }: { params: Promise<{ courseSlug: string, lessonId: string }> }) {
   const resolvedParams = await params;
@@ -20,6 +24,15 @@ export default async function LessonPage({ params }: { params: Promise<{ courseS
 
   if (!lesson) {
     notFound();
+  }
+
+  // Server-side lock enforcement
+  const session = await getServerSession(authOptions);
+  if (session) {
+    const lockedModuleIds = await getLockedModuleIds(session.user.id, lesson.module.courseId, session.user.role);
+    if (lockedModuleIds.has(lesson.moduleId)) {
+      redirect(`/learn/${resolvedParams.courseSlug}`);
+    }
   }
 
   return (

@@ -5,6 +5,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import Link from 'next/link';
 import { Status } from '@prisma/client';
+import { getLockedModuleIds } from '@/lib/courseProgress';
 
 export default async function LearnLayout({
   children,
@@ -56,8 +57,6 @@ export default async function LearnLayout({
   });
 
   if (!enrollment && session.user.role !== 'ADMIN') {
-    // If not enrolled and not admin, send them to the career page to enroll
-    // For now, redirect to dashboard
     redirect('/dashboard');
   }
 
@@ -73,8 +72,17 @@ export default async function LearnLayout({
   }) : [];
   const completedAssignmentIds = new Set(completedAssignments.map(a => a.assignmentId));
 
-  // Quizzes passing threshold could be checked via quizAttempts, but for MVP we skip quiz checkmarks for now 
-  // or just show them without checkmarks.
+  const quizAttempts = session ? await prisma.quizAttempt.findMany({
+    where: { 
+      userId: session.user.id, 
+      quiz: { module: { courseId: course.id } },
+      passed: true
+    },
+    include: { quiz: true }
+  }) : [];
+  const passedQuizModuleIds = new Set(quizAttempts.map(a => a.quiz.moduleId));
+
+  const lockedModuleIds = await getLockedModuleIds(session.user.id, course.id, session.user.role);
 
   return (
     <div style={{ display: 'flex', height: '100vh', backgroundColor: 'var(--color-bg-primary)', overflow: 'hidden' }}>
@@ -89,10 +97,14 @@ export default async function LearnLayout({
         </div>
         
         <div style={{ flex: 1, overflowY: 'auto', padding: '16px' }}>
-          {course.modules.map((module, mIndex) => (
-            <div key={module.id} style={{ marginBottom: '24px' }}>
-              <h3 style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--color-text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '12px' }}>
-                Module {mIndex + 1}: {module.title}
+          {course.modules.map((module, mIndex) => {
+            const isLocked = lockedModuleIds.has(module.id);
+
+            return (
+            <div key={module.id} style={{ marginBottom: '24px', opacity: isLocked ? 0.6 : 1, pointerEvents: isLocked ? 'none' : 'auto' }}>
+              <h3 style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--color-text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <span>Module {mIndex + 1}: {module.title}</span>
+                {isLocked && <span title="Pass the previous module's quiz to unlock">🔒</span>}
               </h3>
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '4px' }}>
                 {module.lessons.map((lesson, lIndex) => {
@@ -100,7 +112,7 @@ export default async function LearnLayout({
                   return (
                   <li key={lesson.id}>
                     <Link 
-                      href={`/learn/${course.slug}/lesson/${lesson.id}`}
+                      href={isLocked ? '#' : `/learn/${course.slug}/lesson/${lesson.id}`}
                       style={{ 
                         display: 'flex', 
                         padding: '10px 12px', 
@@ -110,7 +122,7 @@ export default async function LearnLayout({
                         transition: 'background-color 0.2s',
                         alignItems: 'center'
                       }}
-                      className="hover-white"
+                      className={isLocked ? "" : "hover-white"}
                     >
                       <span style={{ marginRight: '12px', color: isCompleted ? 'var(--color-success)' : 'var(--color-text-muted)', fontSize: isCompleted ? '1rem' : '0.875rem' }}>
                         {isCompleted ? '✓' : `${lIndex + 1}.`}
@@ -121,34 +133,38 @@ export default async function LearnLayout({
                     </Link>
                   </li>
                 )})}
-                {module.quizzes.map((quiz) => (
+                {module.quizzes.map((quiz) => {
+                  const isPassed = passedQuizModuleIds.has(module.id);
+                  return (
                   <li key={quiz.id} style={{ marginTop: '8px' }}>
                     <Link 
-                      href={`/learn/${course.slug}/quiz/${quiz.id}`}
+                      href={isLocked ? '#' : `/learn/${course.slug}/quiz/${quiz.id}`}
                       style={{ 
                         display: 'flex', 
                         padding: '10px 12px', 
                         borderRadius: '6px', 
                         fontSize: '0.875rem', 
-                        color: 'var(--color-brand-primary)',
-                        backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                        color: isPassed ? 'var(--color-text-secondary)' : 'var(--color-brand-primary)',
+                        backgroundColor: isPassed ? 'transparent' : 'rgba(99, 102, 241, 0.1)',
                         transition: 'background-color 0.2s',
                         alignItems: 'center',
                         fontWeight: 500
                       }}
-                      className="hover-white"
+                      className={isLocked ? "" : "hover-white"}
                     >
-                      <span style={{ marginRight: '12px' }}>🎯</span>
-                      {quiz.title}
+                      <span style={{ marginRight: '12px' }}>{isPassed ? '✓' : '🎯'}</span>
+                      <span style={{ textDecoration: isPassed ? 'line-through' : 'none', opacity: isPassed ? 0.7 : 1 }}>
+                        {quiz.title}
+                      </span>
                     </Link>
                   </li>
-                ))}
+                )})}
                 {module.assignments.map((assignment) => {
                   const isCompleted = completedAssignmentIds.has(assignment.id);
                   return (
                   <li key={assignment.id} style={{ marginTop: '8px' }}>
                     <Link 
-                      href={`/learn/${course.slug}/assignment/${assignment.id}`}
+                      href={isLocked ? '#' : `/learn/${course.slug}/assignment/${assignment.id}`}
                       style={{ 
                         display: 'flex', 
                         padding: '10px 12px', 
@@ -160,7 +176,7 @@ export default async function LearnLayout({
                         alignItems: 'center',
                         fontWeight: 500
                       }}
-                      className="hover-white"
+                      className={isLocked ? "" : "hover-white"}
                     >
                       <span style={{ marginRight: '12px' }}>{isCompleted ? '✓' : '📝'}</span>
                       <span style={{ textDecoration: isCompleted ? 'line-through' : 'none', opacity: isCompleted ? 0.7 : 1 }}>
@@ -171,7 +187,7 @@ export default async function LearnLayout({
                 )})}
               </ul>
             </div>
-          ))}
+          )})}
         </div>
       </aside>
 

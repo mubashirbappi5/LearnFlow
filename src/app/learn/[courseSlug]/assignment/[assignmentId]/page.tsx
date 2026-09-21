@@ -4,6 +4,7 @@ import { notFound, redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { Status } from '@prisma/client';
+import { getLockedModuleIds } from '@/lib/courseProgress';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import AssignmentClient from '@/components/learning/AssignmentClient';
@@ -20,6 +21,12 @@ export default async function AssignmentPage({ params }: { params: Promise<{ cou
 
   if (!assignment || assignment.status !== Status.PUBLISHED) {
     notFound();
+  }
+
+  // Server-side lock enforcement
+  const lockedModuleIds = await getLockedModuleIds(session.user.id, assignment.module.courseId, session.user.role);
+  if (lockedModuleIds.has(assignment.moduleId)) {
+    redirect(`/learn/${resolvedParams.courseSlug}`);
   }
 
   // Fetch user's existing submission if any

@@ -3,6 +3,10 @@ import { prisma } from '@/lib/prisma';
 import { notFound } from 'next/navigation';
 import QuizClient from '@/components/learning/QuizClient';
 import { Status } from '@prisma/client';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
+import { getLockedModuleIds } from '@/lib/courseProgress';
+import { redirect } from 'next/navigation';
 
 export default async function QuizPage({ params }: { params: Promise<{ courseSlug: string, quizId: string }> }) {
   const resolvedParams = await params;
@@ -18,6 +22,15 @@ export default async function QuizPage({ params }: { params: Promise<{ courseSlu
 
   if (!quiz || quiz.status !== Status.PUBLISHED) {
     notFound();
+  }
+
+  // Server-side lock enforcement
+  const session = await getServerSession(authOptions);
+  if (session) {
+    const lockedModuleIds = await getLockedModuleIds(session.user.id, quiz.module.courseId, session.user.role);
+    if (lockedModuleIds.has(quiz.moduleId)) {
+      redirect(`/learn/${resolvedParams.courseSlug}`);
+    }
   }
 
   return (
