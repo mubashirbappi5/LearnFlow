@@ -7,11 +7,12 @@ import Link from 'next/link';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 
-export default async function CareerRoadmapPage({ params }: { params: { slug: string } }) {
+export default async function CareerRoadmapPage({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params;
   const session = await getServerSession(authOptions);
   
   const career = await prisma.careerPath.findUnique({
-    where: { slug: params.slug },
+    where: { slug: resolvedParams.slug },
     include: {
       courses: {
         where: { status: Status.PUBLISHED },
@@ -59,9 +60,10 @@ export default async function CareerRoadmapPage({ params }: { params: { slug: st
             ) : (
               <form action={async () => {
                 'use server';
-                // Server action to enroll would go here
+                const { enrollInCareer } = await import('@/actions/learning/enrollment');
+                await enrollInCareer(career.id);
               }}>
-                <button type="button" className="btn btn-primary" onClick={() => {}}>{/* Need client component for enrollment or proper form action */} Enroll Now</button>
+                <button type="submit" className="btn btn-primary">Enroll Now</button>
               </form>
             )}
           </div>
