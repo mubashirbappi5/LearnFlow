@@ -5,9 +5,8 @@ import { prisma } from '@/lib/prisma';
  * Returns a Set of locked module IDs.
  */
 export async function getLockedModuleIds(userId: string, courseId: string, userRole: string = 'USER'): Promise<Set<string>> {
-  if (userRole === 'ADMIN') {
-    return new Set<string>(); // Admins bypass all locks
-  }
+  // Removed admin bypass so that everyone (even admins) must complete quizzes
+  // to unlock modules, as requested by the user.
 
   const course = await prisma.course.findUnique({
     where: { id: courseId },
