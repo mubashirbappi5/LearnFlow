@@ -91,38 +91,94 @@ export default async function StudentDashboardPage() {
   });
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <Navbar />
+    <div style={{ 
+      minHeight: '100vh', 
+      display: 'flex', 
+      flexDirection: 'column',
+      background: 'linear-gradient(145deg, #0a0a0f 0%, #11111a 100%)',
+      position: 'relative',
+      overflow: 'hidden'
+    }}>
+      {/* Background glowing orbs */}
+      <div style={{ position: 'absolute', top: '-10%', left: '-10%', width: '40vw', height: '40vw', background: 'radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(0,0,0,0) 70%)', filter: 'blur(60px)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', bottom: '-20%', right: '-10%', width: '50vw', height: '50vw', background: 'radial-gradient(circle, rgba(139,92,246,0.1) 0%, rgba(0,0,0,0) 70%)', filter: 'blur(60px)', pointerEvents: 'none' }} />
+
+      <div style={{ position: 'relative', zIndex: 10 }}>
+        <Navbar />
+      </div>
       
-      <main style={{ flex: 1, padding: '40px 24px', maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
-        <div style={{ marginBottom: '40px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+      <main style={{ flex: 1, padding: '40px 24px', maxWidth: '1200px', margin: '0 auto', width: '100%', position: 'relative', zIndex: 1 }}>
+        <div style={{ marginBottom: '48px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '24px' }}>
           <div>
-            <h1 style={{ fontSize: '2.5rem', marginBottom: '8px' }}>Welcome back, {session.user.name || session.user.email?.split('@')[0]}</h1>
-            <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.125rem' }}>
+            <h1 style={{ 
+              fontSize: '3rem', 
+              fontWeight: 800, 
+              marginBottom: '12px',
+              background: 'linear-gradient(to right, #fff, #a5b4fc)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              letterSpacing: '-0.02em'
+            }}>
+              Welcome back, {session.user.name || session.user.email?.split('@')[0]}
+            </h1>
+            <p style={{ color: '#9ca3af', fontSize: '1.125rem', fontWeight: 500 }}>
               Track your progress and continue your learning journey.
             </p>
           </div>
-          <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
-            <div style={{ textAlign: 'center', padding: '16px 24px', backgroundColor: 'var(--color-bg-secondary)', borderRadius: '12px', border: '1px solid var(--color-border)' }}>
-              <div style={{ fontSize: '2rem', fontWeight: 'bold', color: 'var(--color-brand-primary)' }}>{xp}</div>
-              <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Total XP</div>
+          <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+            <div style={{ 
+              textAlign: 'center', 
+              padding: '20px 32px', 
+              background: 'rgba(30, 30, 40, 0.6)', 
+              backdropFilter: 'blur(12px)',
+              borderRadius: '20px', 
+              border: '1px solid rgba(255,255,255,0.05)',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
+              transition: 'transform 0.2s',
+              cursor: 'default'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            >
+              <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#60a5fa', textShadow: '0 0 20px rgba(96,165,250,0.4)' }}>{xp}</div>
+              <div style={{ fontSize: '0.875rem', color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600, marginTop: '4px' }}>Total XP</div>
             </div>
-            <div style={{ textAlign: 'center', padding: '16px 24px', backgroundColor: 'var(--color-bg-secondary)', borderRadius: '12px', border: '1px solid var(--color-border)' }}>
-              <div style={{ fontSize: '2rem', fontWeight: 'bold', color: 'var(--color-brand-secondary)' }}>{completedItems}</div>
-              <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Lessons Done</div>
+            <div style={{ 
+              textAlign: 'center', 
+              padding: '20px 32px', 
+              background: 'rgba(30, 30, 40, 0.6)', 
+              backdropFilter: 'blur(12px)',
+              borderRadius: '20px', 
+              border: '1px solid rgba(255,255,255,0.05)',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
+              transition: 'transform 0.2s',
+              cursor: 'default'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            >
+              <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#a78bfa', textShadow: '0 0 20px rgba(167,139,250,0.4)' }}>{completedItems}</div>
+              <div style={{ fontSize: '0.875rem', color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600, marginTop: '4px' }}>Lessons Done</div>
             </div>
           </div>
         </div>
 
         {!profile?.careerGoal ? (
-          <div className="card" style={{ textAlign: 'center', padding: '64px 24px' }}>
-            <h2 style={{ fontSize: '1.5rem', marginBottom: '16px' }}>You haven't enrolled in a Career Path yet.</h2>
-            <p style={{ color: 'var(--color-text-secondary)', marginBottom: '32px', maxWidth: '500px', margin: '0 auto 32px' }}>
+          <div style={{ 
+            textAlign: 'center', 
+            padding: '80px 24px', 
+            background: 'rgba(30,30,40,0.4)',
+            backdropFilter: 'blur(12px)',
+            borderRadius: '24px',
+            border: '1px solid rgba(255,255,255,0.05)'
+          }}>
+            <h2 style={{ fontSize: '2rem', marginBottom: '16px', fontWeight: 700 }}>You haven't enrolled in a Career Path yet.</h2>
+            <p style={{ color: '#9ca3af', marginBottom: '40px', maxWidth: '500px', margin: '0 auto 40px', fontSize: '1.125rem' }}>
               Take our career assessment to get a personalized recommendation, or explore our career paths manually.
             </p>
-            <div style={{ display: 'flex', gap: '16px', justifyContent: 'center' }}>
-              <Link href="/assessment" className="btn btn-primary">Take Assessment</Link>
-              <Link href="/careers" className="btn btn-secondary">Explore Careers</Link>
+            <div style={{ display: 'flex', gap: '20px', justifyContent: 'center' }}>
+              <Link href="/assessment" className="btn btn-primary" style={{ padding: '16px 32px', fontSize: '1.125rem', borderRadius: '12px', background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)', boxShadow: '0 4px 14px rgba(59,130,246,0.4)' }}>Take Assessment</Link>
+              <Link href="/careers" className="btn btn-secondary" style={{ padding: '16px 32px', fontSize: '1.125rem', borderRadius: '12px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>Explore Careers</Link>
             </div>
           </div>
         ) : (
@@ -131,38 +187,58 @@ export default async function StudentDashboardPage() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
               
               {/* Career Goal Card */}
-              <section className="card" style={{ padding: '32px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
+              <section style={{ 
+                padding: '40px', 
+                background: 'linear-gradient(145deg, rgba(30,30,40,0.8) 0%, rgba(20,20,25,0.9) 100%)',
+                backdropFilter: 'blur(20px)',
+                borderRadius: '24px',
+                border: '1px solid rgba(255,255,255,0.08)',
+                boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
+                position: 'relative',
+                overflow: 'hidden'
+              }}>
+                {/* Subtle top border glow */}
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '2px', background: 'linear-gradient(90deg, transparent, rgba(59,130,246,0.5), transparent)' }} />
+                
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '32px' }}>
                   <div>
-                    <span style={{ fontSize: '0.875rem', color: 'var(--color-brand-primary)', textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.05em' }}>Current Career Path</span>
-                    <h2 style={{ fontSize: '2rem', marginTop: '8px' }}>{profile.careerGoal.title}</h2>
+                    <span style={{ fontSize: '0.875rem', color: '#60a5fa', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.1em' }}>Current Career Path</span>
+                    <h2 style={{ fontSize: '2.25rem', marginTop: '12px', fontWeight: 800, letterSpacing: '-0.02em' }}>{profile.careerGoal.title}</h2>
                   </div>
                   <div style={{ 
-                    width: '64px', height: '64px', borderRadius: '32px', 
-                    border: '4px solid var(--color-bg-tertiary)', 
+                    width: '80px', height: '80px', borderRadius: '40px', 
+                    border: '6px solid rgba(255,255,255,0.05)', 
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    background: `conic-gradient(var(--color-brand-primary) ${progressPercent}%, transparent 0)`
+                    background: `conic-gradient(#3b82f6 ${progressPercent}%, transparent 0)`,
+                    boxShadow: '0 0 20px rgba(59,130,246,0.2)'
                   }}>
-                    <div style={{ width: '48px', height: '48px', borderRadius: '24px', backgroundColor: 'var(--color-bg-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.875rem', fontWeight: 'bold' }}>
+                    <div style={{ width: '64px', height: '64px', borderRadius: '32px', backgroundColor: '#18181b', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.125rem', fontWeight: 800 }}>
                       {progressPercent}%
                     </div>
                   </div>
                 </div>
                 
                 {/* Progress Bar */}
-                <div style={{ marginBottom: '32px' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
-                    <span>{completedItems} of {totalItems} completed</span>
+                <div style={{ marginBottom: '40px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px', fontSize: '0.875rem', color: '#9ca3af', fontWeight: 500 }}>
+                    <span>{completedItems} of {totalItems} modules completed</span>
+                    <span style={{ color: '#60a5fa' }}>{100 - progressPercent}% remaining</span>
                   </div>
-                  <div style={{ width: '100%', height: '8px', backgroundColor: 'var(--color-bg-tertiary)', borderRadius: '4px', overflow: 'hidden' }}>
-                    <div style={{ height: '100%', width: `${progressPercent}%`, backgroundColor: 'var(--color-brand-primary)', transition: 'width 1s ease-in-out' }}></div>
+                  <div style={{ width: '100%', height: '10px', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '5px', overflow: 'hidden' }}>
+                    <div style={{ 
+                      height: '100%', 
+                      width: `${progressPercent}%`, 
+                      background: 'linear-gradient(90deg, #3b82f6, #8b5cf6)', 
+                      transition: 'width 1s cubic-bezier(0.4, 0, 0.2, 1)',
+                      boxShadow: '0 0 10px rgba(59,130,246,0.5)'
+                    }}></div>
                   </div>
                 </div>
 
                 <div style={{ display: 'flex', gap: '16px' }}>
                   {progressPercent === 100 ? (
                     certificate ? (
-                      <Link href={`/certificates/${certificate.id}`} className="btn btn-primary" style={{ padding: '12px 32px', fontSize: '1.125rem', backgroundColor: 'var(--color-success)', borderColor: 'var(--color-success)' }}>
+                      <Link href={`/certificates/${certificate.id}`} className="btn btn-primary" style={{ padding: '16px 32px', fontSize: '1.125rem', borderRadius: '12px', background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)', border: 'none', boxShadow: '0 4px 14px rgba(16,185,129,0.4)', fontWeight: 600 }}>
                         View Certificate 🏆
                       </Link>
                     ) : (
@@ -172,39 +248,78 @@ export default async function StudentDashboardPage() {
                         const certId = await issueCourseCertificate(firstCourseId!);
                         redirect(`/certificates/${certId}`);
                       }}>
-                        <button type="submit" className="btn btn-primary" style={{ padding: '12px 32px', fontSize: '1.125rem', backgroundColor: 'var(--color-brand-primary)' }}>
+                        <button type="submit" className="btn btn-primary" style={{ padding: '16px 32px', fontSize: '1.125rem', borderRadius: '12px', background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)', border: 'none', boxShadow: '0 4px 14px rgba(245,158,11,0.4)', fontWeight: 600, cursor: 'pointer' }}>
                           Claim Certificate 🎓
                         </button>
                       </form>
                     )
                   ) : (
-                    <Link href={nextActionUrl} className="btn btn-primary" style={{ padding: '12px 32px', fontSize: '1.125rem' }}>
-                      {nextActionLabel} &rarr;
+                    <Link href={nextActionUrl} className="btn btn-primary" style={{ 
+                      padding: '16px 32px', 
+                      fontSize: '1.125rem', 
+                      borderRadius: '12px',
+                      background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
+                      border: 'none',
+                      boxShadow: '0 4px 14px rgba(59,130,246,0.4)',
+                      fontWeight: 600,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px'
+                    }}>
+                      {nextActionLabel} 
+                      <span style={{ transition: 'transform 0.2s' }}>&rarr;</span>
                     </Link>
                   )}
                 </div>
               </section>
 
               {/* Recent Activity */}
-              <section>
-                <h3 style={{ fontSize: '1.25rem', marginBottom: '16px' }}>Recent Activity</h3>
+              <section style={{ 
+                padding: '32px', 
+                background: 'rgba(30,30,40,0.4)',
+                backdropFilter: 'blur(12px)',
+                borderRadius: '24px',
+                border: '1px solid rgba(255,255,255,0.05)'
+              }}>
+                <h3 style={{ fontSize: '1.5rem', marginBottom: '24px', fontWeight: 700 }}>Recent Activity</h3>
                 {recentLessons.length === 0 ? (
-                  <div className="card" style={{ padding: '32px', textAlign: 'center', color: 'var(--color-text-secondary)' }}>
+                  <div style={{ padding: '40px', textAlign: 'center', color: '#9ca3af', background: 'rgba(0,0,0,0.2)', borderRadius: '16px' }}>
                     You haven't completed any lessons yet. Time to get started!
                   </div>
                 ) : (
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                     {recentLessons.map((progress) => (
-                      <div key={progress.id} className="card" style={{ padding: '16px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <div key={progress.id} style={{ 
+                        padding: '20px 24px', 
+                        display: 'flex', 
+                        justifyContent: 'space-between', 
+                        alignItems: 'center',
+                        background: 'rgba(255,255,255,0.03)',
+                        borderRadius: '16px',
+                        border: '1px solid rgba(255,255,255,0.05)',
+                        transition: 'background 0.2s'
+                      }}
+                      onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.06)'}
+                      onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.03)'}
+                      >
                         <div>
-                          <div style={{ fontSize: '0.875rem', color: 'var(--color-brand-secondary)', marginBottom: '4px' }}>
+                          <div style={{ fontSize: '0.875rem', color: '#a78bfa', marginBottom: '6px', fontWeight: 600 }}>
                             {progress.lesson.module.course.title}
                           </div>
-                          <div style={{ fontSize: '1.125rem', fontWeight: 500 }}>
+                          <div style={{ fontSize: '1.125rem', fontWeight: 600 }}>
                             {progress.lesson.title}
                           </div>
                         </div>
-                        <div style={{ color: 'var(--color-success)', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <div style={{ 
+                          color: '#10b981', 
+                          fontWeight: 700, 
+                          display: 'flex', 
+                          alignItems: 'center', 
+                          gap: '8px',
+                          background: 'rgba(16,185,129,0.1)',
+                          padding: '8px 16px',
+                          borderRadius: '20px'
+                        }}>
                           <span>+10 XP</span>
                           <span>✓</span>
                         </div>
@@ -217,38 +332,66 @@ export default async function StudentDashboardPage() {
 
             {/* Sidebar Area */}
             <aside style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-              <div className="card">
-                <h3 style={{ fontSize: '1.25rem', marginBottom: '24px' }}>Your Gamification</h3>
+              <div style={{ 
+                padding: '32px', 
+                background: 'rgba(30,30,40,0.4)',
+                backdropFilter: 'blur(12px)',
+                borderRadius: '24px',
+                border: '1px solid rgba(255,255,255,0.05)'
+              }}>
+                <h3 style={{ fontSize: '1.25rem', marginBottom: '24px', fontWeight: 700 }}>Your Gamification</h3>
                 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                    <div style={{ width: '40px', height: '40px', borderRadius: '8px', backgroundColor: 'rgba(59, 130, 246, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.25rem' }}>🔥</div>
+                    <div style={{ 
+                      width: '48px', height: '48px', borderRadius: '12px', 
+                      background: 'linear-gradient(135deg, rgba(239,68,68,0.2), rgba(245,158,11,0.2))', 
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem',
+                      border: '1px solid rgba(239,68,68,0.1)'
+                    }}>🔥</div>
                     <div>
-                      <div style={{ fontWeight: 600 }}>{passedQuizzes.length} Quizzes Passed</div>
-                      <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>50 XP each</div>
+                      <div style={{ fontWeight: 700, fontSize: '1.125rem' }}>{passedQuizzes.length} Quizzes</div>
+                      <div style={{ fontSize: '0.875rem', color: '#9ca3af', fontWeight: 500 }}>50 XP each</div>
                     </div>
                   </div>
                   
                   <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                    <div style={{ width: '40px', height: '40px', borderRadius: '8px', backgroundColor: 'rgba(139, 92, 246, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.25rem' }}>📁</div>
+                    <div style={{ 
+                      width: '48px', height: '48px', borderRadius: '12px', 
+                      background: 'linear-gradient(135deg, rgba(139,92,246,0.2), rgba(59,130,246,0.2))', 
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem',
+                      border: '1px solid rgba(139,92,246,0.1)'
+                    }}>📁</div>
                     <div>
-                      <div style={{ fontWeight: 600 }}>{completedAssignments.length} Assignments</div>
-                      <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>100 XP each</div>
+                      <div style={{ fontWeight: 700, fontSize: '1.125rem' }}>{completedAssignments.length} Assignments</div>
+                      <div style={{ fontSize: '0.875rem', color: '#9ca3af', fontWeight: 500 }}>100 XP each</div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="card">
-                <h3 style={{ fontSize: '1.25rem', marginBottom: '16px' }}>Your Profile</h3>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '0.875rem' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ color: 'var(--color-text-secondary)' }}>Email</span>
-                    <span>{session.user.email}</span>
+              <div style={{ 
+                padding: '32px', 
+                background: 'rgba(30,30,40,0.4)',
+                backdropFilter: 'blur(12px)',
+                borderRadius: '24px',
+                border: '1px solid rgba(255,255,255,0.05)'
+              }}>
+                <h3 style={{ fontSize: '1.25rem', marginBottom: '20px', fontWeight: 700 }}>Your Profile</h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', fontSize: '0.875rem' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '12px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                    <span style={{ color: '#9ca3af', fontWeight: 500 }}>Email</span>
+                    <span style={{ fontWeight: 600 }}>{session.user.email}</span>
                   </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ color: 'var(--color-text-secondary)' }}>Role</span>
-                    <span>{session.user.role}</span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ color: '#9ca3af', fontWeight: 500 }}>Role</span>
+                    <span style={{ 
+                      fontWeight: 700, 
+                      color: session.user.role === 'ADMIN' ? '#f59e0b' : '#3b82f6',
+                      background: session.user.role === 'ADMIN' ? 'rgba(245,158,11,0.1)' : 'rgba(59,130,246,0.1)',
+                      padding: '4px 12px',
+                      borderRadius: '12px'
+                    }}>{session.user.role}</span>
                   </div>
                 </div>
               </div>
