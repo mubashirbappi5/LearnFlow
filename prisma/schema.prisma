@@ -1,0 +1,310 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Status {
+  DRAFT
+  REVIEW
+  PUBLISHED
+  NEEDS_REVIEW
+  ARCHIVED
+}
+
+enum ProgressStatus {
+  LOCKED
+  AVAILABLE
+  IN_PROGRESS
+  COMPLETED
+}
+
+enum SubmissionStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  SUBMITTED
+  COMPLETED
+}
+
+enum SubmissionType {
+  TEXT
+  GITHUB_URL
+  LIVE_URL
+  FILE
+}
+
+enum QuestionType {
+  MULTIPLE_CHOICE
+  MULTIPLE_SELECT
+  TRUE_FALSE
+  SCENARIO
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  password      String
+  role          Role      @default(USER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  profile               Profile?
+  enrollments           Enrollment[]
+  lessonProgress        LessonProgress[]
+  quizAttempts          QuizAttempt[]
+  assignmentSubmissions AssignmentSubmission[]
+  certificates          Certificate[]
+  bookmarks             Bookmark[]
+  userNotes             UserNote[]
+}
+
+model Profile {
+  id                 String   @id @default(cuid())
+  userId             String   @unique
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  careerGoalId       String?
+  careerGoal         CareerPath? @relation(fields: [careerGoalId], references: [id], onDelete: SetNull)
+  skillLevel         String?
+  existingSkills     String?
+  learningGoal       String?
+  dailyStudyHours    Int?
+  targetTimeline     String?
+  preferredLanguage  String?  @default("en")
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model CareerPath {
+  id                 String   @id @default(cuid())
+  title              String
+  slug               String   @unique
+  description        String
+  overview           String?
+  coreSkills         String?
+  tools              String?
+  estimatedDuration  String?
+  portfolioProjects  String?
+  status             Status   @default(DRAFT)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  courses            Course[]
+  profiles           Profile[]
+}
+
+model Course {
+  id                 String   @id @default(cuid())
+  careerPathId       String
+  careerPath         CareerPath @relation(fields: [careerPathId], references: [id], onDelete: Cascade)
+  title              String
+  slug               String   @unique
+  description        String
+  status             Status   @default(DRAFT)
+  order              Int      @default(0)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  modules            Module[]
+  enrollments        Enrollment[]
+  certificates       Certificate[]
+}
+
+model Module {
+  id                 String   @id @default(cuid())
+  courseId           String
+  course             Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  title              String
+  description        String?
+  order              Int      @default(0)
+  status             Status   @default(DRAFT)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  lessons            Lesson[]
+  quizzes            Quiz[]
+  assignments        Assignment[]
+}
+
+model Lesson {
+  id                 String   @id @default(cuid())
+  moduleId           String
+  module             Module   @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  title              String
+  description        String?
+  content            String?  // Markdown content
+  order              Int      @default(0)
+  status             Status   @default(DRAFT)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  resources          Resource[]
+  progress           LessonProgress[]
+  bookmarks          Bookmark[]
+  notes              UserNote[]
+}
+
+model Resource {
+  id                 String   @id @default(cuid())
+  lessonId           String?
+  lesson             Lesson?  @relation(fields: [lessonId], references: [id], onDelete: SetNull)
+  title              String
+  creator            String?
+  originalUrl        String?
+  embedUrl           String?
+  resourceType       String
+  difficulty         String?
+  duration           String?
+  language           String   @default("en")
+  attribution        String?
+  licensing          String?
+  status             Status   @default(DRAFT)
+  lastVerifiedDate   DateTime?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  bookmarks          Bookmark[]
+}
+
+model Enrollment {
+  id                 String   @id @default(cuid())
+  userId             String
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId           String
+  course             Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  status             ProgressStatus @default(IN_PROGRESS)
+  progressPercentage Float    @default(0.0)
+  enrolledAt         DateTime @default(now())
+  completedAt        DateTime?
+  lastActivityAt     DateTime @default(now())
+
+  @@unique([userId, courseId])
+}
+
+model LessonProgress {
+  id                 String   @id @default(cuid())
+  userId             String
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lessonId           String
+  lesson             Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  status             ProgressStatus @default(COMPLETED)
+  completedAt        DateTime @default(now())
+
+  @@unique([userId, lessonId])
+}
+
+model Quiz {
+  id                 String   @id @default(cuid())
+  moduleId           String
+  module             Module   @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  title              String
+  description        String?
+  passingScore       Int      @default(70)
+  status             Status   @default(DRAFT)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  questions          QuizQuestion[]
+  attempts           QuizAttempt[]
+}
+
+model QuizQuestion {
+  id                 String   @id @default(cuid())
+  quizId             String
+  quiz               Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  type               QuestionType
+  question           String
+  options            String   // Stored as JSON array
+  correctOptions     String   // Stored as JSON array
+  explanation        String?
+  order              Int      @default(0)
+}
+
+model QuizAttempt {
+  id                 String   @id @default(cuid())
+  userId             String
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quizId             String
+  quiz               Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  score              Int
+  passed             Boolean
+  answers            String   // User's answers stored as JSON
+  attemptedAt        DateTime @default(now())
+}
+
+model Assignment {
+  id                 String   @id @default(cuid())
+  moduleId           String
+  module             Module   @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  title              String
+  instructions       String
+  requirements       String
+  helpfulResources   String?
+  allowedTypes       SubmissionType[]
+  dueDate            DateTime?
+  status             Status   @default(DRAFT)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  submissions        AssignmentSubmission[]
+}
+
+model AssignmentSubmission {
+  id                 String   @id @default(cuid())
+  userId             String
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  assignmentId       String
+  assignment         Assignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+  content            String?
+  submissionType     SubmissionType
+  status             SubmissionStatus @default(SUBMITTED)
+  submittedAt        DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  @@unique([userId, assignmentId])
+}
+
+model Certificate {
+  id                 String   @id @default(cuid())
+  userId             String
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId           String
+  course             Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  certificateId      String   @unique
+  verificationUrl    String   @unique
+  issuedAt           DateTime @default(now())
+}
+
+model Bookmark {
+  id                 String   @id @default(cuid())
+  userId             String
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lessonId           String?
+  lesson             Lesson?  @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  resourceId         String?
+  resource           Resource? @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+  createdAt          DateTime @default(now())
+
+  @@unique([userId, lessonId, resourceId])
+}
+
+model UserNote {
+  id                 String   @id @default(cuid())
+  userId             String
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lessonId           String
+  lesson             Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  content            String
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  @@unique([userId, lessonId])
+}
