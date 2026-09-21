@@ -141,6 +141,7 @@ model Lesson {
   title              String
   description        String?
   content            String?  // Markdown content
+  videoUrl           String?  // Dedicated video embed URL
   order              Int      @default(0)
   status             Status   @default(DRAFT)
   createdAt          DateTime @default(now())

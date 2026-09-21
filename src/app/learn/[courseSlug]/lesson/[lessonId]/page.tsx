@@ -35,6 +35,22 @@ export default async function LessonPage({ params }: { params: Promise<{ courseS
         )}
       </div>
       
+      {/* Video System Player */}
+      {lesson.videoUrl && (
+        <div style={{ marginBottom: '48px', borderRadius: '16px', overflow: 'hidden', backgroundColor: '#000', border: '1px solid rgba(255,255,255,0.1)', boxShadow: '0 20px 40px rgba(0,0,0,0.5)' }}>
+          <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+            <iframe 
+              src={lesson.videoUrl} 
+              title={lesson.title}
+              frameBorder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowFullScreen
+              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+            ></iframe>
+          </div>
+        </div>
+      )}
+      
       {/* Markdown Content */}
       <div 
         className="markdown-body" 
