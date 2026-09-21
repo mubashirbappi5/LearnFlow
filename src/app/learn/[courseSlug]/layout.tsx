@@ -32,6 +32,9 @@ export default async function LearnLayout({
           },
           quizzes: {
             where: { status: Status.PUBLISHED }
+          },
+          assignments: {
+            where: { status: Status.PUBLISHED }
           }
         }
       }
@@ -63,6 +66,15 @@ export default async function LearnLayout({
     select: { lessonId: true }
   }) : [];
   const completedLessonIds = new Set(completedLessons.map(p => p.lessonId));
+
+  const completedAssignments = session ? await prisma.assignmentSubmission.findMany({
+    where: { userId: session.user.id, assignment: { module: { courseId: course.id } }, status: 'COMPLETED' },
+    select: { assignmentId: true }
+  }) : [];
+  const completedAssignmentIds = new Set(completedAssignments.map(a => a.assignmentId));
+
+  // Quizzes passing threshold could be checked via quizAttempts, but for MVP we skip quiz checkmarks for now 
+  // or just show them without checkmarks.
 
   return (
     <div style={{ display: 'flex', height: '100vh', backgroundColor: 'var(--color-bg-primary)', overflow: 'hidden' }}>
@@ -131,6 +143,32 @@ export default async function LearnLayout({
                     </Link>
                   </li>
                 ))}
+                {module.assignments.map((assignment) => {
+                  const isCompleted = completedAssignmentIds.has(assignment.id);
+                  return (
+                  <li key={assignment.id} style={{ marginTop: '8px' }}>
+                    <Link 
+                      href={`/learn/${course.slug}/assignment/${assignment.id}`}
+                      style={{ 
+                        display: 'flex', 
+                        padding: '10px 12px', 
+                        borderRadius: '6px', 
+                        fontSize: '0.875rem', 
+                        color: isCompleted ? 'var(--color-text-secondary)' : 'var(--color-brand-secondary)',
+                        backgroundColor: isCompleted ? 'transparent' : 'rgba(139, 92, 246, 0.1)',
+                        transition: 'background-color 0.2s',
+                        alignItems: 'center',
+                        fontWeight: 500
+                      }}
+                      className="hover-white"
+                    >
+                      <span style={{ marginRight: '12px' }}>{isCompleted ? '✓' : '📝'}</span>
+                      <span style={{ textDecoration: isCompleted ? 'line-through' : 'none', opacity: isCompleted ? 0.7 : 1 }}>
+                        {assignment.title}
+                      </span>
+                    </Link>
+                  </li>
+                )})}
               </ul>
             </div>
           ))}

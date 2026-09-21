@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import { Quiz, QuizQuestion } from '@prisma/client';
 
+import { submitQuizAttempt } from '@/actions/learning/quiz';
+
 interface QuizClientProps {
   quiz: Quiz & { questions: QuizQuestion[] };
   courseSlug: string;
@@ -13,6 +15,7 @@ export default function QuizClient({ quiz, courseSlug }: QuizClientProps) {
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, string[]>>({});
   const [showResults, setShowResults] = useState(false);
   const [score, setScore] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const question = quiz.questions[currentQuestionIdx];
   const isLastQuestion = currentQuestionIdx === quiz.questions.length - 1;
@@ -50,7 +53,8 @@ export default function QuizClient({ quiz, courseSlug }: QuizClientProps) {
     }
   };
 
-  const calculateScore = () => {
+  const calculateScore = async () => {
+    setIsSubmitting(true);
     let correctCount = 0;
     quiz.questions.forEach(q => {
       const userAnswers = selectedAnswers[q.id] || [];
@@ -64,10 +68,18 @@ export default function QuizClient({ quiz, courseSlug }: QuizClientProps) {
     });
 
     const finalScore = Math.round((correctCount / quiz.questions.length) * 100);
+    const passed = finalScore >= quiz.passingScore;
+    
     setScore(finalScore);
+    
+    try {
+      await submitQuizAttempt(quiz.id, finalScore, passed, selectedAnswers, courseSlug);
+    } catch (e) {
+      console.error(e);
+    }
+    
+    setIsSubmitting(false);
     setShowResults(true);
-
-    // In a real app, we would send the attempt to the server here using a server action
   };
 
   if (showResults) {
@@ -155,10 +167,10 @@ export default function QuizClient({ quiz, courseSlug }: QuizClientProps) {
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <button 
           onClick={handleNext} 
-          disabled={currentSelections.length === 0}
+          disabled={currentSelections.length === 0 || isSubmitting}
           className="btn btn-primary"
         >
-          {isLastQuestion ? 'Submit Quiz' : 'Next Question'}
+          {isSubmitting ? 'Submitting...' : isLastQuestion ? 'Submit Quiz' : 'Next Question'}
         </button>
       </div>
     </div>
