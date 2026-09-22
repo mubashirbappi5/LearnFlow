@@ -21,7 +21,7 @@ export default async function Navbar() {
       zIndex: 50
     }}>
       <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
-        <Image src="/logo.png" alt="LearnFlow" width={180} height={40} style={{ objectFit: 'contain' }} />
+        <Image src="/logo.png" alt="LearnFlow" width={180} height={40} style={{ objectFit: 'contain', backgroundColor: 'white', borderRadius: '8px', padding: '4px' }} />
       </Link>
       
       <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
