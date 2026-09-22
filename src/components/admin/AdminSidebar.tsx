@@ -9,6 +9,7 @@ const navItems = [
   { name: 'Dashboard', href: '/admin' },
   { name: 'Careers', href: '/admin/careers' },
   { name: 'Users', href: '/admin/users' },
+  { name: 'Certificates', href: '/admin/certificates' },
 ];
 
 export default function AdminSidebar() {
