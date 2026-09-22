@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 
+import UserNavDropdown from './UserNavDropdown';
+
 export default async function Navbar() {
   const session = await getServerSession(authOptions);
 
@@ -51,9 +53,7 @@ export default async function Navbar() {
           Explore Careers
         </Link>
         {session ? (
-          <Link href={session.user.role === 'ADMIN' ? '/admin' : '/dashboard'} className="btn btn-secondary">
-            Dashboard
-          </Link>
+          <UserNavDropdown user={session.user} />
         ) : (
           <div style={{ display: 'flex', gap: '12px' }}>
             <Link href="/login" style={{ color: 'var(--color-text-secondary)', fontWeight: 500, alignSelf: 'center' }} className="hover-white">
