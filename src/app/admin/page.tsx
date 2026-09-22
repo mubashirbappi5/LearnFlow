@@ -77,7 +77,7 @@ export default async function AdminDashboard() {
 
       <div className="dashboard-grid" style={{ marginBottom: '40px' }}>
         {stats.map((stat) => (
-          <Link key={stat.name} href={stat.href} className="card hover-lift" style={{ textDecoration: 'none', background: 'linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01))', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '16px', padding: '24px' }}>
+          <Link key={stat.name} href={stat.href} className="card hover-lift" style={{ textDecoration: 'none', background: 'linear-gradient(135deg, var(--color-glass), rgba(255,255,255,0.01))', border: '1px solid var(--color-glass-strong)', borderRadius: '16px', padding: '24px' }}>
             <span className="card-title" style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem', fontWeight: 600, display: 'block', marginBottom: '8px' }}>{stat.name}</span>
             <span className="card-value" style={{ color: 'white', fontSize: '2.5rem', fontWeight: 700, display: 'block', marginBottom: '16px' }}>{stat.value}</span>
             <span className="card-link" style={{ color: 'var(--color-brand-primary)', fontSize: '0.875rem', fontWeight: 500 }}>Manage {stat.name.toLowerCase()} &rarr;</span>
@@ -85,7 +85,7 @@ export default async function AdminDashboard() {
         ))}
       </div>
       
-      <div className="card glass-panel" style={{ padding: '32px', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.1)', marginBottom: '40px' }}>
+      <div className="card glass-panel" style={{ padding: '32px', borderRadius: '24px', border: '1px solid var(--color-glass-strong)', marginBottom: '40px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
           <h3 style={{ fontSize: '1.25rem', fontWeight: 600 }}>Recent Enrollments</h3>
           <Link href="/admin/users" style={{ color: 'var(--color-brand-primary)', fontSize: '0.875rem', textDecoration: 'none' }}>View All Users &rarr;</Link>
@@ -99,7 +99,7 @@ export default async function AdminDashboard() {
           <div style={{ overflowX: 'auto' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
               <thead>
-                <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+                <tr style={{ borderBottom: '1px solid var(--color-glass-strong)' }}>
                   <th style={{ padding: '12px 16px', color: 'var(--color-text-secondary)', fontWeight: 500, fontSize: '0.875rem' }}>Student</th>
                   <th style={{ padding: '12px 16px', color: 'var(--color-text-secondary)', fontWeight: 500, fontSize: '0.875rem' }}>Course</th>
                   <th style={{ padding: '12px 16px', color: 'var(--color-text-secondary)', fontWeight: 500, fontSize: '0.875rem' }}>Date</th>
@@ -109,7 +109,7 @@ export default async function AdminDashboard() {
               </thead>
               <tbody>
                 {recentEnrollments.map((enrollment) => (
-                  <tr key={enrollment.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                  <tr key={enrollment.id} style={{ borderBottom: '1px solid var(--color-glass)' }}>
                     <td style={{ padding: '16px' }}>
                       <div style={{ fontWeight: 500, color: 'white' }}>{enrollment.user.name || 'Unknown User'}</div>
                       <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)' }}>{enrollment.user.email}</div>
@@ -120,7 +120,7 @@ export default async function AdminDashboard() {
                     </td>
                     <td style={{ padding: '16px' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <div style={{ width: '60px', height: '6px', backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: '999px', overflow: 'hidden' }}>
+                        <div style={{ width: '60px', height: '6px', backgroundColor: 'var(--color-glass-strong)', borderRadius: '999px', overflow: 'hidden' }}>
                           <div style={{ width: `${enrollment.progressPercentage}%`, height: '100%', backgroundColor: 'var(--color-brand-primary)' }} />
                         </div>
                         <span style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>{Math.round(enrollment.progressPercentage)}%</span>

@@ -17,7 +17,7 @@ export default async function Navbar() {
       justifyContent: 'space-between',
       padding: '16px 24px',
       borderBottom: '1px solid var(--color-border)',
-      backgroundColor: 'rgba(10, 10, 11, 0.8)',
+      backgroundColor: 'var(--color-nav-bg)',
       backdropFilter: 'blur(12px)',
       position: 'sticky',
       top: 0,

@@ -20,6 +20,9 @@
   --color-glass-strong: rgba(255, 255, 255, 0.1);
   --color-glass-border: rgba(255, 255, 255, 0.1);
   --color-input-bg: rgba(0, 0, 0, 0.2);
+  --color-nav-bg: rgba(10, 10, 11, 0.8);
+  --color-card-bg: rgba(30, 30, 40, 0.6);
+  --color-transparent-bg: rgba(10, 10, 11, 0);
   
   --font-sans: 'Inter', sans-serif;
 }
@@ -40,6 +43,9 @@
   --color-glass-strong: rgba(0, 0, 0, 0.08);
   --color-glass-border: rgba(0, 0, 0, 0.1);
   --color-input-bg: rgba(0, 0, 0, 0.05);
+  --color-nav-bg: rgba(255, 255, 255, 0.8);
+  --color-card-bg: rgba(255, 255, 255, 0.6);
+  --color-transparent-bg: rgba(255, 255, 255, 0);
 }
 
 * {

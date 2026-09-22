@@ -38,8 +38,8 @@ export default async function LandingPage() {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--color-bg-primary)', overflow: 'hidden' }}>
       {/* Dynamic Background Elements */}
-      <div style={{ position: 'fixed', top: '-10%', left: '-10%', width: '50vw', height: '50vw', borderRadius: '50%', background: 'radial-gradient(circle, rgba(99,102,241,0.05) 0%, rgba(10,10,11,0) 70%)', zIndex: 0, pointerEvents: 'none' }} className="animate-pulse-glow" />
-      <div style={{ position: 'fixed', bottom: '-10%', right: '-10%', width: '60vw', height: '60vw', borderRadius: '50%', background: 'radial-gradient(circle, rgba(139,92,246,0.05) 0%, rgba(10,10,11,0) 70%)', zIndex: 0, pointerEvents: 'none' }} className="animate-pulse-glow" style={{ animationDelay: '2s' } as any} />
+      <div style={{ position: 'fixed', top: '-10%', left: '-10%', width: '50vw', height: '50vw', borderRadius: '50%', background: 'radial-gradient(circle, rgba(99,102,241,0.05) 0%, var(--color-transparent-bg) 70%)', zIndex: 0, pointerEvents: 'none' }} className="animate-pulse-glow" />
+      <div style={{ position: 'fixed', bottom: '-10%', right: '-10%', width: '60vw', height: '60vw', borderRadius: '50%', background: 'radial-gradient(circle, rgba(139,92,246,0.05) 0%, var(--color-transparent-bg) 70%)', zIndex: 0, pointerEvents: 'none' }} className="animate-pulse-glow" style={{ animationDelay: '2s' } as any} />
 
       <div style={{ position: 'relative', zIndex: 1 }}>
         <Navbar />
@@ -117,7 +117,7 @@ export default async function LandingPage() {
                 </defs>
                 
                 {/* Connecting Grid / Web */}
-                <g className="animate-dash-draw" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" strokeDasharray="5 5">
+                <g className="animate-dash-draw" stroke="var(--color-glass-strong)" strokeWidth="1.5" strokeDasharray="5 5">
                   <path d="M300 300 L150 150" />
                   <path d="M300 300 L450 150" />
                   <path d="M300 300 L150 450" />
@@ -129,7 +129,7 @@ export default async function LandingPage() {
                 {/* Central Server / Backend Node */}
                 <g className="animate-pulse-heavy">
                   <circle cx="300" cy="300" r="70" fill="url(#gradBackend)" filter="url(#heavyGlow)" />
-                  <circle cx="300" cy="300" r="65" fill="#0f172a" />
+                  <circle cx="300" cy="300" r="65" fill="var(--color-bg-secondary)" />
                   {/* Database Icon */}
                   <path d="M270 290 Q300 310 330 290" stroke="#10b981" strokeWidth="4" fill="none" strokeLinecap="round" />
                   <path d="M270 310 Q300 330 330 310" stroke="#10b981" strokeWidth="4" fill="none" strokeLinecap="round" />
@@ -141,7 +141,7 @@ export default async function LandingPage() {
                   {/* Frontend Node */}
                   <g transform="translate(150, 150) rotate(-45)">
                     <rect x="-40" y="-40" width="80" height="80" rx="16" fill="url(#gradFrontend)" filter="url(#heavyGlow)"/>
-                    <rect x="-38" y="-38" width="76" height="76" rx="14" fill="#0f172a"/>
+                    <rect x="-38" y="-38" width="76" height="76" rx="14" fill="var(--color-bg-secondary)"/>
                     {/* UI Icon */}
                     <path d="M-20 -10 L-20 20 L20 20 L20 -10 Z" stroke="#3b82f6" strokeWidth="3" fill="none"/>
                     <path d="M-20 -10 L20 -10" stroke="#3b82f6" strokeWidth="3"/>
@@ -151,7 +151,7 @@ export default async function LandingPage() {
                   {/* Security Node */}
                   <g transform="translate(450, 450) rotate(135)">
                     <polygon points="0,-40 35,-15 35,25 0,50 -35,25 -35,-15" fill="url(#gradSecurity)" filter="url(#heavyGlow)"/>
-                    <polygon points="0,-36 32,-14 32,23 0,46 -32,23 -32,-14" fill="#0f172a"/>
+                    <polygon points="0,-36 32,-14 32,23 0,46 -32,23 -32,-14" fill="var(--color-bg-secondary)"/>
                     {/* Shield/Lock Icon */}
                     <rect x="-12" y="0" width="24" height="18" rx="2" stroke="#ef4444" strokeWidth="3" fill="none"/>
                     <path d="M-8 0 V-8 Q-8 -15 0 -15 Q8 -15 8 -8 V0" stroke="#ef4444" strokeWidth="3" fill="none"/>
@@ -220,7 +220,7 @@ export default async function LandingPage() {
               </div>
               
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '32px' }}>
-                <div className="card glass-panel hover-lift" style={{ backgroundColor: 'var(--color-bg-tertiary)', border: '1px solid rgba(255,255,255,0.05)' }}>
+                <div className="card glass-panel hover-lift" style={{ backgroundColor: 'var(--color-bg-tertiary)', border: '1px solid var(--color-glass)' }}>
                   <div style={{ width: '56px', height: '56px', borderRadius: '12px', background: 'linear-gradient(135deg, rgba(99,102,241,0.2), rgba(99,102,241,0.05))', border: '1px solid rgba(99,102,241,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', marginBottom: '24px' }}>
                     🎯
                   </div>
@@ -228,7 +228,7 @@ export default async function LandingPage() {
                   <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>No more wondering what to learn next. Our roadmaps tell you exactly which concept to study, in what order, ensuring zero knowledge gaps.</p>
                 </div>
                 
-                <div className="card glass-panel hover-lift" style={{ backgroundColor: 'var(--color-bg-tertiary)', border: '1px solid rgba(255,255,255,0.05)' }}>
+                <div className="card glass-panel hover-lift" style={{ backgroundColor: 'var(--color-bg-tertiary)', border: '1px solid var(--color-glass)' }}>
                   <div style={{ width: '56px', height: '56px', borderRadius: '12px', background: 'linear-gradient(135deg, rgba(236,72,153,0.2), rgba(236,72,153,0.05))', border: '1px solid rgba(236,72,153,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', marginBottom: '24px' }}>
                     💻
                   </div>
@@ -236,7 +236,7 @@ export default async function LandingPage() {
                   <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>Theory isn't enough. Build 30+ real-world projects, from simple landing pages to complex full-stack applications to build your portfolio.</p>
                 </div>
                 
-                <div className="card glass-panel hover-lift" style={{ backgroundColor: 'var(--color-bg-tertiary)', border: '1px solid rgba(255,255,255,0.05)' }}>
+                <div className="card glass-panel hover-lift" style={{ backgroundColor: 'var(--color-bg-tertiary)', border: '1px solid var(--color-glass)' }}>
                   <div style={{ width: '56px', height: '56px', borderRadius: '12px', background: 'linear-gradient(135deg, rgba(16,185,129,0.2), rgba(16,185,129,0.05))', border: '1px solid rgba(16,185,129,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', marginBottom: '24px' }}>
                     🏆
                   </div>
@@ -244,7 +244,7 @@ export default async function LandingPage() {
                   <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>Complete module assignments, pass the final assessment, and earn verifiable certificates to prove your skills to employers.</p>
                 </div>
                 
-                <div className="card glass-panel hover-lift" style={{ backgroundColor: 'var(--color-bg-tertiary)', border: '1px solid rgba(255,255,255,0.05)' }}>
+                <div className="card glass-panel hover-lift" style={{ backgroundColor: 'var(--color-bg-tertiary)', border: '1px solid var(--color-glass)' }}>
                   <div style={{ width: '56px', height: '56px', borderRadius: '12px', background: 'linear-gradient(135deg, rgba(245,158,11,0.2), rgba(245,158,11,0.05))', border: '1px solid rgba(245,158,11,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', marginBottom: '24px' }}>
                     🤝
                   </div>
@@ -271,10 +271,10 @@ export default async function LandingPage() {
                   <div key={career.id} className="card hover-lift glass-panel" style={{ 
                     display: 'flex', 
                     flexDirection: 'column', 
-                    backgroundColor: 'rgba(30, 30, 40, 0.6)', 
+                    backgroundColor: 'var(--color-card-bg)', 
                     position: 'relative',
                     overflow: 'hidden',
-                    border: '1px solid rgba(255,255,255,0.05)',
+                    border: '1px solid var(--color-glass)',
                     padding: '32px',
                     borderRadius: '24px'
                   }}>
@@ -286,7 +286,7 @@ export default async function LandingPage() {
                     <h3 style={{ fontSize: '1.75rem', marginBottom: '16px', color: 'var(--color-text-primary)', position: 'relative', zIndex: 1 }}>{career.title}</h3>
                     <p style={{ color: 'var(--color-text-secondary)', marginBottom: '32px', flex: 1, lineHeight: 1.6, position: 'relative', zIndex: 1 }}>{career.description}</p>
                     
-                    <div style={{ display: 'flex', gap: '16px', fontSize: '0.875rem', color: 'var(--color-text-muted)', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '24px', marginBottom: '24px', position: 'relative', zIndex: 1 }}>
+                    <div style={{ display: 'flex', gap: '16px', fontSize: '0.875rem', color: 'var(--color-text-muted)', borderTop: '1px solid var(--color-glass)', paddingTop: '24px', marginBottom: '24px', position: 'relative', zIndex: 1 }}>
                       <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                         {career.estimatedDuration}
@@ -323,7 +323,7 @@ export default async function LandingPage() {
 
               <div style={{ position: 'relative', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '40px' }}>
                 {/* Visual Connecting Line (Desktop) */}
-                <div style={{ position: 'absolute', top: '50px', left: '10%', right: '10%', height: '4px', background: 'rgba(255,255,255,0.05)', zIndex: 0, display: 'none' }} className="md-block">
+                <div style={{ position: 'absolute', top: '50px', left: '10%', right: '10%', height: '4px', background: 'var(--color-glass)', zIndex: 0, display: 'none' }} className="md-block">
                   <div className="path-line-active" style={{ width: '100%' }}></div>
                 </div>
 
