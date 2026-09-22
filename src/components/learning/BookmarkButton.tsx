@@ -18,8 +18,8 @@ export default function BookmarkButton({ lessonId, isBookmarked }: { lessonId: s
       disabled={isPending}
       title={isBookmarked ? "Remove Bookmark" : "Bookmark Lesson"}
       style={{
-        background: isBookmarked ? 'rgba(59, 130, 246, 0.1)' : 'rgba(255, 255, 255, 0.05)',
-        border: `1px solid ${isBookmarked ? 'rgba(59, 130, 246, 0.3)' : 'rgba(255, 255, 255, 0.1)'}`,
+        background: isBookmarked ? 'rgba(59, 130, 246, 0.1)' : 'var(--color-glass)',
+        border: `1px solid ${isBookmarked ? 'rgba(59, 130, 246, 0.3)' : 'var(--color-glass-strong)'}`,
         color: isBookmarked ? '#60a5fa' : '#9ca3af',
         padding: '8px 16px',
         borderRadius: '8px',

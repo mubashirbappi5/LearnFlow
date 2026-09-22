@@ -83,8 +83,8 @@ export default async function LessonPage({ params }: { params: Promise<{ courseS
           marginBottom: '64px', 
           borderRadius: '24px', 
           overflow: 'hidden', 
-          backgroundColor: '#000', 
-          border: '1px solid rgba(255,255,255,0.1)', 
+          backgroundColor: 'var(--color-bg-primary)', 
+          border: '1px solid var(--color-glass-strong)', 
           boxShadow: '0 30px 60px rgba(0,0,0,0.6), 0 0 40px rgba(99, 102, 241, 0.15)',
           transition: 'all 0.3s ease'
         }}>
@@ -134,7 +134,7 @@ export default async function LessonPage({ params }: { params: Promise<{ courseS
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                   <h4 style={{ color: 'var(--color-brand-primary)', fontSize: '1.25rem', fontWeight: 600, lineHeight: 1.4 }}>{resource.title}</h4>
-                  <span style={{ fontSize: '0.75rem', padding: '4px 10px', borderRadius: '9999px', backgroundColor: 'rgba(255,255,255,0.1)', color: 'var(--color-text-secondary)' }}>
+                  <span style={{ fontSize: '0.75rem', padding: '4px 10px', borderRadius: '9999px', backgroundColor: 'var(--color-glass-strong)', color: 'var(--color-text-secondary)' }}>
                     {resource.resourceType}
                   </span>
                 </div>

@@ -37,8 +37,8 @@ export default function UserNavDropdown({ user }: UserNavDropdownProps) {
           display: 'flex',
           alignItems: 'center',
           gap: '12px',
-          background: 'rgba(255, 255, 255, 0.05)',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
+          background: 'var(--color-glass)',
+          border: '1px solid var(--color-glass-strong)',
           padding: '6px 16px 6px 6px',
           borderRadius: '999px',
           cursor: 'pointer',
@@ -55,12 +55,12 @@ export default function UserNavDropdown({ user }: UserNavDropdownProps) {
           alignItems: 'center',
           justifyContent: 'center',
           fontWeight: 700,
-          color: 'white',
+          color: '#ffffff',
           fontSize: '0.875rem'
         }}>
           {initials}
         </div>
-        <span style={{ fontSize: '0.875rem', fontWeight: 600, color: '#e5e7eb' }}>
+        <span style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--color-text-primary)' }}>
           {user.name || 'Account'}
         </span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s ease' }}>
@@ -74,9 +74,9 @@ export default function UserNavDropdown({ user }: UserNavDropdownProps) {
           top: 'calc(100% + 12px)',
           right: 0,
           width: '240px',
-          background: 'rgba(20, 20, 25, 0.95)',
+          background: 'var(--color-bg-secondary)',
           backdropFilter: 'blur(16px)',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
+          border: '1px solid var(--color-glass-strong)',
           borderRadius: '16px',
           padding: '8px',
           boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5)',
@@ -85,30 +85,30 @@ export default function UserNavDropdown({ user }: UserNavDropdownProps) {
           flexDirection: 'column',
           gap: '4px'
         }}>
-          <div style={{ padding: '12px 16px', borderBottom: '1px solid rgba(255,255,255,0.05)', marginBottom: '8px' }}>
-            <div style={{ fontWeight: 600, color: 'white', fontSize: '0.875rem', marginBottom: '2px' }}>{user.name}</div>
-            <div style={{ fontSize: '0.75rem', color: '#9ca3af', overflow: 'hidden', textOverflow: 'ellipsis' }}>{user.email}</div>
+          <div style={{ padding: '12px 16px', borderBottom: '1px solid var(--color-glass)', marginBottom: '8px' }}>
+            <div style={{ fontWeight: 600, color: 'var(--color-text-primary)', fontSize: '0.875rem', marginBottom: '2px' }}>{user.name}</div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', overflow: 'hidden', textOverflow: 'ellipsis' }}>{user.email}</div>
           </div>
           
           {user.role === 'ADMIN' && (
-            <Link href="/admin" onClick={() => setIsOpen(false)} style={{ display: 'block', padding: '10px 16px', borderRadius: '8px', color: '#f3f4f6', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 500 }} className="hover-bg">
+            <Link href="/admin" onClick={() => setIsOpen(false)} style={{ display: 'block', padding: '10px 16px', borderRadius: '8px', color: 'var(--color-text-primary)', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 500 }} className="hover-bg">
               Admin Dashboard
             </Link>
           )}
 
-          <Link href="/dashboard" onClick={() => setIsOpen(false)} style={{ display: 'block', padding: '10px 16px', borderRadius: '8px', color: '#f3f4f6', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 500 }} className="hover-bg">
+          <Link href="/dashboard" onClick={() => setIsOpen(false)} style={{ display: 'block', padding: '10px 16px', borderRadius: '8px', color: 'var(--color-text-primary)', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 500 }} className="hover-bg">
             My Dashboard
           </Link>
           
-          <Link href="/dashboard/library" onClick={() => setIsOpen(false)} style={{ display: 'block', padding: '10px 16px', borderRadius: '8px', color: '#f3f4f6', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 500 }} className="hover-bg">
+          <Link href="/dashboard/library" onClick={() => setIsOpen(false)} style={{ display: 'block', padding: '10px 16px', borderRadius: '8px', color: 'var(--color-text-primary)', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 500 }} className="hover-bg">
             My Library (Notes)
           </Link>
 
-          <Link href="/settings" onClick={() => setIsOpen(false)} style={{ display: 'block', padding: '10px 16px', borderRadius: '8px', color: '#f3f4f6', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 500 }} className="hover-bg">
+          <Link href="/settings" onClick={() => setIsOpen(false)} style={{ display: 'block', padding: '10px 16px', borderRadius: '8px', color: 'var(--color-text-primary)', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 500 }} className="hover-bg">
             Settings
           </Link>
 
-          <div style={{ height: '1px', background: 'rgba(255,255,255,0.05)', margin: '8px 0' }} />
+          <div style={{ height: '1px', background: 'var(--color-glass)', margin: '8px 0' }} />
 
           <button 
             onClick={() => signOut({ callbackUrl: '/' })}

@@ -30,7 +30,7 @@ export default async function LibraryPage() {
       minHeight: '100vh', 
       display: 'flex', 
       flexDirection: 'column',
-      background: 'linear-gradient(145deg, #0a0a0f 0%, #11111a 100%)',
+      background: 'var(--color-bg-primary)',
       position: 'relative',
       overflow: 'hidden'
     }}>
@@ -44,7 +44,7 @@ export default async function LibraryPage() {
         <div style={{ marginBottom: '48px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
           <div>
             <h1 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '8px' }}>My Library</h1>
-            <p style={{ color: '#9ca3af', fontSize: '1.125rem' }}>Your saved bookmarks and personal notes.</p>
+            <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.125rem' }}>Your saved bookmarks and personal notes.</p>
           </div>
           <Link href="/dashboard" className="hover-white" style={{ color: '#60a5fa', fontWeight: 600 }}>&larr; Back to Dashboard</Link>
         </div>
@@ -58,7 +58,7 @@ export default async function LibraryPage() {
             </h2>
             
             {bookmarks.length === 0 ? (
-              <div style={{ padding: '40px', textAlign: 'center', background: 'rgba(30,30,40,0.4)', borderRadius: '16px', color: '#9ca3af' }}>
+              <div style={{ padding: '40px', textAlign: 'center', background: 'var(--color-bg-secondary)', borderRadius: '16px', color: 'var(--color-text-secondary)' }}>
                 You haven't bookmarked any lessons yet.
               </div>
             ) : (
@@ -71,11 +71,11 @@ export default async function LibraryPage() {
                     style={{ 
                       display: 'block', 
                       padding: '24px', 
-                      background: 'rgba(30,30,40,0.6)', 
+                      background: 'var(--color-bg-secondary)', 
                       borderRadius: '16px',
-                      border: '1px solid rgba(255,255,255,0.05)',
+                      border: '1px solid var(--color-glass)',
                       textDecoration: 'none',
-                      color: 'white'
+                      color: 'var(--color-text-primary)'
                     }}
                   >
                     <div style={{ fontSize: '0.875rem', color: '#60a5fa', marginBottom: '8px', fontWeight: 600 }}>{b.lesson.module.course.title}</div>
@@ -94,7 +94,7 @@ export default async function LibraryPage() {
             </h2>
             
             {notes.length === 0 ? (
-              <div style={{ padding: '40px', textAlign: 'center', background: 'rgba(30,30,40,0.4)', borderRadius: '16px', color: '#9ca3af' }}>
+              <div style={{ padding: '40px', textAlign: 'center', background: 'var(--color-bg-secondary)', borderRadius: '16px', color: 'var(--color-text-secondary)' }}>
                 You haven't taken any notes yet.
               </div>
             ) : (
@@ -102,20 +102,20 @@ export default async function LibraryPage() {
                 {notes.map(n => (
                   <div key={n.id} style={{ 
                     padding: '24px', 
-                    background: 'rgba(30,30,40,0.6)', 
+                    background: 'var(--color-bg-secondary)', 
                     borderRadius: '16px',
-                    border: '1px solid rgba(255,255,255,0.05)',
+                    border: '1px solid var(--color-glass)',
                     display: 'flex',
                     flexDirection: 'column'
                   }}>
-                    <Link href={`/learn/${n.lesson.module.course.slug}/lesson/${n.lesson.id}`} className="hover-white" style={{ color: 'white', textDecoration: 'none', marginBottom: '16px' }}>
+                    <Link href={`/learn/${n.lesson.module.course.slug}/lesson/${n.lesson.id}`} className="hover-white" style={{ color: 'var(--color-text-primary)', textDecoration: 'none', marginBottom: '16px' }}>
                       <div style={{ fontSize: '0.75rem', color: '#a78bfa', marginBottom: '4px', fontWeight: 600, textTransform: 'uppercase' }}>{n.lesson.module.course.title}</div>
                       <div style={{ fontSize: '1.125rem', fontWeight: 700 }}>{n.lesson.title}</div>
                     </Link>
                     <div style={{ 
                       flex: 1, 
                       padding: '16px', 
-                      background: 'rgba(0,0,0,0.2)', 
+                      background: 'var(--color-input-bg)', 
                       borderRadius: '8px', 
                       color: '#d1d5db',
                       fontSize: '0.875rem',

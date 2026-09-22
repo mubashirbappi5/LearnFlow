@@ -31,9 +31,9 @@ export default function NotesSection({ lessonId, initialNote }: { lessonId: stri
 
   return (
     <div style={{
-      background: 'rgba(30, 30, 40, 0.4)',
+      background: 'var(--color-bg-secondary)',
       backdropFilter: 'blur(12px)',
-      border: '1px solid rgba(255, 255, 255, 0.05)',
+      border: '1px solid var(--color-glass)',
       borderRadius: '24px',
       padding: '32px',
       marginTop: '64px'
@@ -53,8 +53,8 @@ export default function NotesSection({ lessonId, initialNote }: { lessonId: stri
         style={{
           width: '100%',
           minHeight: '200px',
-          background: 'rgba(0, 0, 0, 0.2)',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
+          background: 'var(--color-input-bg)',
+          border: '1px solid var(--color-glass-strong)',
           borderRadius: '16px',
           padding: '24px',
           color: 'var(--color-text-primary)',

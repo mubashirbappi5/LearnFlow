@@ -28,7 +28,7 @@ export default async function SettingsPage() {
       minHeight: '100vh', 
       display: 'flex', 
       flexDirection: 'column',
-      background: 'linear-gradient(145deg, #0a0a0f 0%, #11111a 100%)',
+      background: 'var(--color-bg-primary)',
       position: 'relative',
       overflow: 'hidden'
     }}>
@@ -40,49 +40,49 @@ export default async function SettingsPage() {
       
       <main style={{ flex: 1, padding: '40px 24px', maxWidth: '800px', margin: '0 auto', width: '100%', position: 'relative', zIndex: 1 }}>
         <h1 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '8px' }}>Profile Settings</h1>
-        <p style={{ color: '#9ca3af', marginBottom: '40px', fontSize: '1.125rem' }}>Update your personal information and learning goals.</p>
+        <p style={{ color: 'var(--color-text-secondary)', marginBottom: '40px', fontSize: '1.125rem' }}>Update your personal information and learning goals.</p>
 
         <form action={updateProfile} style={{ 
-          background: 'rgba(30,30,40,0.6)', 
+          background: 'var(--color-bg-secondary)', 
           backdropFilter: 'blur(12px)', 
           padding: '40px', 
           borderRadius: '24px', 
-          border: '1px solid rgba(255,255,255,0.05)',
+          border: '1px solid var(--color-glass)',
           display: 'flex',
           flexDirection: 'column',
           gap: '24px'
         }}>
           <div>
-            <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#e5e7eb' }}>Full Name</label>
+            <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: 'var(--color-text-primary)' }}>Full Name</label>
             <input 
               type="text" 
               name="name" 
               defaultValue={session.user.name || ''} 
-              style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.1)', color: 'white', fontSize: '1rem' }}
+              style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', background: 'var(--color-input-bg)', border: '1px solid var(--color-glass-strong)', color: 'var(--color-text-primary)', fontSize: '1rem' }}
             />
           </div>
 
           <div>
-            <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#e5e7eb' }}>Email Address</label>
+            <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: 'var(--color-text-primary)' }}>Email Address</label>
             <input 
               type="email" 
               value={session.user.email!} 
               disabled
-              style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', background: 'rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.05)', color: '#9ca3af', fontSize: '1rem', cursor: 'not-allowed' }}
+              style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', background: 'var(--color-input-bg)', border: '1px solid var(--color-glass)', color: 'var(--color-text-secondary)', fontSize: '1rem', cursor: 'not-allowed' }}
             />
             <p style={{ fontSize: '0.875rem', color: '#6b7280', marginTop: '6px' }}>Email cannot be changed.</p>
           </div>
 
-          <div style={{ height: '1px', background: 'rgba(255,255,255,0.1)', margin: '16px 0' }} />
+          <div style={{ height: '1px', background: 'var(--color-glass-strong)', margin: '16px 0' }} />
 
           <h3 style={{ fontSize: '1.5rem', fontWeight: 700 }}>Learning Preferences</h3>
 
           <div>
-            <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#e5e7eb' }}>Primary Career Goal</label>
+            <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: 'var(--color-text-primary)' }}>Primary Career Goal</label>
             <select 
               name="careerGoalId" 
               defaultValue={profile?.careerGoalId || ''}
-              style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.1)', color: 'white', fontSize: '1rem' }}
+              style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', background: 'var(--color-input-bg)', border: '1px solid var(--color-glass-strong)', color: 'var(--color-text-primary)', fontSize: '1rem' }}
             >
               <option value="">Select a career path</option>
               {careers.map(c => (
@@ -93,11 +93,11 @@ export default async function SettingsPage() {
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
             <div>
-              <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#e5e7eb' }}>Skill Level</label>
+              <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: 'var(--color-text-primary)' }}>Skill Level</label>
               <select 
                 name="skillLevel" 
                 defaultValue={profile?.skillLevel || 'Beginner'}
-                style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.1)', color: 'white', fontSize: '1rem' }}
+                style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', background: 'var(--color-input-bg)', border: '1px solid var(--color-glass-strong)', color: 'var(--color-text-primary)', fontSize: '1rem' }}
               >
                 <option value="Beginner">Beginner</option>
                 <option value="Intermediate">Intermediate</option>
@@ -105,25 +105,25 @@ export default async function SettingsPage() {
               </select>
             </div>
             <div>
-              <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#e5e7eb' }}>Daily Study Hours</label>
+              <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: 'var(--color-text-primary)' }}>Daily Study Hours</label>
               <input 
                 type="number" 
                 name="dailyStudyHours" 
                 min="0" max="24"
                 defaultValue={profile?.dailyStudyHours || 2} 
-                style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.1)', color: 'white', fontSize: '1rem' }}
+                style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', background: 'var(--color-input-bg)', border: '1px solid var(--color-glass-strong)', color: 'var(--color-text-primary)', fontSize: '1rem' }}
               />
             </div>
           </div>
 
           <div>
-            <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#e5e7eb' }}>What is your main learning goal?</label>
+            <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: 'var(--color-text-primary)' }}>What is your main learning goal?</label>
             <textarea 
               name="learningGoal"
               rows={3}
               defaultValue={profile?.learningGoal || ''}
               placeholder="e.g. I want to build my own startup, get a job at FAANG, etc."
-              style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.1)', color: 'white', fontSize: '1rem', resize: 'vertical' }}
+              style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', background: 'var(--color-input-bg)', border: '1px solid var(--color-glass-strong)', color: 'var(--color-text-primary)', fontSize: '1rem', resize: 'vertical' }}
             />
           </div>
 

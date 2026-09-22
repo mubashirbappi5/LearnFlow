@@ -95,7 +95,7 @@ export default async function StudentDashboardPage() {
       minHeight: '100vh', 
       display: 'flex', 
       flexDirection: 'column',
-      background: 'linear-gradient(145deg, #0a0a0f 0%, #11111a 100%)',
+      background: 'var(--color-bg-primary)',
       position: 'relative',
       overflow: 'hidden'
     }}>
@@ -121,7 +121,7 @@ export default async function StudentDashboardPage() {
             }}>
               Welcome back, {session.user.name || session.user.email?.split('@')[0]}
             </h1>
-            <p style={{ color: '#9ca3af', fontSize: '1.125rem', fontWeight: 500 }}>
+            <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.125rem', fontWeight: 500 }}>
               Track your progress and continue your learning journey.
             </p>
           </div>
@@ -129,30 +129,30 @@ export default async function StudentDashboardPage() {
             <div className="hover-lift" style={{ 
               textAlign: 'center', 
               padding: '20px 32px', 
-              background: 'rgba(30, 30, 40, 0.6)', 
+              background: 'var(--color-bg-secondary)', 
               backdropFilter: 'blur(12px)',
               borderRadius: '20px', 
-              border: '1px solid rgba(255,255,255,0.05)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
+              border: '1px solid var(--color-glass)',
+              boxShadow: '0 8px 32px var(--color-input-bg)',
               transition: 'transform 0.2s',
               cursor: 'default'
             }}>
               <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#60a5fa', textShadow: '0 0 20px rgba(96,165,250,0.4)' }}>{xp}</div>
-              <div style={{ fontSize: '0.875rem', color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600, marginTop: '4px' }}>Total XP</div>
+              <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600, marginTop: '4px' }}>Total XP</div>
             </div>
             <div className="hover-lift" style={{ 
               textAlign: 'center', 
               padding: '20px 32px', 
-              background: 'rgba(30, 30, 40, 0.6)', 
+              background: 'var(--color-bg-secondary)', 
               backdropFilter: 'blur(12px)',
               borderRadius: '20px', 
-              border: '1px solid rgba(255,255,255,0.05)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
+              border: '1px solid var(--color-glass)',
+              boxShadow: '0 8px 32px var(--color-input-bg)',
               transition: 'transform 0.2s',
               cursor: 'default'
             }}>
               <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#a78bfa', textShadow: '0 0 20px rgba(167,139,250,0.4)' }}>{completedItems}</div>
-              <div style={{ fontSize: '0.875rem', color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600, marginTop: '4px' }}>Lessons Done</div>
+              <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600, marginTop: '4px' }}>Lessons Done</div>
             </div>
           </div>
         </div>
@@ -161,18 +161,18 @@ export default async function StudentDashboardPage() {
           <div style={{ 
             textAlign: 'center', 
             padding: '80px 24px', 
-            background: 'rgba(30,30,40,0.4)',
+            background: 'var(--color-bg-secondary)',
             backdropFilter: 'blur(12px)',
             borderRadius: '24px',
-            border: '1px solid rgba(255,255,255,0.05)'
+            border: '1px solid var(--color-glass)'
           }}>
             <h2 style={{ fontSize: '2rem', marginBottom: '16px', fontWeight: 700 }}>You haven't enrolled in a Career Path yet.</h2>
-            <p style={{ color: '#9ca3af', marginBottom: '40px', maxWidth: '500px', margin: '0 auto 40px', fontSize: '1.125rem' }}>
+            <p style={{ color: 'var(--color-text-secondary)', marginBottom: '40px', maxWidth: '500px', margin: '0 auto 40px', fontSize: '1.125rem' }}>
               Take our career assessment to get a personalized recommendation, or explore our career paths manually.
             </p>
             <div style={{ display: 'flex', gap: '20px', justifyContent: 'center' }}>
               <Link href="/assessment" className="btn btn-primary" style={{ padding: '16px 32px', fontSize: '1.125rem', borderRadius: '12px', background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)', boxShadow: '0 4px 14px rgba(59,130,246,0.4)' }}>Take Assessment</Link>
-              <Link href="/careers" className="btn btn-secondary" style={{ padding: '16px 32px', fontSize: '1.125rem', borderRadius: '12px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>Explore Careers</Link>
+              <Link href="/careers" className="btn btn-secondary" style={{ padding: '16px 32px', fontSize: '1.125rem', borderRadius: '12px', background: 'var(--color-glass)', border: '1px solid var(--color-glass-strong)' }}>Explore Careers</Link>
             </div>
           </div>
         ) : (
@@ -201,7 +201,7 @@ export default async function StudentDashboardPage() {
                   </div>
                   <div style={{ 
                     width: '80px', height: '80px', borderRadius: '40px', 
-                    border: '6px solid rgba(255,255,255,0.05)', 
+                    border: '6px solid var(--color-glass)', 
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     background: `conic-gradient(#3b82f6 ${progressPercent}%, transparent 0)`,
                     boxShadow: '0 0 20px rgba(59,130,246,0.2)'
@@ -214,11 +214,11 @@ export default async function StudentDashboardPage() {
                 
                 {/* Progress Bar */}
                 <div style={{ marginBottom: '40px' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px', fontSize: '0.875rem', color: '#9ca3af', fontWeight: 500 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px', fontSize: '0.875rem', color: 'var(--color-text-secondary)', fontWeight: 500 }}>
                     <span>{completedItems} of {totalItems} modules completed</span>
                     <span style={{ color: '#60a5fa' }}>{100 - progressPercent}% remaining</span>
                   </div>
-                  <div style={{ width: '100%', height: '10px', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '5px', overflow: 'hidden' }}>
+                  <div style={{ width: '100%', height: '10px', backgroundColor: 'var(--color-glass)', borderRadius: '5px', overflow: 'hidden' }}>
                     <div style={{ 
                       height: '100%', 
                       width: `${progressPercent}%`, 
@@ -270,14 +270,14 @@ export default async function StudentDashboardPage() {
               {/* Recent Activity */}
               <section style={{ 
                 padding: '32px', 
-                background: 'rgba(30,30,40,0.4)',
+                background: 'var(--color-bg-secondary)',
                 backdropFilter: 'blur(12px)',
                 borderRadius: '24px',
-                border: '1px solid rgba(255,255,255,0.05)'
+                border: '1px solid var(--color-glass)'
               }}>
                 <h3 style={{ fontSize: '1.5rem', marginBottom: '24px', fontWeight: 700 }}>Recent Activity</h3>
                 {recentLessons.length === 0 ? (
-                  <div style={{ padding: '40px', textAlign: 'center', color: '#9ca3af', background: 'rgba(0,0,0,0.2)', borderRadius: '16px' }}>
+                  <div style={{ padding: '40px', textAlign: 'center', color: 'var(--color-text-secondary)', background: 'var(--color-input-bg)', borderRadius: '16px' }}>
                     You haven't completed any lessons yet. Time to get started!
                   </div>
                 ) : (
@@ -290,7 +290,7 @@ export default async function StudentDashboardPage() {
                         alignItems: 'center',
                         background: 'rgba(255,255,255,0.03)',
                         borderRadius: '16px',
-                        border: '1px solid rgba(255,255,255,0.05)',
+                        border: '1px solid var(--color-glass)',
                         transition: 'background 0.2s'
                       }}>
                         <div>
@@ -325,10 +325,10 @@ export default async function StudentDashboardPage() {
             <aside style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
               <div style={{ 
                 padding: '32px', 
-                background: 'rgba(30,30,40,0.4)',
+                background: 'var(--color-bg-secondary)',
                 backdropFilter: 'blur(12px)',
                 borderRadius: '24px',
-                border: '1px solid rgba(255,255,255,0.05)'
+                border: '1px solid var(--color-glass)'
               }}>
                 <h3 style={{ fontSize: '1.25rem', marginBottom: '24px', fontWeight: 700 }}>Your Gamification</h3>
                 
@@ -342,7 +342,7 @@ export default async function StudentDashboardPage() {
                     }}>🔥</div>
                     <div>
                       <div style={{ fontWeight: 700, fontSize: '1.125rem' }}>{passedQuizzes.length} Quizzes</div>
-                      <div style={{ fontSize: '0.875rem', color: '#9ca3af', fontWeight: 500 }}>50 XP each</div>
+                      <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', fontWeight: 500 }}>50 XP each</div>
                     </div>
                   </div>
                   
@@ -355,7 +355,7 @@ export default async function StudentDashboardPage() {
                     }}>📁</div>
                     <div>
                       <div style={{ fontWeight: 700, fontSize: '1.125rem' }}>{completedAssignments.length} Assignments</div>
-                      <div style={{ fontSize: '0.875rem', color: '#9ca3af', fontWeight: 500 }}>100 XP each</div>
+                      <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', fontWeight: 500 }}>100 XP each</div>
                     </div>
                   </div>
                 </div>
@@ -363,22 +363,22 @@ export default async function StudentDashboardPage() {
 
               <div style={{ 
                 padding: '32px', 
-                background: 'rgba(30,30,40,0.4)',
+                background: 'var(--color-bg-secondary)',
                 backdropFilter: 'blur(12px)',
                 borderRadius: '24px',
-                border: '1px solid rgba(255,255,255,0.05)'
+                border: '1px solid var(--color-glass)'
               }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
                   <h3 style={{ fontSize: '1.25rem', fontWeight: 700 }}>Your Profile</h3>
                   <Link href="/settings" style={{ fontSize: '0.875rem', color: '#60a5fa', fontWeight: 500 }} className="hover-white">Edit</Link>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', fontSize: '0.875rem' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '12px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                    <span style={{ color: '#9ca3af', fontWeight: 500 }}>Email</span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '12px', borderBottom: '1px solid var(--color-glass)' }}>
+                    <span style={{ color: 'var(--color-text-secondary)', fontWeight: 500 }}>Email</span>
                     <span style={{ fontWeight: 600 }}>{session.user.email}</span>
                   </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '12px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                    <span style={{ color: '#9ca3af', fontWeight: 500 }}>Role</span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '12px', borderBottom: '1px solid var(--color-glass)' }}>
+                    <span style={{ color: 'var(--color-text-secondary)', fontWeight: 500 }}>Role</span>
                     <span style={{ 
                       fontWeight: 700, 
                       color: session.user.role === 'ADMIN' ? '#f59e0b' : '#3b82f6',
