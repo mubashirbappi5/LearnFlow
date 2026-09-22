@@ -368,13 +368,16 @@ export default async function StudentDashboardPage() {
                 borderRadius: '24px',
                 border: '1px solid rgba(255,255,255,0.05)'
               }}>
-                <h3 style={{ fontSize: '1.25rem', marginBottom: '20px', fontWeight: 700 }}>Your Profile</h3>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                  <h3 style={{ fontSize: '1.25rem', fontWeight: 700 }}>Your Profile</h3>
+                  <Link href="/settings" style={{ fontSize: '0.875rem', color: '#60a5fa', fontWeight: 500 }} className="hover-white">Edit</Link>
+                </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', fontSize: '0.875rem' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '12px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
                     <span style={{ color: '#9ca3af', fontWeight: 500 }}>Email</span>
                     <span style={{ fontWeight: 600 }}>{session.user.email}</span>
                   </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '12px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
                     <span style={{ color: '#9ca3af', fontWeight: 500 }}>Role</span>
                     <span style={{ 
                       fontWeight: 700, 
@@ -384,6 +387,10 @@ export default async function StudentDashboardPage() {
                       borderRadius: '12px'
                     }}>{session.user.role}</span>
                   </div>
+                  
+                  <Link href="/dashboard/library" className="btn btn-secondary hover-lift" style={{ width: '100%', textAlign: 'center', marginTop: '8px' }}>
+                    View My Library (Notes & Bookmarks)
+                  </Link>
                 </div>
               </div>
             </aside>

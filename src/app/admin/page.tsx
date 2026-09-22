@@ -1,6 +1,7 @@
 import React from 'react';
 import { prisma } from '@/lib/prisma';
 import Link from 'next/link';
+import AnalyticsChart from '@/components/admin/AnalyticsChart';
 
 export default async function AdminDashboard() {
   const [
@@ -9,7 +10,9 @@ export default async function AdminDashboard() {
     coursesCount,
     modulesCount,
     lessonsCount,
-    recentEnrollments
+    recentEnrollments,
+    recentUsersRaw,
+    recentEnrollmentsRaw
   ] = await Promise.all([
     prisma.user.count(),
     prisma.careerPath.count(),
@@ -23,8 +26,35 @@ export default async function AdminDashboard() {
         user: { select: { name: true, email: true } },
         course: { select: { title: true } }
       }
+    }),
+    prisma.user.findMany({
+      where: { createdAt: { gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) } },
+      select: { createdAt: true }
+    }),
+    prisma.enrollment.findMany({
+      where: { enrolledAt: { gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) } },
+      select: { enrolledAt: true }
     })
   ]);
+
+  // Compute last 7 days data for chart
+  const chartData = [];
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date();
+    d.setDate(d.getDate() - i);
+    d.setHours(0,0,0,0);
+    const nextD = new Date(d);
+    nextD.setDate(nextD.getDate() + 1);
+
+    const usersOnDay = recentUsersRaw.filter(u => u.createdAt >= d && u.createdAt < nextD).length;
+    const enrollmentsOnDay = recentEnrollmentsRaw.filter(e => e.enrolledAt >= d && e.enrolledAt < nextD).length;
+
+    chartData.push({
+      name: d.toLocaleDateString('en-US', { weekday: 'short' }),
+      users: usersOnDay,
+      enrollments: enrollmentsOnDay
+    });
+  }
 
   const stats = [
     { name: 'Total Users', value: usersCount, href: '/admin/users' },
@@ -39,6 +69,10 @@ export default async function AdminDashboard() {
       <div style={{ marginBottom: '32px' }}>
         <h1 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '8px' }}>Admin Dashboard</h1>
         <p style={{ color: 'var(--color-text-secondary)' }}>Welcome to the LearnFlow Admin Dashboard. Overview of platform metrics.</p>
+      </div>
+
+      <div style={{ marginBottom: '40px' }}>
+        <AnalyticsChart data={chartData} />
       </div>
 
       <div className="dashboard-grid" style={{ marginBottom: '40px' }}>

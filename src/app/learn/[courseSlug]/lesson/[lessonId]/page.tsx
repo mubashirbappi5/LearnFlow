@@ -9,15 +9,25 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { getLockedModuleIds } from '@/lib/courseProgress';
 import { redirect } from 'next/navigation';
+import BookmarkButton from '@/components/learning/BookmarkButton';
+import NotesSection from '@/components/learning/NotesSection';
 
 export default async function LessonPage({ params }: { params: Promise<{ courseSlug: string, lessonId: string }> }) {
   const resolvedParams = await params;
+  const session = await getServerSession(authOptions);
+  
   const lesson = await prisma.lesson.findUnique({
     where: { id: resolvedParams.lessonId },
     include: {
       module: true,
       resources: {
         where: { status: Status.PUBLISHED }
+      },
+      notes: {
+        where: { userId: session?.user?.id || '' }
+      },
+      bookmarks: {
+        where: { userId: session?.user?.id || '' }
       }
     }
   });
@@ -27,7 +37,6 @@ export default async function LessonPage({ params }: { params: Promise<{ courseS
   }
 
   // Server-side lock enforcement
-  const session = await getServerSession(authOptions);
   if (session) {
     const lockedModuleIds = await getLockedModuleIds(session.user.id, lesson.module.courseId, session.user.role);
     if (lockedModuleIds.has(lesson.moduleId)) {
@@ -40,7 +49,7 @@ export default async function LessonPage({ params }: { params: Promise<{ courseS
       
       {/* Premium Header */}
       <div style={{ marginBottom: '40px' }}>
-        <div style={{ display: 'inline-block', marginBottom: '16px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
           <span style={{ 
             color: 'var(--color-brand-primary)', 
             fontWeight: 700, 
@@ -50,10 +59,17 @@ export default async function LessonPage({ params }: { params: Promise<{ courseS
             padding: '6px 16px',
             backgroundColor: 'rgba(99, 102, 241, 0.1)',
             borderRadius: '9999px',
-            border: '1px solid rgba(99, 102, 241, 0.2)'
+            border: '1px solid rgba(99, 102, 241, 0.2)',
+            alignSelf: 'flex-start'
           }}>
             Module {lesson.module.order} — {lesson.module.title}
           </span>
+          {session && (
+            <BookmarkButton 
+              lessonId={lesson.id} 
+              isBookmarked={lesson.bookmarks.length > 0} 
+            />
+          )}
         </div>
         <h1 style={{ fontSize: '3rem', fontWeight: 700, marginBottom: '24px', letterSpacing: '-0.02em', lineHeight: 1.2 }}>{lesson.title}</h1>
         {lesson.description && (
@@ -132,6 +148,14 @@ export default async function LessonPage({ params }: { params: Promise<{ courseS
             ))}
           </div>
         </div>
+      )}
+
+      {/* Notes Section */}
+      {session && (
+        <NotesSection 
+          lessonId={lesson.id} 
+          initialNote={lesson.notes.length > 0 ? lesson.notes[0].content : ''} 
+        />
       )}
 
       {/* Actions (Mark as complete) */}
