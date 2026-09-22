@@ -5,6 +5,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 
 import UserNavDropdown from './UserNavDropdown';
+import { ThemeToggle } from '../ThemeToggle';
 
 export default async function Navbar() {
   const session = await getServerSession(authOptions);
@@ -48,6 +49,8 @@ export default async function Navbar() {
             }} 
           />
         </form>
+
+        <ThemeToggle />
 
         <Link href="/careers" style={{ color: 'var(--color-text-secondary)', fontWeight: 500 }} className="hover-white">
           Explore Careers
