@@ -573,6 +573,4 @@ details.faq-item[open] .faq-icon {
   background: linear-gradient(90deg, var(--color-brand-primary), var(--color-brand-secondary));
   transition: width 1s ease-in-out;
 }
-. h o v e r - b g : h o v e r  
-   b a c k g r o u n d - c o l o r :   r g b a ( 2 5 5 ,   2 5 5 ,   2 5 5 ,   0 . 0 5 ) ;    
- 
+.hover-bg:hover { background-color: rgba(255, 255, 255, 0.05); }
