@@ -20,8 +20,11 @@ export default async function Navbar() {
       top: 0,
       zIndex: 50
     }}>
-      <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
-        <Image src="/logo.png" alt="LearnFlow" width={180} height={40} style={{ objectFit: 'contain', backgroundColor: 'white', borderRadius: '8px', padding: '4px' }} />
+      <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <Image src="/logo.png" alt="LearnFlow Icon" width={40} height={40} style={{ objectFit: 'contain', borderRadius: '8px' }} />
+        <span className="text-gradient" style={{ fontSize: '1.5rem', fontWeight: 700 }}>
+          LearnFlow
+        </span>
       </Link>
       
       <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
