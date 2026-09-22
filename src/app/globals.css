@@ -483,5 +483,93 @@ details.faq-item[open] .faq-icon {
   background: rgba(255, 255, 255, 0.15);
 }
 
+/* New Animations for Redesign */
+.animate-slide-up-fade {
+  animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
 
+.animate-dash-draw {
+  animation: dashDraw 3s ease-in-out forwards;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
 
+.animate-orbit-spin {
+  animation: orbitSpin 20s linear infinite;
+  transform-origin: center;
+}
+
+.animate-pulse-heavy {
+  animation: pulseHeavy 2s ease-in-out infinite;
+}
+
+@keyframes slideUpFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dashDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes orbitSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulseHeavy {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; box-shadow: 0 0 40px var(--color-brand-primary); }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+.path-node {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: white;
+  z-index: 2;
+  position: relative;
+  background: var(--color-bg-tertiary);
+  border: 2px solid var(--color-border);
+  transition: all 0.3s ease;
+}
+
+.path-node.active {
+  background: var(--color-brand-primary);
+  border-color: var(--color-brand-primary);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+}
+
+.path-line {
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  right: -40px;
+  height: 4px;
+  background: var(--color-border);
+  z-index: 1;
+}
+
+.path-line-active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-brand-primary), var(--color-brand-secondary));
+  transition: width 1s ease-in-out;
+}

@@ -32,7 +32,7 @@ export default async function LandingPage() {
     }
   ];
 
-  const technologies = ["React", "Node.js", "MongoDB", "Express", "Next.js", "TypeScript", "Tailwind CSS", "Redux", "PostgreSQL", "Prisma"];
+  const technologies = ["React", "Node.js", "Ethical Hacking", "Python", "Next.js", "TypeScript", "Penetration Testing", "Docker", "PostgreSQL", "Prisma", "AWS", "Linux", "Cyber Security"];
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--color-bg-primary)', overflow: 'hidden' }}>
@@ -56,7 +56,7 @@ export default async function LandingPage() {
             margin: '0 auto',
             gap: '64px'
           }}>
-            <div style={{ maxWidth: '700px' }}>
+            <div style={{ maxWidth: '700px' }} className="animate-slide-up-fade">
               <div style={{ 
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -72,11 +72,11 @@ export default async function LandingPage() {
                 boxShadow: '0 0 20px rgba(99, 102, 241, 0.1)'
               }}>
                 <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--color-brand-primary)' }} className="animate-pulse-glow" />
-                #1 Free Learning Platform
+                #1 Free Tech Ecosystem
               </div>
               
               <h1 style={{ fontSize: '5rem', lineHeight: 1.05, marginBottom: '24px', letterSpacing: '-0.04em' }}>
-                Become a <span className="text-gradient">Top-Tier Developer</span> from scratch.
+                Master <span className="text-gradient">Frontend, Backend & Security</span>.
               </h1>
               
               <p style={{ fontSize: '1.25rem', color: 'var(--color-text-secondary)', marginBottom: '48px', maxWidth: '600px', lineHeight: 1.7 }}>
@@ -93,60 +93,75 @@ export default async function LandingPage() {
               </div>
             </div>
             
-            {/* Vector Graphic Hero Area */}
+            {/* New Tech Ecosystem Vector Graphic */}
             <div style={{ position: 'relative', height: '100%', minHeight: '500px', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <svg width="100%" height="100%" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ maxWidth: '600px' }} className="animate-float">
+              <svg width="100%" height="100%" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ maxWidth: '600px' }}>
                 <defs>
-                  <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#6366f1" stopOpacity="0.8" />
+                  <linearGradient id="gradBackend" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#10b981" stopOpacity="0.8" />
+                    <stop offset="100%" stopColor="#059669" stopOpacity="0.8" />
+                  </linearGradient>
+                  <linearGradient id="gradFrontend" x1="100%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.8" />
                     <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.8" />
                   </linearGradient>
-                  <linearGradient id="grad2" x1="100%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.6" />
-                    <stop offset="100%" stopColor="#ec4899" stopOpacity="0.6" />
+                  <linearGradient id="gradSecurity" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#ef4444" stopOpacity="0.8" />
+                    <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.8" />
                   </linearGradient>
-                  <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                    <feGaussianBlur stdDeviation="15" result="blur" />
+                  <filter id="heavyGlow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="25" result="blur" />
                     <feComposite in="SourceGraphic" in2="blur" operator="over" />
                   </filter>
                 </defs>
                 
-                {/* Central Core */}
-                <circle cx="300" cy="300" r="120" fill="url(#grad1)" filter="url(#glow)" />
-                <circle cx="300" cy="300" r="118" fill="var(--color-bg-primary)" />
-                <path d="M280 270 L340 300 L280 330 Z" fill="url(#grad1)" />
-                
-                {/* Orbiting Elements */}
-                <g className="animate-float-delayed">
-                  <rect x="100" y="150" width="80" height="80" rx="16" fill="url(#grad2)" transform="rotate(15 140 190)" filter="url(#glow)"/>
-                  <rect x="102" y="152" width="76" height="76" rx="14" fill="var(--color-bg-tertiary)" transform="rotate(15 140 190)" />
-                  <path d="M120 190 L160 190" stroke="var(--color-brand-secondary)" strokeWidth="4" strokeLinecap="round" transform="rotate(15 140 190)"/>
-                  <path d="M120 205 L145 205" stroke="var(--color-brand-secondary)" strokeWidth="4" strokeLinecap="round" transform="rotate(15 140 190)"/>
+                {/* Connecting Grid / Web */}
+                <g className="animate-dash-draw" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" strokeDasharray="5 5">
+                  <path d="M300 300 L150 150" />
+                  <path d="M300 300 L450 150" />
+                  <path d="M300 300 L150 450" />
+                  <path d="M300 300 L450 450" />
+                  <circle cx="300" cy="300" r="150" />
+                  <circle cx="300" cy="300" r="220" />
                 </g>
 
-                <g className="animate-float">
-                  <circle cx="480" cy="200" r="45" fill="url(#grad1)" filter="url(#glow)"/>
-                  <circle cx="480" cy="200" r="42" fill="var(--color-bg-secondary)"/>
-                  <text x="480" y="210" fill="url(#grad1)" fontSize="32" fontWeight="bold" textAnchor="middle">&lt;/&gt;</text>
+                {/* Central Server / Backend Node */}
+                <g className="animate-pulse-heavy">
+                  <circle cx="300" cy="300" r="70" fill="url(#gradBackend)" filter="url(#heavyGlow)" />
+                  <circle cx="300" cy="300" r="65" fill="#0f172a" />
+                  {/* Database Icon */}
+                  <path d="M270 290 Q300 310 330 290" stroke="#10b981" strokeWidth="4" fill="none" strokeLinecap="round" />
+                  <path d="M270 310 Q300 330 330 310" stroke="#10b981" strokeWidth="4" fill="none" strokeLinecap="round" />
+                  <path d="M270 270 Q300 290 330 270 Q300 250 270 270 Z" stroke="#10b981" strokeWidth="4" fill="none" />
                 </g>
 
-                <g className="animate-float-delayed" style={{ animationDelay: '1s' } as any}>
-                  <rect x="380" y="420" width="120" height="70" rx="12" fill="url(#grad2)" filter="url(#glow)"/>
-                  <rect x="382" y="422" width="116" height="66" rx="10" fill="var(--color-bg-primary)"/>
-                  <circle cx="410" cy="455" r="10" fill="var(--color-brand-primary)"/>
-                  <path d="M430 455 L480 455" stroke="var(--color-text-secondary)" strokeWidth="4" strokeLinecap="round"/>
-                </g>
+                {/* Orbiting Elements container */}
+                <g className="animate-orbit-spin">
+                  {/* Frontend Node */}
+                  <g transform="translate(150, 150) rotate(-45)">
+                    <rect x="-40" y="-40" width="80" height="80" rx="16" fill="url(#gradFrontend)" filter="url(#heavyGlow)"/>
+                    <rect x="-38" y="-38" width="76" height="76" rx="14" fill="#0f172a"/>
+                    {/* UI Icon */}
+                    <path d="M-20 -10 L-20 20 L20 20 L20 -10 Z" stroke="#3b82f6" strokeWidth="3" fill="none"/>
+                    <path d="M-20 -10 L20 -10" stroke="#3b82f6" strokeWidth="3"/>
+                    <circle cx="-10" cy="-20" r="3" fill="#3b82f6" />
+                  </g>
 
-                <g className="animate-float" style={{ animationDelay: '2s' } as any}>
-                  <polygon points="150,450 180,400 210,450" fill="url(#grad1)" filter="url(#glow)"/>
-                  <polygon points="154,448 180,405 206,448" fill="var(--color-bg-tertiary)"/>
+                  {/* Security Node */}
+                  <g transform="translate(450, 450) rotate(135)">
+                    <polygon points="0,-40 35,-15 35,25 0,50 -35,25 -35,-15" fill="url(#gradSecurity)" filter="url(#heavyGlow)"/>
+                    <polygon points="0,-36 32,-14 32,23 0,46 -32,23 -32,-14" fill="#0f172a"/>
+                    {/* Shield/Lock Icon */}
+                    <rect x="-12" y="0" width="24" height="18" rx="2" stroke="#ef4444" strokeWidth="3" fill="none"/>
+                    <path d="M-8 0 V-8 Q-8 -15 0 -15 Q8 -15 8 -8 V0" stroke="#ef4444" strokeWidth="3" fill="none"/>
+                  </g>
+
+                  {/* API Data Packets */}
+                  <circle cx="300" cy="80" r="8" fill="#f59e0b" filter="url(#heavyGlow)" />
+                  <circle cx="80" cy="300" r="8" fill="#3b82f6" filter="url(#heavyGlow)" />
+                  <circle cx="520" cy="300" r="8" fill="#10b981" filter="url(#heavyGlow)" />
+                  <circle cx="300" cy="520" r="8" fill="#ef4444" filter="url(#heavyGlow)" />
                 </g>
-                
-                {/* Connecting Lines */}
-                <path d="M180 190 Q240 240 240 300" stroke="rgba(255,255,255,0.1)" strokeWidth="2" strokeDasharray="5,5" fill="none"/>
-                <path d="M435 220 Q360 260 360 300" stroke="rgba(255,255,255,0.1)" strokeWidth="2" strokeDasharray="5,5" fill="none"/>
-                <path d="M400 420 Q360 360 360 300" stroke="rgba(255,255,255,0.1)" strokeWidth="2" strokeDasharray="5,5" fill="none"/>
-                <path d="M190 420 Q240 360 240 300" stroke="rgba(255,255,255,0.1)" strokeWidth="2" strokeDasharray="5,5" fill="none"/>
               </svg>
             </div>
           </section>
@@ -251,12 +266,26 @@ export default async function LandingPage() {
               </div>
               
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '32px' }}>
-                {featuredCareers.map((career) => (
-                  <div key={career.id} className="card hover-glow glass-panel" style={{ display: 'flex', flexDirection: 'column', backgroundColor: 'var(--color-bg-secondary)' }}>
-                    <h3 style={{ fontSize: '1.75rem', marginBottom: '16px', color: 'var(--color-text-primary)' }}>{career.title}</h3>
-                    <p style={{ color: 'var(--color-text-secondary)', marginBottom: '32px', flex: 1, lineHeight: 1.6 }}>{career.description}</p>
+                {featuredCareers.map((career, index) => (
+                  <div key={career.id} className="card hover-lift glass-panel" style={{ 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    backgroundColor: 'rgba(30, 30, 40, 0.6)', 
+                    position: 'relative',
+                    overflow: 'hidden',
+                    border: '1px solid rgba(255,255,255,0.05)',
+                    padding: '32px',
+                    borderRadius: '24px'
+                  }}>
+                    {/* Animated top border line */}
+                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: index % 2 === 0 ? 'linear-gradient(90deg, #3b82f6, #8b5cf6)' : 'linear-gradient(90deg, #10b981, #3b82f6)', opacity: 0.8 }} />
+                    {/* Subtle Background Glow */}
+                    <div style={{ position: 'absolute', top: '-50px', right: '-50px', width: '150px', height: '150px', background: index % 2 === 0 ? '#3b82f6' : '#10b981', filter: 'blur(80px)', opacity: 0.15, borderRadius: '50%', pointerEvents: 'none' }} />
+
+                    <h3 style={{ fontSize: '1.75rem', marginBottom: '16px', color: 'var(--color-text-primary)', position: 'relative', zIndex: 1 }}>{career.title}</h3>
+                    <p style={{ color: 'var(--color-text-secondary)', marginBottom: '32px', flex: 1, lineHeight: 1.6, position: 'relative', zIndex: 1 }}>{career.description}</p>
                     
-                    <div style={{ display: 'flex', gap: '16px', fontSize: '0.875rem', color: 'var(--color-text-muted)', borderTop: '1px solid var(--color-border)', paddingTop: '24px', marginBottom: '24px' }}>
+                    <div style={{ display: 'flex', gap: '16px', fontSize: '0.875rem', color: 'var(--color-text-muted)', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '24px', marginBottom: '24px', position: 'relative', zIndex: 1 }}>
                       <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                         {career.estimatedDuration}
@@ -267,8 +296,8 @@ export default async function LandingPage() {
                       </span>
                     </div>
                     
-                    <Link href={`/careers/${career.slug}`} className="btn btn-primary" style={{ width: '100%', padding: '16px', borderRadius: '8px' }}>
-                      Start Learning
+                    <Link href={`/careers/${career.slug}`} className="btn btn-primary" style={{ width: '100%', padding: '16px', borderRadius: '12px', position: 'relative', zIndex: 1, display: 'flex', justifyContent: 'center', gap: '8px', alignItems: 'center' }}>
+                      Start Learning <span>&rarr;</span>
                     </Link>
                   </div>
                 ))}
@@ -277,6 +306,41 @@ export default async function LandingPage() {
                     <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.25rem' }}>No career paths available yet. Admins are actively curating content.</p>
                   </div>
                 )}
+              </div>
+            </div>
+          </section>
+
+          {/* New Path to Success Section */}
+          <section className="section-padding" style={{ position: 'relative', overflow: 'hidden' }}>
+            <div style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+              <div style={{ textAlign: 'center', marginBottom: '80px' }}>
+                <h2 style={{ fontSize: '3rem', marginBottom: '16px' }}>Your Path to Success</h2>
+                <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.25rem', maxWidth: '600px', margin: '0 auto' }}>
+                  A clear, proven pipeline to take you from absolute beginner to industry-ready professional.
+                </p>
+              </div>
+
+              <div style={{ position: 'relative', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '40px' }}>
+                {/* Visual Connecting Line (Desktop) */}
+                <div style={{ position: 'absolute', top: '50px', left: '10%', right: '10%', height: '4px', background: 'rgba(255,255,255,0.05)', zIndex: 0, display: 'none' }} className="md-block">
+                  <div className="path-line-active" style={{ width: '100%' }}></div>
+                </div>
+
+                {[
+                  { icon: "🎯", title: "Assessment", desc: "Find your ideal career path" },
+                  { icon: "📚", title: "Learn", desc: "Follow structured roadmaps" },
+                  { icon: "💻", title: "Build", desc: "Create real-world projects" },
+                  { icon: "🏆", title: "Certify", desc: "Earn verifiable credentials" },
+                  { icon: "🚀", title: "Get Hired", desc: "Start your tech career" }
+                ].map((step, i) => (
+                  <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', flex: '1 1 150px', position: 'relative', zIndex: 1 }}>
+                    <div className="path-node active hover-glow" style={{ width: '80px', height: '80px', fontSize: '2rem', marginBottom: '24px' }}>
+                      {step.icon}
+                    </div>
+                    <h3 style={{ fontSize: '1.25rem', marginBottom: '8px' }}>{step.title}</h3>
+                    <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem' }}>{step.desc}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </section>
