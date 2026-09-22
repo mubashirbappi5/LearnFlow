@@ -56,7 +56,7 @@ export default async function LandingPage() {
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--color-bg-primary)', overflow: 'hidden' }}>
       {/* Dynamic Background Elements */}
       <div style={{ position: 'fixed', top: '-10%', left: '-10%', width: '50vw', height: '50vw', borderRadius: '50%', background: 'radial-gradient(circle, rgba(99,102,241,0.05) 0%, var(--color-transparent-bg) 70%)', zIndex: 0, pointerEvents: 'none' }} className="animate-pulse-glow" />
-      <div style={{ position: 'fixed', bottom: '-10%', right: '-10%', width: '60vw', height: '60vw', borderRadius: '50%', background: 'radial-gradient(circle, rgba(139,92,246,0.05) 0%, var(--color-transparent-bg) 70%)', zIndex: 0, pointerEvents: 'none' }} className="animate-pulse-glow" style={{ animationDelay: '2s' } as any} />
+      <div style={{ position: 'fixed', bottom: '-10%', right: '-10%', width: '60vw', height: '60vw', borderRadius: '50%', background: 'radial-gradient(circle, rgba(139,92,246,0.05) 0%, var(--color-transparent-bg) 70%)', zIndex: 0, pointerEvents: 'none', animationDelay: '2s' }} className="animate-pulse-glow" />
 
       <div style={{ position: 'relative', zIndex: 1 }}>
         <Navbar />
@@ -217,9 +217,20 @@ export default async function LandingPage() {
               <div className="marquee-content">
                 {/* Double the array for seamless infinite scroll */}
                 {[...technologies, ...technologies].map((tech, i) => (
-                  <div key={i} className="tech-item hover-glow">
-                    {tech.icon}
-                    {tech.name}
+                  <div key={i} className="hover-glow" style={{ 
+                    padding: '24px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: 'rgba(255,255,255,0.03)',
+                    borderRadius: '20px',
+                    border: '1px solid rgba(255,255,255,0.05)',
+                    transition: 'all 0.3s ease',
+                    minWidth: '100px'
+                  }} title={tech.name}>
+                    <div style={{ transform: 'scale(1.5)' }}>
+                      {tech.icon}
+                    </div>
                   </div>
                 ))}
               </div>

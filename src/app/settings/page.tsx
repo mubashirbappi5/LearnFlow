@@ -42,7 +42,10 @@ export default async function SettingsPage() {
         <h1 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '8px' }}>Profile Settings</h1>
         <p style={{ color: 'var(--color-text-secondary)', marginBottom: '40px', fontSize: '1.125rem' }}>Update your personal information and learning goals.</p>
 
-        <form action={updateProfile} style={{ 
+        <form action={async (formData) => {
+          'use server';
+          await updateProfile(formData);
+        }} style={{ 
           background: 'var(--color-bg-secondary)', 
           backdropFilter: 'blur(12px)', 
           padding: '40px', 

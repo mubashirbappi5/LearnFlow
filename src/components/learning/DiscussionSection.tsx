@@ -24,6 +24,7 @@ interface Discussion {
   title: string;
   content: string;
   createdAt: Date;
+  userId: string;
   user: User;
   comments: Comment[];
 }

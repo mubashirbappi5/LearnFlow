@@ -13,7 +13,7 @@ export default async function AssessmentPage() {
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--color-bg-primary)', overflow: 'hidden' }}>
       {/* Background glow effects */}
       <div style={{ position: 'fixed', top: '10%', right: '-10%', width: '40vw', height: '40vw', borderRadius: '50%', background: 'radial-gradient(circle, rgba(139,92,246,0.08) 0%, rgba(10,10,11,0) 70%)', zIndex: 0, pointerEvents: 'none' }} className="animate-pulse-glow" />
-      <div style={{ position: 'fixed', bottom: '-20%', left: '-10%', width: '50vw', height: '50vw', borderRadius: '50%', background: 'radial-gradient(circle, rgba(99,102,241,0.08) 0%, rgba(10,10,11,0) 70%)', zIndex: 0, pointerEvents: 'none' }} className="animate-pulse-glow" style={{ animationDelay: '2s' } as any} />
+      <div style={{ position: 'fixed', bottom: '-20%', left: '-10%', width: '50vw', height: '50vw', borderRadius: '50%', background: 'radial-gradient(circle, rgba(99,102,241,0.08) 0%, rgba(10,10,11,0) 70%)', zIndex: 0, pointerEvents: 'none', animationDelay: '2s' }} className="animate-pulse-glow" />
 
       <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', flex: 1 }}>
         <Navbar />

@@ -1,4 +1,4 @@
-import { Lock, Award, FileText, FolderOpen } from 'lucide-react';
+import { Lock, Award, FileText, FolderOpen, Flame } from 'lucide-react';
 import React from 'react';
 import Navbar from '@/components/layout/Navbar';
 import { getServerSession } from 'next-auth';
@@ -46,16 +46,28 @@ export default async function StudentDashboardPage() {
   if (profile?.careerGoal) {
     const career = await prisma.careerPath.findUnique({
       where: { id: profile.careerGoal.id },
-      include: {
+      select: {
+        id: true,
+        slug: true,
+        title: true,
         courses: {
           where: { status: Status.PUBLISHED },
           orderBy: { order: 'asc' },
-          include: {
+          select: {
+            id: true,
+            slug: true,
+            title: true,
             modules: {
               where: { status: Status.PUBLISHED },
               orderBy: { order: 'asc' },
-              include: {
-                lessons: { where: { status: Status.PUBLISHED }, orderBy: { order: 'asc' } }
+              select: {
+                id: true,
+                title: true,
+                lessons: {
+                  where: { status: Status.PUBLISHED },
+                  orderBy: { order: 'asc' },
+                  select: { id: true, title: true }
+                }
               }
             }
           }
@@ -340,7 +352,7 @@ export default async function StudentDashboardPage() {
                       background: 'linear-gradient(135deg, rgba(239,68,68,0.2), rgba(245,158,11,0.2))', 
                       display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem',
                       border: '1px solid rgba(239,68,68,0.1)'
-                    }}>🔥</div>
+                    }}><Flame size={24} color="#ef4444" /></div>
                     <div>
                       <div style={{ fontWeight: 700, fontSize: '1.125rem' }}>{passedQuizzes.length} Quizzes</div>
                       <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', fontWeight: 500 }}>50 XP each</div>
