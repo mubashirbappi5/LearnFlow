@@ -5,8 +5,8 @@ import Navbar from '@/components/layout/Navbar';
 import { prisma } from '@/lib/prisma';
 import { Status } from '@prisma/client';
 import { Target, Laptop, Trophy, Handshake, Map, BookOpen, Terminal, Award, Rocket } from 'lucide-react';
-import { SiReact, SiNodedotjs, SiPython, SiNextdotjs, SiTypescript, SiDocker, SiPostgresql, SiPrisma, SiAmazonwebservices, SiLinux, SiKalilinux, SiOwasp } from 'react-icons/si';
-import { FaUserSecret, FaLock, FaBug } from 'react-icons/fa';
+import { SiReact, SiNodedotjs, SiPython, SiNextdotjs, SiTypescript, SiDocker, SiPostgresql, SiPrisma, SiLinux, SiKalilinux, SiOwasp } from 'react-icons/si';
+import { FaUserSecret, FaLock, FaBug, FaAws } from 'react-icons/fa';
 
 export default async function LandingPage() {
   const featuredCareers = await prisma.careerPath.findMany({
@@ -47,7 +47,7 @@ export default async function LandingPage() {
     { name: "Docker", icon: <SiDocker size={24} color="#2496ED" /> },
     { name: "PostgreSQL", icon: <SiPostgresql size={24} color="#4169E1" /> },
     { name: "Prisma", icon: <SiPrisma size={24} color="var(--color-text-primary)" /> },
-    { name: "AWS", icon: <SiAmazonwebservices size={24} color="#FF9900" /> },
+    { name: "AWS", icon: <FaAws size={24} color="#FF9900" /> },
     { name: "Linux", icon: <SiLinux size={24} color="#FCC624" /> },
     { name: "Cyber Security", icon: <FaLock size={24} color="#10b981" /> }
   ];
