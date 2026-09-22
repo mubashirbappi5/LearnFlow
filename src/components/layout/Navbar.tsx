@@ -7,6 +7,7 @@ import { authOptions } from '@/lib/auth';
 import UserNavDropdown from './UserNavDropdown';
 import { ThemeToggle } from '../ThemeToggle';
 import NavbarSearch from './NavbarSearch';
+import StreakWidget from './StreakWidget';
 
 export default async function Navbar() {
   const session = await getServerSession(authOptions);
@@ -36,6 +37,8 @@ export default async function Navbar() {
         <NavbarSearch />
 
         <ThemeToggle />
+        
+        <StreakWidget />
 
         <Link href="/careers" style={{ color: 'var(--color-text-secondary)', fontWeight: 500 }} className="hover-white">
           Explore Careers

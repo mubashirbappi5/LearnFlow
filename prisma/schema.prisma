@@ -56,6 +56,9 @@ model User {
   password      String
   role          Role      @default(USER)
   xp            Int       @default(0)
+  currentStreak Int       @default(0)
+  longestStreak Int       @default(0)
+  lastStudyDate DateTime?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
@@ -67,6 +70,8 @@ model User {
   certificates          Certificate[]
   bookmarks             Bookmark[]
   userNotes             UserNote[]
+  discussions           Discussion[]
+  comments              Comment[]
 }
 
 model Profile {
@@ -153,6 +158,7 @@ model Lesson {
   progress           LessonProgress[]
   bookmarks          Bookmark[]
   notes              UserNote[]
+  discussions        Discussion[]
 }
 
 model Resource {
@@ -310,4 +316,30 @@ model UserNote {
   updatedAt          DateTime @updatedAt
 
   @@unique([userId, lessonId])
+}
+
+model Discussion {
+  id        String   @id @default(cuid())
+  lessonId  String
+  lesson    Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  comments  Comment[]
+}
+
+model Comment {
+  id           String     @id @default(cuid())
+  discussionId String
+  discussion   Discussion @relation(fields: [discussionId], references: [id], onDelete: Cascade)
+  userId       String
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  content      String
+  isAnswer     Boolean    @default(false)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
 }

@@ -6,9 +6,14 @@ import { authOptions } from '@/lib/auth';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
+import { updateStreak } from '@/lib/streak';
+
 export async function submitQuizAttempt(quizId: string, score: number, passed: boolean, answers: Record<string, string[]>, courseSlug: string) {
   const session = await getServerSession(authOptions);
   if (!session) redirect('/login');
+
+  // Update streak whenever a quiz is attempted
+  await updateStreak(session.user.id);
 
   // Check if they already passed this quiz before
   const previouslyPassed = await prisma.quizAttempt.findFirst({

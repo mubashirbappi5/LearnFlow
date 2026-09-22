@@ -11,6 +11,7 @@ import { getLockedModuleIds } from '@/lib/courseProgress';
 import { redirect } from 'next/navigation';
 import BookmarkButton from '@/components/learning/BookmarkButton';
 import NotesSection from '@/components/learning/NotesSection';
+import DiscussionSection from '@/components/learning/DiscussionSection';
 
 export default async function LessonPage({ params }: { params: Promise<{ courseSlug: string, lessonId: string }> }) {
   const resolvedParams = await params;
@@ -28,6 +29,18 @@ export default async function LessonPage({ params }: { params: Promise<{ courseS
       },
       bookmarks: {
         where: { userId: session?.user?.id || '' }
+      },
+      discussions: {
+        orderBy: { createdAt: 'desc' },
+        include: {
+          user: { select: { id: true, name: true, username: true } },
+          comments: {
+            orderBy: [{ isAnswer: 'desc' }, { createdAt: 'asc' }],
+            include: {
+              user: { select: { id: true, name: true, username: true } }
+            }
+          }
+        }
       }
     }
   });
@@ -157,6 +170,14 @@ export default async function LessonPage({ params }: { params: Promise<{ courseS
           initialNote={lesson.notes.length > 0 ? lesson.notes[0].content : ''} 
         />
       )}
+
+      {/* Discussion Q&A Section */}
+      <DiscussionSection
+        lessonId={lesson.id}
+        courseSlug={resolvedParams.courseSlug}
+        initialDiscussions={lesson.discussions}
+        currentUserId={session?.user?.id}
+      />
 
       {/* Actions (Mark as complete) */}
       <div style={{ marginTop: '80px', display: 'flex', justifyContent: 'center', borderTop: '1px solid var(--color-border)', paddingTop: '64px', paddingBottom: '64px' }}>
