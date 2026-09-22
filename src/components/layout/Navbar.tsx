@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getServerSession } from 'next-auth';
@@ -38,7 +38,9 @@ export default async function Navbar() {
 
         <ThemeToggle />
         
-        <StreakWidget />
+        <Suspense fallback={<div style={{ width: '60px', height: '30px', borderRadius: '999px', backgroundColor: 'var(--color-glass)' }} className="animate-pulse-glow" />}>
+          <StreakWidget />
+        </Suspense>
 
         <Link href="/careers" style={{ color: 'var(--color-text-secondary)', fontWeight: 500 }} className="hover-white">
           Explore Careers

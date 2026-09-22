@@ -15,22 +15,22 @@ export default async function StudentDashboardPage() {
     redirect('/login');
   }
 
-  // Fetch user profile and enrolled career
-  const profile = await prisma.profile.findUnique({
-    where: { userId: session.user.id },
-    include: { careerGoal: true }
-  });
-
-  const firstCourseId = profile?.careerGoal ? (await prisma.course.findFirst({ where: { careerPathId: profile.careerGoal.id }, orderBy: { order: 'asc' } }))?.id : undefined;
-
-  const certificate = firstCourseId ? await prisma.certificate.findFirst({
-    where: { userId: session.user.id, courseId: firstCourseId }
-  }) : null;
-
-  // Gamification Metrics Fetch
-  const completedLessons = await prisma.lessonProgress.findMany({ where: { userId: session.user.id } });
-  const completedAssignments = await prisma.assignmentSubmission.findMany({ where: { userId: session.user.id } }); // Treat submitted as points for now, or require COMPLETED
-  const passedQuizzes = await prisma.quizAttempt.findMany({ where: { userId: session.user.id, passed: true } });
+  // Parallel fetch: profile and gamification metrics
+  const [profile, completedLessons, completedAssignments, passedQuizzes, recentLessons] = await Promise.all([
+    prisma.profile.findUnique({
+      where: { userId: session.user.id },
+      include: { careerGoal: true }
+    }),
+    prisma.lessonProgress.findMany({ where: { userId: session.user.id } }),
+    prisma.assignmentSubmission.findMany({ where: { userId: session.user.id } }),
+    prisma.quizAttempt.findMany({ where: { userId: session.user.id, passed: true } }),
+    prisma.lessonProgress.findMany({
+      where: { userId: session.user.id },
+      include: { lesson: { include: { module: { include: { course: true } } } } },
+      orderBy: { completedAt: 'desc' },
+      take: 3
+    })
+  ]);
 
   const xp = (completedLessons.length * 10) + (passedQuizzes.length * 50) + (completedAssignments.length * 100);
   const completedLessonIds = new Set(completedLessons.map(l => l.lessonId));
@@ -43,37 +43,50 @@ export default async function StudentDashboardPage() {
   let nextActionLabel = 'Continue Learning';
   let recentActivity: any[] = [];
 
+  let certificate = null;
+  let firstCourseId = undefined;
+
   if (profile?.careerGoal) {
-    const career = await prisma.careerPath.findUnique({
-      where: { id: profile.careerGoal.id },
-      select: {
-        id: true,
-        slug: true,
-        title: true,
-        courses: {
-          where: { status: Status.PUBLISHED },
-          orderBy: { order: 'asc' },
-          select: {
-            id: true,
-            slug: true,
-            title: true,
-            modules: {
-              where: { status: Status.PUBLISHED },
-              orderBy: { order: 'asc' },
-              select: {
-                id: true,
-                title: true,
-                lessons: {
-                  where: { status: Status.PUBLISHED },
-                  orderBy: { order: 'asc' },
-                  select: { id: true, title: true }
+    const [career, firstCourse] = await Promise.all([
+      prisma.careerPath.findUnique({
+        where: { id: profile.careerGoal.id },
+        select: {
+          id: true,
+          slug: true,
+          title: true,
+          courses: {
+            where: { status: Status.PUBLISHED },
+            orderBy: { order: 'asc' },
+            select: {
+              id: true,
+              slug: true,
+              title: true,
+              modules: {
+                where: { status: Status.PUBLISHED },
+                orderBy: { order: 'asc' },
+                select: {
+                  id: true,
+                  title: true,
+                  lessons: {
+                    where: { status: Status.PUBLISHED },
+                    orderBy: { order: 'asc' },
+                    select: { id: true, title: true }
+                  }
                 }
               }
             }
           }
         }
-      }
-    });
+      }),
+      prisma.course.findFirst({ where: { careerPathId: profile.careerGoal.id }, orderBy: { order: 'asc' } })
+    ]);
+    
+    firstCourseId = firstCourse?.id;
+    if (firstCourseId) {
+      certificate = await prisma.certificate.findFirst({
+        where: { userId: session.user.id, courseId: firstCourseId }
+      });
+    }
 
     if (career) {
       for (const course of career.courses) {
@@ -94,14 +107,6 @@ export default async function StudentDashboardPage() {
   }
 
   const progressPercent = totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
-
-  // Recent Activity Feed
-  const recentLessons = await prisma.lessonProgress.findMany({
-    where: { userId: session.user.id },
-    include: { lesson: { include: { module: { include: { course: true } } } } },
-    orderBy: { completedAt: 'desc' },
-    take: 3
-  });
 
   return (
     <div style={{ 
