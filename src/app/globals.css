@@ -603,3 +603,32 @@ details.faq-item[open] .faq-icon {
   transition: width 1s ease-in-out;
 }
 .hover-bg:hover { background-color: rgba(255, 255, 255, 0.05); }
+
+/* Marquee Animation */
+.marquee-container {
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  white-space: nowrap;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-content {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  animation: scrollMarquee 30s linear infinite;
+}
+
+.marquee-content:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scrollMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 16px)); /* 50% because we duplicate the array, so we scroll exactly half the total width to loop perfectly */
+  }
+}
