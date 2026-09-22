@@ -6,6 +6,7 @@ import { authOptions } from '@/lib/auth';
 
 import UserNavDropdown from './UserNavDropdown';
 import { ThemeToggle } from '../ThemeToggle';
+import NavbarSearch from './NavbarSearch';
 
 export default async function Navbar() {
   const session = await getServerSession(authOptions);
@@ -32,23 +33,7 @@ export default async function Navbar() {
       
       <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
         
-        <form action="/search" method="GET" style={{ position: 'relative' }}>
-          <input 
-            type="text" 
-            name="q"
-            placeholder="Search courses..." 
-            style={{ 
-              padding: '8px 16px', 
-              borderRadius: '20px', 
-              border: '1px solid var(--color-border)', 
-              backgroundColor: 'var(--color-bg-secondary)', 
-              color: 'var(--color-text-primary)',
-              fontSize: '0.875rem',
-              outline: 'none',
-              width: '200px'
-            }} 
-          />
-        </form>
+        <NavbarSearch />
 
         <ThemeToggle />
 
