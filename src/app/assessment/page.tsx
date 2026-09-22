@@ -19,7 +19,7 @@ export default async function AssessmentPage() {
         <Navbar />
         
         <main style={{ flex: 1, padding: '60px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <div style={{ textAlign: 'center', marginBottom: '40px', maxWidth: '600px' }}>
+          <div className="animate-slide-up-fade" style={{ textAlign: 'center', marginBottom: '40px', maxWidth: '600px' }}>
             <div style={{ 
                 display: 'inline-block',
                 padding: '6px 16px', 
@@ -39,7 +39,9 @@ export default async function AssessmentPage() {
             </p>
           </div>
 
-          <AssessmentFlow careers={careers} />
+          <div className="animate-slide-up-fade" style={{ width: '100%', display: 'flex', justifyContent: 'center', animationDelay: '0.2s' } as any}>
+            <AssessmentFlow careers={careers} />
+          </div>
         </main>
       </div>
     </div>

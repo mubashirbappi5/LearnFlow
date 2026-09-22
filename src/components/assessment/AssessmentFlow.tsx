@@ -47,23 +47,36 @@ export default function AssessmentFlow({ careers }: AssessmentFlowProps) {
   };
 
   const calculateResult = () => {
-    // Basic recommendation logic: 
-    // In a real app this would match tags/skills. Here we just pick the first one or a relevant one.
-    const match = careers.find(c => c.title.toLowerCase().includes('frontend')) || careers[0];
-    setRecommendedCareer(match);
+    // Logic to recommend career based on user's selected interest
+    let match: CareerPath | undefined;
+    
+    if (interest === 'Frontend') {
+      match = careers.find(c => c.title.toLowerCase().includes('frontend'));
+    } else if (interest === 'Backend') {
+      match = careers.find(c => c.title.toLowerCase().includes('backend'));
+    } else if (interest === 'Cyber Security') {
+      match = careers.find(c => c.title.toLowerCase().includes('cyber') || c.title.toLowerCase().includes('security'));
+    }
+
+    // Fallback to the first career if no exact match is found
+    if (!match && careers.length > 0) {
+      match = careers[0];
+    }
+    
+    setRecommendedCareer(match || null);
     setStep(4);
   };
 
   const optionsStep1 = [
     { label: 'Absolute Beginner', desc: 'No coding experience', icon: '🌱' },
-    { label: 'Some Experience', desc: 'I know basic HTML/CSS', icon: '🛠️' },
+    { label: 'Some Experience', desc: 'I know basic coding', icon: '🛠️' },
     { label: 'Intermediate', desc: 'I can build simple apps', icon: '🚀' }
   ];
 
   const optionsStep2 = [
     { label: 'Frontend', desc: 'Websites & User Interfaces', icon: '🎨' },
-    { label: 'Backend', desc: 'Servers & Databases', icon: '⚙️' },
-    { label: 'Mobile', desc: 'iOS & Android Applications', icon: '📱' }
+    { label: 'Backend', desc: 'Servers, APIs & Databases', icon: '⚙️' },
+    { label: 'Cyber Security', desc: 'Ethical Hacking & Protection', icon: '🛡️' }
   ];
 
   const optionsStep3 = [
