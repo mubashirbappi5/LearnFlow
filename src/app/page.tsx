@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '@/components/layout/Navbar';
 import { prisma } from '@/lib/prisma';
@@ -423,7 +424,7 @@ export default async function LandingPage() {
         <footer style={{ borderTop: '1px solid var(--color-border)', backgroundColor: 'var(--color-bg-secondary)', padding: '80px 24px 40px' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: '64px', marginBottom: '80px' }}>
             <div style={{ maxWidth: '400px' }}>
-              <div className="text-gradient" style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '24px' }}>LearnFlow</div>
+              <Image src="/logo.png" alt="LearnFlow" width={180} height={40} style={{ objectFit: 'contain', marginBottom: '24px' }} />
               <p style={{ color: 'var(--color-text-secondary)', fontSize: '1rem', lineHeight: 1.6 }}>
                 Democratizing tech education by organizing the world's best free learning resources into actionable career roadmaps.
               </p>

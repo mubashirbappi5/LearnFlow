@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 
@@ -19,8 +20,8 @@ export default async function Navbar() {
       top: 0,
       zIndex: 50
     }}>
-      <Link href="/" className="text-gradient" style={{ fontSize: '1.5rem', fontWeight: 700 }}>
-        LearnFlow
+      <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
+        <Image src="/logo.png" alt="LearnFlow" width={180} height={40} style={{ objectFit: 'contain' }} />
       </Link>
       
       <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
