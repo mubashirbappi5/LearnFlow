@@ -53,14 +53,14 @@ export default async function AdminCertificatesPage() {
               padding: '40px',
               overflow: 'hidden'
             }}>
-              {/* Inner Gold Border */}
-              <div style={{ position: 'absolute', top: '16px', bottom: '16px', left: '16px', right: '16px', border: '1px solid rgba(251, 191, 36, 0.3)', borderRadius: '4px', pointerEvents: 'none' }} />
-              <div style={{ position: 'absolute', top: '24px', bottom: '24px', left: '24px', right: '24px', border: '2px solid rgba(251, 191, 36, 0.6)', borderRadius: '2px', pointerEvents: 'none' }} />
+              {/* Inner Brand Border */}
+              <div style={{ position: 'absolute', top: '16px', bottom: '16px', left: '16px', right: '16px', border: '1px solid rgba(99, 102, 241, 0.3)', borderRadius: '4px', pointerEvents: 'none' }} />
+              <div style={{ position: 'absolute', top: '24px', bottom: '24px', left: '24px', right: '24px', border: '2px solid rgba(99, 102, 241, 0.6)', borderRadius: '2px', pointerEvents: 'none' }} />
 
               {/* Header */}
               <div style={{ textAlign: 'center', marginBottom: 'auto', position: 'relative', zIndex: 1 }}>
                 <div style={{ display: 'inline-block', marginBottom: '24px' }}>
-                  <span style={{ fontSize: '1.5rem', fontWeight: 800, letterSpacing: '4px', color: '#fbbf24', textTransform: 'uppercase' }}>LearnFlow</span>
+                  <span style={{ fontSize: '1.5rem', fontWeight: 800, letterSpacing: '4px', color: 'var(--color-brand-primary)', textTransform: 'uppercase' }}>LearnFlow</span>
                 </div>
                 <h1 style={{ fontSize: '3.5rem', fontFamily: 'serif', color: 'white', margin: '0 0 16px 0', fontWeight: 400 }}>Certificate of Completion</h1>
                 <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.125rem', letterSpacing: '1px' }}>This is to certify that</p>
@@ -68,7 +68,7 @@ export default async function AdminCertificatesPage() {
 
               {/* Student Name */}
               <div style={{ textAlign: 'center', marginBottom: 'auto', position: 'relative', zIndex: 1 }}>
-                <h2 style={{ fontSize: '4rem', fontFamily: 'serif', color: '#fbbf24', margin: 0, fontStyle: 'italic', borderBottom: '1px solid rgba(255,255,255,0.2)', display: 'inline-block', padding: '0 40px 16px 40px' }}>
+                <h2 style={{ fontSize: '4rem', fontFamily: 'serif', color: 'var(--color-brand-secondary)', margin: 0, fontStyle: 'italic', borderBottom: '1px solid rgba(255,255,255,0.2)', display: 'inline-block', padding: '0 40px 16px 40px' }}>
                   John Doe
                 </h2>
               </div>
@@ -89,7 +89,7 @@ export default async function AdminCertificatesPage() {
                 </div>
 
                 {/* Seal */}
-                <div style={{ width: '100px', height: '100px', borderRadius: '50%', background: 'radial-gradient(circle, #fbbf24 0%, #b45309 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 10px 20px rgba(0,0,0,0.5), inset 0 0 10px rgba(255,255,255,0.5)', position: 'relative' }}>
+                <div style={{ width: '100px', height: '100px', borderRadius: '50%', background: 'linear-gradient(135deg, var(--color-brand-primary) 0%, var(--color-brand-secondary) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 10px 20px rgba(0,0,0,0.5), inset 0 0 10px rgba(255,255,255,0.5)', position: 'relative' }}>
                   <div style={{ width: '80px', height: '80px', borderRadius: '50%', border: '2px dashed rgba(255,255,255,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
                   </div>
