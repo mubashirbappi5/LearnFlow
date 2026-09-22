@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { CareerPath } from '@prisma/client';
 import Link from 'next/link';
+import { Sprout, Wrench, Rocket, Palette, Settings, Shield, Coffee, Timer, Flame } from 'lucide-react';
 
 type Step = 1 | 2 | 3 | 4;
 
@@ -68,21 +69,21 @@ export default function AssessmentFlow({ careers }: AssessmentFlowProps) {
   };
 
   const optionsStep1 = [
-    { label: 'Absolute Beginner', desc: 'No coding experience', icon: '🌱' },
-    { label: 'Some Experience', desc: 'I know basic coding', icon: '🛠️' },
-    { label: 'Intermediate', desc: 'I can build simple apps', icon: '🚀' }
+    { label: 'Absolute Beginner', desc: 'No coding experience', icon: <Sprout size={32} /> },
+    { label: 'Some Experience', desc: 'I know basic coding', icon: <Wrench size={32} /> },
+    { label: 'Intermediate', desc: 'I can build simple apps', icon: <Rocket size={32} /> }
   ];
 
   const optionsStep2 = [
-    { label: 'Frontend', desc: 'Websites & User Interfaces', icon: '🎨' },
-    { label: 'Backend', desc: 'Servers, APIs & Databases', icon: '⚙️' },
-    { label: 'Cyber Security', desc: 'Ethical Hacking & Protection', icon: '🛡️' }
+    { label: 'Frontend', desc: 'Websites & User Interfaces', icon: <Palette size={32} /> },
+    { label: 'Backend', desc: 'Servers, APIs & Databases', icon: <Settings size={32} /> },
+    { label: 'Cyber Security', desc: 'Ethical Hacking & Protection', icon: <Shield size={32} /> }
   ];
 
   const optionsStep3 = [
-    { label: 'Casual', desc: 'Less than 5 hours/week', icon: '☕' },
-    { label: 'Part-time', desc: '5-15 hours/week', icon: '⏱️' },
-    { label: 'Full-time', desc: '20+ hours/week', icon: '🔥' }
+    { label: 'Casual', desc: 'Less than 5 hours/week', icon: <Coffee size={32} /> },
+    { label: 'Part-time', desc: '5-15 hours/week', icon: <Timer size={32} /> },
+    { label: 'Full-time', desc: '20+ hours/week', icon: <Flame size={32} /> }
   ];
 
   return (

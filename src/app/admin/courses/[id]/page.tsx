@@ -1,3 +1,4 @@
+import { Lock, Award, FileText, FolderOpen } from 'lucide-react';
 import React from 'react';
 import { prisma } from '@/lib/prisma';
 import { notFound } from 'next/navigation';
@@ -116,7 +117,7 @@ export default async function CourseBuilderPage({ params }: { params: Promise<{ 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '16px' }}>
                   {module.lessons.map(lesson => (
                     <div key={lesson.id} style={{ padding: '8px 12px', backgroundColor: 'var(--color-bg-secondary)', borderRadius: '4px', fontSize: '0.875rem' }}>
-                      📄 {lesson.title}
+                      <FileText size={16} className="inline" /> {lesson.title}
                     </div>
                   ))}
                   {module.lessons.length === 0 && <span style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem' }}>No lessons yet</span>}
@@ -139,7 +140,7 @@ export default async function CourseBuilderPage({ params }: { params: Promise<{ 
                   ))}
                   {module.assignments.map(assignment => (
                     <div key={assignment.id} style={{ padding: '8px 12px', backgroundColor: 'var(--color-bg-secondary)', borderRadius: '4px', fontSize: '0.875rem' }}>
-                      📁 {assignment.title} (Assignment)
+                      <FolderOpen size={16} className="inline" /> {assignment.title} (Assignment)
                     </div>
                   ))}
                   {module.quizzes.length === 0 && module.assignments.length === 0 && <span style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem' }}>No assessments yet</span>}

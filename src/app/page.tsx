@@ -4,6 +4,9 @@ import Link from 'next/link';
 import Navbar from '@/components/layout/Navbar';
 import { prisma } from '@/lib/prisma';
 import { Status } from '@prisma/client';
+import { Target, Laptop, Trophy, Handshake, Map, BookOpen, Terminal, Award, Rocket } from 'lucide-react';
+import { SiReact, SiNodedotjs, SiPython, SiNextdotjs, SiTypescript, SiDocker, SiPostgresql, SiPrisma, SiAmazonwebservices, SiLinux, SiKalilinux, SiOwasp } from 'react-icons/si';
+import { FaUserSecret, FaLock, FaBug } from 'react-icons/fa';
 
 export default async function LandingPage() {
   const featuredCareers = await prisma.careerPath.findMany({
@@ -33,7 +36,21 @@ export default async function LandingPage() {
     }
   ];
 
-  const technologies = ["React", "Node.js", "Ethical Hacking", "Python", "Next.js", "TypeScript", "Penetration Testing", "Docker", "PostgreSQL", "Prisma", "AWS", "Linux", "Cyber Security"];
+  const technologies = [
+    { name: "React", icon: <SiReact size={24} color="#61DAFB" /> },
+    { name: "Node.js", icon: <SiNodedotjs size={24} color="#339933" /> },
+    { name: "Ethical Hacking", icon: <FaUserSecret size={24} color="#f87171" /> },
+    { name: "Python", icon: <SiPython size={24} color="#3776AB" /> },
+    { name: "Next.js", icon: <SiNextdotjs size={24} color="var(--color-text-primary)" /> },
+    { name: "TypeScript", icon: <SiTypescript size={24} color="#3178C6" /> },
+    { name: "Penetration Testing", icon: <FaBug size={24} color="#ef4444" /> },
+    { name: "Docker", icon: <SiDocker size={24} color="#2496ED" /> },
+    { name: "PostgreSQL", icon: <SiPostgresql size={24} color="#4169E1" /> },
+    { name: "Prisma", icon: <SiPrisma size={24} color="var(--color-text-primary)" /> },
+    { name: "AWS", icon: <SiAmazonwebservices size={24} color="#FF9900" /> },
+    { name: "Linux", icon: <SiLinux size={24} color="#FCC624" /> },
+    { name: "Cyber Security", icon: <FaLock size={24} color="#10b981" /> }
+  ];
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--color-bg-primary)', overflow: 'hidden' }}>
@@ -201,8 +218,8 @@ export default async function LandingPage() {
                 {/* Double the array for seamless infinite scroll */}
                 {[...technologies, ...technologies].map((tech, i) => (
                   <div key={i} className="tech-item hover-glow">
-                    <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: 'var(--color-brand-primary)' }}></div>
-                    {tech}
+                    {tech.icon}
+                    {tech.name}
                   </div>
                 ))}
               </div>
@@ -221,32 +238,32 @@ export default async function LandingPage() {
               
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '32px' }}>
                 <div className="card glass-panel hover-lift" style={{ backgroundColor: 'var(--color-bg-tertiary)', border: '1px solid var(--color-glass)' }}>
-                  <div style={{ width: '56px', height: '56px', borderRadius: '12px', background: 'linear-gradient(135deg, rgba(99,102,241,0.2), rgba(99,102,241,0.05))', border: '1px solid rgba(99,102,241,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', marginBottom: '24px' }}>
-                    🎯
+                  <div style={{ width: '56px', height: '56px', borderRadius: '12px', background: 'linear-gradient(135deg, rgba(99,102,241,0.2), rgba(99,102,241,0.05))', border: '1px solid rgba(99,102,241,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#6366f1', marginBottom: '24px' }}>
+                    <Target size={28} />
                   </div>
                   <h3 style={{ marginBottom: '16px', fontSize: '1.5rem' }}>Structured Roadmap</h3>
                   <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>No more wondering what to learn next. Our roadmaps tell you exactly which concept to study, in what order, ensuring zero knowledge gaps.</p>
                 </div>
                 
                 <div className="card glass-panel hover-lift" style={{ backgroundColor: 'var(--color-bg-tertiary)', border: '1px solid var(--color-glass)' }}>
-                  <div style={{ width: '56px', height: '56px', borderRadius: '12px', background: 'linear-gradient(135deg, rgba(236,72,153,0.2), rgba(236,72,153,0.05))', border: '1px solid rgba(236,72,153,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', marginBottom: '24px' }}>
-                    💻
+                  <div style={{ width: '56px', height: '56px', borderRadius: '12px', background: 'linear-gradient(135deg, rgba(236,72,153,0.2), rgba(236,72,153,0.05))', border: '1px solid rgba(236,72,153,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ec4899', marginBottom: '24px' }}>
+                    <Laptop size={28} />
                   </div>
                   <h3 style={{ marginBottom: '16px', fontSize: '1.5rem' }}>Project-Based</h3>
                   <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>Theory isn't enough. Build 30+ real-world projects, from simple landing pages to complex full-stack applications to build your portfolio.</p>
                 </div>
                 
                 <div className="card glass-panel hover-lift" style={{ backgroundColor: 'var(--color-bg-tertiary)', border: '1px solid var(--color-glass)' }}>
-                  <div style={{ width: '56px', height: '56px', borderRadius: '12px', background: 'linear-gradient(135deg, rgba(16,185,129,0.2), rgba(16,185,129,0.05))', border: '1px solid rgba(16,185,129,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', marginBottom: '24px' }}>
-                    🏆
+                  <div style={{ width: '56px', height: '56px', borderRadius: '12px', background: 'linear-gradient(135deg, rgba(16,185,129,0.2), rgba(16,185,129,0.05))', border: '1px solid rgba(16,185,129,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10b981', marginBottom: '24px' }}>
+                    <Trophy size={28} />
                   </div>
                   <h3 style={{ marginBottom: '16px', fontSize: '1.5rem' }}>Verifiable Certificates</h3>
                   <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>Complete module assignments, pass the final assessment, and earn verifiable certificates to prove your skills to employers.</p>
                 </div>
                 
                 <div className="card glass-panel hover-lift" style={{ backgroundColor: 'var(--color-bg-tertiary)', border: '1px solid var(--color-glass)' }}>
-                  <div style={{ width: '56px', height: '56px', borderRadius: '12px', background: 'linear-gradient(135deg, rgba(245,158,11,0.2), rgba(245,158,11,0.05))', border: '1px solid rgba(245,158,11,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', marginBottom: '24px' }}>
-                    🤝
+                  <div style={{ width: '56px', height: '56px', borderRadius: '12px', background: 'linear-gradient(135deg, rgba(245,158,11,0.2), rgba(245,158,11,0.05))', border: '1px solid rgba(245,158,11,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#f59e0b', marginBottom: '24px' }}>
+                    <Handshake size={28} />
                   </div>
                   <h3 style={{ marginBottom: '16px', fontSize: '1.5rem' }}>Community Support</h3>
                   <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>Join a thriving community of learners. Discuss concepts, share projects, and collaborate with peers and mentors.</p>
@@ -328,14 +345,14 @@ export default async function LandingPage() {
                 </div>
 
                 {[
-                  { icon: "🎯", title: "Assessment", desc: "Find your ideal career path" },
-                  { icon: "📚", title: "Learn", desc: "Follow structured roadmaps" },
-                  { icon: "💻", title: "Build", desc: "Create real-world projects" },
-                  { icon: "🏆", title: "Certify", desc: "Earn verifiable credentials" },
-                  { icon: "🚀", title: "Get Hired", desc: "Start your tech career" }
+                  { icon: <Map size={36} color="currentColor" />, title: "Assessment", desc: "Find your ideal career path" },
+                  { icon: <BookOpen size={36} color="currentColor" />, title: "Learn", desc: "Follow structured roadmaps" },
+                  { icon: <Terminal size={36} color="currentColor" />, title: "Build", desc: "Create real-world projects" },
+                  { icon: <Award size={36} color="currentColor" />, title: "Certify", desc: "Earn verifiable credentials" },
+                  { icon: <Rocket size={36} color="currentColor" />, title: "Get Hired", desc: "Start your tech career" }
                 ].map((step, i) => (
                   <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', flex: '1 1 150px', position: 'relative', zIndex: 1 }}>
-                    <div className="path-node active hover-glow" style={{ width: '80px', height: '80px', fontSize: '2rem', marginBottom: '24px' }}>
+                    <div className="path-node active hover-glow" style={{ width: '80px', height: '80px', marginBottom: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       {step.icon}
                     </div>
                     <h3 style={{ fontSize: '1.25rem', marginBottom: '8px' }}>{step.title}</h3>

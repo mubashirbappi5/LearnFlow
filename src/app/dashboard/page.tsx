@@ -1,3 +1,4 @@
+import { Lock, Award, FileText, FolderOpen } from 'lucide-react';
 import React from 'react';
 import Navbar from '@/components/layout/Navbar';
 import { getServerSession } from 'next-auth';
@@ -233,7 +234,7 @@ export default async function StudentDashboardPage() {
                   {progressPercent === 100 ? (
                     certificate ? (
                       <Link href={`/certificates/${certificate.id}`} className="btn btn-primary" style={{ padding: '16px 32px', fontSize: '1.125rem', borderRadius: '12px', background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)', border: 'none', boxShadow: '0 4px 14px rgba(16,185,129,0.4)', fontWeight: 600 }}>
-                        View Certificate 🏆
+                        View Certificate <Award size={16} className="inline" />
                       </Link>
                     ) : (
                       <form action={async () => {
@@ -352,7 +353,7 @@ export default async function StudentDashboardPage() {
                       background: 'linear-gradient(135deg, rgba(139,92,246,0.2), rgba(59,130,246,0.2))', 
                       display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem',
                       border: '1px solid rgba(139,92,246,0.1)'
-                    }}>📁</div>
+                    }}><FolderOpen size={16} className="inline" /></div>
                     <div>
                       <div style={{ fontWeight: 700, fontSize: '1.125rem' }}>{completedAssignments.length} Assignments</div>
                       <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', fontWeight: 500 }}>100 XP each</div>

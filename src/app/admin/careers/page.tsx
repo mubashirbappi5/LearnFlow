@@ -1,3 +1,4 @@
+import { Lock, Award, FileText, FolderOpen } from 'lucide-react';
 import React from 'react';
 import { prisma } from '@/lib/prisma';
 import Link from 'next/link';

@@ -1,3 +1,4 @@
+import { Lock, Award, FileText, FolderOpen } from 'lucide-react';
 import React from 'react';
 import { prisma } from '@/lib/prisma';
 import { notFound, redirect } from 'next/navigation';
@@ -116,7 +117,7 @@ export default async function LearnLayout({
                 justifyContent: 'space-between' 
               }}>
                 <span>MODULE {mIndex + 1} — {module.title}</span>
-                {isLocked && <span title="Pass the previous module's quiz to unlock" style={{ fontSize: '1rem' }}>🔒</span>}
+                {isLocked && <span title="Pass the previous module's quiz to unlock" style={{ fontSize: '1rem' }}><Lock size={16} className="inline" /></span>}
               </h3>
               
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '4px' }}>
