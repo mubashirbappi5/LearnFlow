@@ -52,14 +52,26 @@ export default async function SettingsPage() {
           flexDirection: 'column',
           gap: '24px'
         }}>
-          <div>
-            <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: 'var(--color-text-primary)' }}>Full Name</label>
-            <input 
-              type="text" 
-              name="name" 
-              defaultValue={session.user.name || ''} 
-              style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', background: 'var(--color-input-bg)', border: '1px solid var(--color-glass-strong)', color: 'var(--color-text-primary)', fontSize: '1rem' }}
-            />
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+            <div>
+              <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: 'var(--color-text-primary)' }}>Full Name</label>
+              <input 
+                type="text" 
+                name="name" 
+                defaultValue={session.user.name || ''} 
+                style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', background: 'var(--color-input-bg)', border: '1px solid var(--color-glass-strong)', color: 'var(--color-text-primary)', fontSize: '1rem' }}
+              />
+            </div>
+            <div>
+              <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: 'var(--color-text-primary)' }}>Username (for public profile)</label>
+              <input 
+                type="text" 
+                name="username" 
+                defaultValue={(session.user as any).username || ''} 
+                placeholder="johndoe"
+                style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', background: 'var(--color-input-bg)', border: '1px solid var(--color-glass-strong)', color: 'var(--color-text-primary)', fontSize: '1rem' }}
+              />
+            </div>
           </div>
 
           <div>

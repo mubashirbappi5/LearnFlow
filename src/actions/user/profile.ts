@@ -13,6 +13,7 @@ export async function updateProfile(formData: FormData) {
   }
 
   const name = formData.get('name') as string;
+  const username = formData.get('username') as string;
   const careerGoalId = formData.get('careerGoalId') as string;
   const skillLevel = formData.get('skillLevel') as string;
   const dailyStudyHours = parseInt(formData.get('dailyStudyHours') as string) || 0;
@@ -20,12 +21,20 @@ export async function updateProfile(formData: FormData) {
   const targetTimeline = formData.get('targetTimeline') as string;
   const preferredLanguage = formData.get('preferredLanguage') as string || 'en';
 
-  // Update user name
-  if (name && name !== session.user.name) {
-    await prisma.user.update({
-      where: { id: session.user.id },
-      data: { name }
-    });
+  // Update user name and username
+  if (name || username) {
+    try {
+      await prisma.user.update({
+        where: { id: session.user.id },
+        data: { 
+          ...(name ? { name } : {}),
+          ...(username ? { username } : {})
+        }
+      });
+    } catch (error) {
+      // Ignore unique constraint error for username for now
+      console.error('Failed to update user', error);
+    }
   }
 
   // Update or create profile

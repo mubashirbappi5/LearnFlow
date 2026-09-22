@@ -11,24 +11,42 @@ export async function markLessonComplete(lessonId: string, courseSlug: string, n
   const session = await getServerSession(authOptions);
   if (!session) redirect('/login');
 
-  // Mark lesson as complete
-  await prisma.lessonProgress.upsert({
+  // Check if already completed
+  const existingProgress = await prisma.lessonProgress.findUnique({
     where: {
       userId_lessonId: {
         userId: session.user.id,
         lessonId: lessonId,
       }
-    },
-    update: {
-      status: ProgressStatus.COMPLETED,
-      completedAt: new Date(),
-    },
-    create: {
-      userId: session.user.id,
-      lessonId: lessonId,
-      status: ProgressStatus.COMPLETED,
     }
   });
+
+  if (!existingProgress || existingProgress.status !== ProgressStatus.COMPLETED) {
+    // Wrap in transaction to award XP and mark progress
+    await prisma.$transaction([
+      prisma.lessonProgress.upsert({
+        where: {
+          userId_lessonId: {
+            userId: session.user.id,
+            lessonId: lessonId,
+          }
+        },
+        update: {
+          status: ProgressStatus.COMPLETED,
+          completedAt: new Date(),
+        },
+        create: {
+          userId: session.user.id,
+          lessonId: lessonId,
+          status: ProgressStatus.COMPLETED,
+        }
+      }),
+      prisma.user.update({
+        where: { id: session.user.id },
+        data: { xp: { increment: 10 } }
+      })
+    ]);
+  }
 
   // Revalidate learning layout
   revalidatePath(`/learn/${courseSlug}`);

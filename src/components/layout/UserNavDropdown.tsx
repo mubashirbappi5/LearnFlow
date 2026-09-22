@@ -100,6 +100,10 @@ export default function UserNavDropdown({ user }: UserNavDropdownProps) {
             My Dashboard
           </Link>
           
+          <Link href="/leaderboard" onClick={() => setIsOpen(false)} style={{ display: 'block', padding: '10px 16px', borderRadius: '8px', color: 'var(--color-text-primary)', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 500 }} className="hover-bg">
+            Leaderboard
+          </Link>
+          
           <Link href="/dashboard/library" onClick={() => setIsOpen(false)} style={{ display: 'block', padding: '10px 16px', borderRadius: '8px', color: 'var(--color-text-primary)', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 500 }} className="hover-bg">
             My Library (Notes)
           </Link>
