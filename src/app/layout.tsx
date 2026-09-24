@@ -7,12 +7,17 @@ export const metadata: Metadata = {
 };
 
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import AiTutor from "@/components/learning/AiTutor";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession(authOptions);
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
@@ -20,6 +25,7 @@ export default function RootLayout({
           <main className="min-h-screen">
             {children}
           </main>
+          {session && <AiTutor />}
         </ThemeProvider>
       </body>
     </html>

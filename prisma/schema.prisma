@@ -72,6 +72,7 @@ model User {
   userNotes             UserNote[]
   discussions           Discussion[]
   comments              Comment[]
+  aiChatSessions        AiChatSession[]
 }
 
 model Profile {
@@ -342,4 +343,29 @@ model Comment {
   isAnswer     Boolean    @default(false)
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
+}
+
+enum AiSenderRole {
+  USER
+  ASSISTANT
+}
+
+model AiChatSession {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  messages  AiChatMessage[]
+}
+
+model AiChatMessage {
+  id        String   @id @default(cuid())
+  sessionId String
+  session   AiChatSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  role      AiSenderRole
+  content   String
+  createdAt DateTime @default(now())
 }
