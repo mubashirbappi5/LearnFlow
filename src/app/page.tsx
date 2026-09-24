@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Navbar from '@/components/layout/Navbar';
 import { prisma } from '@/lib/prisma';
 import { Status } from '@prisma/client';
-import { Target, Laptop, Trophy, Handshake, Map, BookOpen, Terminal, Award, Rocket } from 'lucide-react';
+import { Target, Laptop, Trophy, Handshake, Map, BookOpen, Terminal, Award, Rocket, Sparkles, User, Zap, CheckCircle, Play } from 'lucide-react';
 import { SiReact, SiNodedotjs, SiPython, SiNextdotjs, SiTypescript, SiDocker, SiPostgresql, SiPrisma, SiLinux, SiKalilinux, SiOwasp } from 'react-icons/si';
 import { FaUserSecret, FaLock, FaBug, FaAws } from 'react-icons/fa';
 
@@ -54,21 +54,22 @@ export default async function LandingPage() {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--color-bg-primary)', overflow: 'hidden' }}>
-      {/* Dynamic Background Elements */}
-      <div style={{ position: 'fixed', top: '-10%', left: '-10%', width: '50vw', height: '50vw', borderRadius: '50%', background: 'radial-gradient(circle, rgba(99,102,241,0.05) 0%, var(--color-transparent-bg) 70%)', zIndex: 0, pointerEvents: 'none' }} className="animate-pulse-glow" />
-      <div style={{ position: 'fixed', bottom: '-10%', right: '-10%', width: '60vw', height: '60vw', borderRadius: '50%', background: 'radial-gradient(circle, rgba(139,92,246,0.05) 0%, var(--color-transparent-bg) 70%)', zIndex: 0, pointerEvents: 'none', animationDelay: '2s' }} className="animate-pulse-glow" />
+      {/* Premium Dynamic Background Elements */}
+      <div style={{ position: 'fixed', top: '-15%', left: '-15%', width: '55vw', height: '55vw', borderRadius: '50%', background: 'radial-gradient(circle, rgba(99,102,241,0.07) 0%, var(--color-transparent-bg) 60%)', zIndex: 0, pointerEvents: 'none' }} className="animate-pulse-glow" />
+      <div style={{ position: 'fixed', bottom: '-20%', right: '-10%', width: '65vw', height: '65vw', borderRadius: '50%', background: 'radial-gradient(circle, rgba(139,92,246,0.06) 0%, var(--color-transparent-bg) 65%)', zIndex: 0, pointerEvents: 'none', animationDelay: '2s' }} className="animate-pulse-glow" />
+      <div style={{ position: 'absolute', top: '40%', left: '50%', transform: 'translate(-50%, -50%)', width: '100vw', height: '100vh', backgroundImage: 'radial-gradient(var(--color-glass-strong) 1px, transparent 1px)', backgroundSize: '40px 40px', opacity: 0.3, zIndex: 0, pointerEvents: 'none' }} />
 
       <div style={{ position: 'relative', zIndex: 1 }}>
         <Navbar />
         
         <main style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
           
-          {/* 1. Hero Section */}
+          {/* 1. Enhanced Hero Section */}
           <section style={{ 
             display: 'grid', 
             gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
             alignItems: 'center',
-            minHeight: '90vh',
+            minHeight: '95vh',
             padding: '40px 24px',
             maxWidth: '1400px',
             margin: '0 auto',
@@ -79,39 +80,39 @@ export default async function LandingPage() {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '8px',
-                padding: '8px 20px', 
+                padding: '8px 24px', 
                 borderRadius: '9999px',
                 backgroundColor: 'rgba(99, 102, 241, 0.08)',
                 color: 'var(--color-brand-primary)',
-                fontSize: '0.875rem',
+                fontSize: '0.9rem',
                 fontWeight: 600,
                 marginBottom: '32px',
-                border: '1px solid rgba(99, 102, 241, 0.2)',
-                boxShadow: '0 0 20px rgba(99, 102, 241, 0.1)'
+                border: '1px solid rgba(99, 102, 241, 0.3)',
+                boxShadow: '0 0 30px rgba(99, 102, 241, 0.15)'
               }}>
-                <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--color-brand-primary)' }} className="animate-pulse-glow" />
-                #1 Free Tech Ecosystem
+                <Sparkles size={16} className="animate-pulse" />
+                Now featuring AI-Powered Learning
               </div>
               
-              <h1 style={{ fontSize: '5rem', lineHeight: 1.05, marginBottom: '24px', letterSpacing: '-0.04em' }}>
-                Master <span className="text-gradient">Frontend, Backend & Security</span>.
+              <h1 style={{ fontSize: '5.5rem', lineHeight: 1.05, marginBottom: '24px', letterSpacing: '-0.04em', fontWeight: 800 }}>
+                Learn. Build.<br/><span className="text-gradient">Get Hired.</span>
               </h1>
               
               <p style={{ fontSize: '1.25rem', color: 'var(--color-text-secondary)', marginBottom: '48px', maxWidth: '600px', lineHeight: 1.7 }}>
-                Join our structured, project-based bootcamps built entirely from world-class free resources. Get industry-ready without spending thousands.
+                Join our structured, project-based bootcamps built entirely from world-class free resources. Master frontend, backend & security without spending thousands.
               </p>
               
               <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-                <Link href="/assessment" className="btn btn-primary" style={{ padding: '18px 36px', fontSize: '1.125rem', borderRadius: '12px', boxShadow: '0 10px 30px rgba(99, 102, 241, 0.3)' }}>
+                <Link href="/assessment" className="btn btn-primary" style={{ padding: '20px 40px', fontSize: '1.125rem', borderRadius: '16px', boxShadow: '0 10px 40px rgba(99, 102, 241, 0.4)', fontWeight: 600 }}>
                   Start Your Journey
                 </Link>
-                <Link href="/careers" className="btn btn-secondary glass-panel hover-glow" style={{ padding: '18px 36px', fontSize: '1.125rem', borderRadius: '12px' }}>
+                <Link href="/careers" className="btn btn-secondary glass-panel hover-glow" style={{ padding: '20px 40px', fontSize: '1.125rem', borderRadius: '16px', fontWeight: 600 }}>
                   Explore Curriculums
                 </Link>
               </div>
             </div>
             
-            {/* New Tech Ecosystem Vector Graphic */}
+            {/* Vector Graphic */}
             <div style={{ position: 'relative', height: '100%', minHeight: '500px', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <svg width="100%" height="100%" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ maxWidth: '600px' }}>
                 <defs>
@@ -132,8 +133,6 @@ export default async function LandingPage() {
                     <feComposite in="SourceGraphic" in2="blur" operator="over" />
                   </filter>
                 </defs>
-                
-                {/* Connecting Grid / Web */}
                 <g className="animate-dash-draw" stroke="var(--color-glass-strong)" strokeWidth="1.5" strokeDasharray="5 5">
                   <path d="M300 300 L150 150" />
                   <path d="M300 300 L450 150" />
@@ -142,39 +141,27 @@ export default async function LandingPage() {
                   <circle cx="300" cy="300" r="150" />
                   <circle cx="300" cy="300" r="220" />
                 </g>
-
-                {/* Central Server / Backend Node */}
                 <g className="animate-pulse-heavy">
                   <circle cx="300" cy="300" r="70" fill="url(#gradBackend)" filter="url(#heavyGlow)" />
                   <circle cx="300" cy="300" r="65" fill="var(--color-bg-secondary)" />
-                  {/* Database Icon */}
                   <path d="M270 290 Q300 310 330 290" stroke="#10b981" strokeWidth="4" fill="none" strokeLinecap="round" />
                   <path d="M270 310 Q300 330 330 310" stroke="#10b981" strokeWidth="4" fill="none" strokeLinecap="round" />
                   <path d="M270 270 Q300 290 330 270 Q300 250 270 270 Z" stroke="#10b981" strokeWidth="4" fill="none" />
                 </g>
-
-                {/* Orbiting Elements container */}
                 <g className="animate-orbit-spin">
-                  {/* Frontend Node */}
                   <g transform="translate(150, 150) rotate(-45)">
                     <rect x="-40" y="-40" width="80" height="80" rx="16" fill="url(#gradFrontend)" filter="url(#heavyGlow)"/>
                     <rect x="-38" y="-38" width="76" height="76" rx="14" fill="var(--color-bg-secondary)"/>
-                    {/* UI Icon */}
                     <path d="M-20 -10 L-20 20 L20 20 L20 -10 Z" stroke="#3b82f6" strokeWidth="3" fill="none"/>
                     <path d="M-20 -10 L20 -10" stroke="#3b82f6" strokeWidth="3"/>
                     <circle cx="-10" cy="-20" r="3" fill="#3b82f6" />
                   </g>
-
-                  {/* Security Node */}
                   <g transform="translate(450, 450) rotate(135)">
                     <polygon points="0,-40 35,-15 35,25 0,50 -35,25 -35,-15" fill="url(#gradSecurity)" filter="url(#heavyGlow)"/>
                     <polygon points="0,-36 32,-14 32,23 0,46 -32,23 -32,-14" fill="var(--color-bg-secondary)"/>
-                    {/* Shield/Lock Icon */}
                     <rect x="-12" y="0" width="24" height="18" rx="2" stroke="#ef4444" strokeWidth="3" fill="none"/>
                     <path d="M-8 0 V-8 Q-8 -15 0 -15 Q8 -15 8 -8 V0" stroke="#ef4444" strokeWidth="3" fill="none"/>
                   </g>
-
-                  {/* API Data Packets */}
                   <circle cx="300" cy="80" r="8" fill="#f59e0b" filter="url(#heavyGlow)" />
                   <circle cx="80" cy="300" r="8" fill="#3b82f6" filter="url(#heavyGlow)" />
                   <circle cx="520" cy="300" r="8" fill="#10b981" filter="url(#heavyGlow)" />
@@ -206,6 +193,89 @@ export default async function LandingPage() {
             </div>
           </section>
 
+          {/* New AI Tutor Section */}
+          <section className="section-padding" style={{ position: 'relative', overflow: 'hidden' }}>
+            <div style={{ position: 'absolute', top: '50%', right: '-20%', width: '600px', height: '600px', background: 'radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%)', filter: 'blur(60px)', zIndex: 0 }} />
+            <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', alignItems: 'center', gap: '64px', flexWrap: 'wrap-reverse', position: 'relative', zIndex: 1 }}>
+              <div style={{ flex: '1 1 400px', position: 'relative' }}>
+                <div className="glass-panel hover-lift" style={{ padding: '32px', borderRadius: '24px', position: 'relative', zIndex: 2, background: 'var(--color-bg-tertiary)' }}>
+                  <div style={{ display: 'flex', gap: '16px', marginBottom: '24px' }}>
+                    <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--color-brand-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', flexShrink: 0 }}>
+                       <Sparkles size={20} />
+                    </div>
+                    <div style={{ background: 'var(--color-bg-secondary)', padding: '16px', borderRadius: '16px', borderTopLeftRadius: 0, flex: 1, border: '1px solid var(--color-border)' }}>
+                      <p style={{ fontSize: '0.95rem', margin: 0, color: 'var(--color-text-primary)', lineHeight: 1.6 }}>Hey! I noticed you are stuck on React Hooks. Would you like a simple explanation of useEffect?</p>
+                    </div>
+                  </div>
+                  <div style={{ display: 'flex', gap: '16px', flexDirection: 'row-reverse' }}>
+                     <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--color-bg-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-text-primary)', flexShrink: 0 }}>
+                       <User size={20} />
+                    </div>
+                    <div style={{ background: 'var(--color-brand-primary)', padding: '16px', borderRadius: '16px', borderTopRightRadius: 0, color: '#fff' }}>
+                      <p style={{ fontSize: '0.95rem', margin: 0, lineHeight: 1.6 }}>Yes please! Give me a real world example.</p>
+                    </div>
+                  </div>
+                </div>
+                {/* Floating decor */}
+                <div className="animate-float" style={{ position: 'absolute', top: '-30px', right: '-20px', background: 'var(--color-bg-secondary)', padding: '16px 24px', borderRadius: '16px', border: '1px solid var(--color-border)', display: 'flex', alignItems: 'center', gap: '12px', zIndex: 3, boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}>
+                  <Zap size={24} color="#f59e0b" />
+                  <span style={{ fontWeight: 600 }}>Instant Answers</span>
+                </div>
+              </div>
+              <div style={{ flex: '1 1 500px' }}>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'var(--color-brand-primary)', fontWeight: 600, marginBottom: '24px', padding: '8px 24px', background: 'rgba(99, 102, 241, 0.1)', borderRadius: '99px', border: '1px solid rgba(99, 102, 241, 0.2)' }}>
+                  <Sparkles size={16} /> AI-Powered Learning
+                </div>
+                <h2 style={{ fontSize: '3.5rem', marginBottom: '24px', lineHeight: 1.1 }}>Meet your personal<br/><span className="text-gradient">AI Tutor.</span></h2>
+                <p style={{ fontSize: '1.25rem', color: 'var(--color-text-secondary)', marginBottom: '40px', lineHeight: 1.7 }}>
+                  Never get stuck again. Our integrated AI Tutor understands your curriculum, reviews your code, and explains complex concepts in a way that makes sense to you.
+                </p>
+                <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                  {[
+                    "Get instant help 24/7 without waiting for mentors.",
+                    "Personalized code reviews and debugging assistance.",
+                    "Simplifies complex jargon into beginner-friendly terms."
+                  ].map((item, i) => (
+                    <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
+                      <CheckCircle size={24} color="var(--color-brand-primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                      <span style={{ color: 'var(--color-text-primary)', fontSize: '1.125rem' }}>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          {/* New Projects Showcase */}
+          <section className="section-padding" style={{ backgroundColor: 'var(--color-bg-secondary)', borderTop: '1px solid var(--color-border)' }}>
+            <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+              <div style={{ textAlign: 'center', marginBottom: '80px' }}>
+                <h2 style={{ fontSize: '3.5rem', marginBottom: '16px' }}>Build Real <span className="text-gradient">World Projects</span></h2>
+                <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.25rem', maxWidth: '600px', margin: '0 auto' }}>
+                  Theory only gets you so far. Graduate with a stunning portfolio of applications that impress employers.
+                </p>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '32px' }}>
+                {[
+                  { title: "Fullstack E-Commerce", tech: "Next.js • Stripe • PostgreSQL", color: "#3b82f6", icon: <SiNextdotjs size={48} /> },
+                  { title: "Real-time Chat App", tech: "React • Node.js • Socket.io", color: "#8b5cf6", icon: <SiReact size={48} /> },
+                  { title: "Vulnerability Scanner", tech: "Python • Nmap • Regex", color: "#10b981", icon: <FaBug size={48} /> },
+                ].map((proj, i) => (
+                  <div key={i} className="card hover-lift glass-panel" style={{ padding: '0', overflow: 'hidden', border: '1px solid var(--color-glass)', borderRadius: '24px' }}>
+                    <div style={{ height: '220px', background: `linear-gradient(135deg, ${proj.color}22, var(--color-bg-primary))`, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+                       <div style={{ color: proj.color, opacity: 0.5 }}>{proj.icon}</div>
+                       <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '80px', background: 'linear-gradient(to top, var(--color-bg-tertiary), transparent)' }} />
+                    </div>
+                    <div style={{ padding: '32px', background: 'var(--color-bg-tertiary)' }}>
+                      <h3 style={{ fontSize: '1.5rem', marginBottom: '12px' }}>{proj.title}</h3>
+                      <p style={{ color: proj.color, fontSize: '0.95rem', fontWeight: 600 }}>{proj.tech}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
           {/* 3. Tech Stack / What You Will Learn */}
           <section className="section-padding" style={{ overflow: 'hidden' }}>
             <div style={{ textAlign: 'center', marginBottom: '64px' }}>
@@ -215,7 +285,6 @@ export default async function LandingPage() {
             
             <div className="marquee-container">
               <div className="marquee-content">
-                {/* Double the array for seamless infinite scroll */}
                 {[...technologies, ...technologies].map((tech, i) => (
                   <div key={i} className="hover-glow" style={{ 
                     padding: '24px',
@@ -241,7 +310,7 @@ export default async function LandingPage() {
           <section className="section-padding" style={{ backgroundColor: 'var(--color-bg-secondary)', borderTop: '1px solid var(--color-border)', borderBottom: '1px solid var(--color-border)' }}>
             <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
               <div style={{ textAlign: 'center', marginBottom: '80px' }}>
-                <h2 style={{ fontSize: '3rem', marginBottom: '16px' }}>Why Choose LearnFlow?</h2>
+                <h2 style={{ fontSize: '3.5rem', marginBottom: '16px' }}>Why Choose LearnFlow?</h2>
                 <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.25rem', maxWidth: '600px', margin: '0 auto' }}>
                   We bridge the gap between expensive bootcamps and scattered YouTube tutorials by providing a cohesive, structured experience.
                 </p>
@@ -249,32 +318,32 @@ export default async function LandingPage() {
               
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '32px' }}>
                 <div className="card glass-panel hover-lift" style={{ backgroundColor: 'var(--color-bg-tertiary)', border: '1px solid var(--color-glass)' }}>
-                  <div style={{ width: '56px', height: '56px', borderRadius: '12px', background: 'linear-gradient(135deg, rgba(99,102,241,0.2), rgba(99,102,241,0.05))', border: '1px solid rgba(99,102,241,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#6366f1', marginBottom: '24px' }}>
-                    <Target size={28} />
+                  <div style={{ width: '64px', height: '64px', borderRadius: '16px', background: 'linear-gradient(135deg, rgba(99,102,241,0.2), rgba(99,102,241,0.05))', border: '1px solid rgba(99,102,241,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#6366f1', marginBottom: '24px' }}>
+                    <Target size={32} />
                   </div>
                   <h3 style={{ marginBottom: '16px', fontSize: '1.5rem' }}>Structured Roadmap</h3>
                   <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>No more wondering what to learn next. Our roadmaps tell you exactly which concept to study, in what order, ensuring zero knowledge gaps.</p>
                 </div>
                 
                 <div className="card glass-panel hover-lift" style={{ backgroundColor: 'var(--color-bg-tertiary)', border: '1px solid var(--color-glass)' }}>
-                  <div style={{ width: '56px', height: '56px', borderRadius: '12px', background: 'linear-gradient(135deg, rgba(236,72,153,0.2), rgba(236,72,153,0.05))', border: '1px solid rgba(236,72,153,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ec4899', marginBottom: '24px' }}>
-                    <Laptop size={28} />
+                  <div style={{ width: '64px', height: '64px', borderRadius: '16px', background: 'linear-gradient(135deg, rgba(236,72,153,0.2), rgba(236,72,153,0.05))', border: '1px solid rgba(236,72,153,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ec4899', marginBottom: '24px' }}>
+                    <Laptop size={32} />
                   </div>
                   <h3 style={{ marginBottom: '16px', fontSize: '1.5rem' }}>Project-Based</h3>
                   <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>Theory isn't enough. Build 30+ real-world projects, from simple landing pages to complex full-stack applications to build your portfolio.</p>
                 </div>
                 
                 <div className="card glass-panel hover-lift" style={{ backgroundColor: 'var(--color-bg-tertiary)', border: '1px solid var(--color-glass)' }}>
-                  <div style={{ width: '56px', height: '56px', borderRadius: '12px', background: 'linear-gradient(135deg, rgba(16,185,129,0.2), rgba(16,185,129,0.05))', border: '1px solid rgba(16,185,129,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10b981', marginBottom: '24px' }}>
-                    <Trophy size={28} />
+                  <div style={{ width: '64px', height: '64px', borderRadius: '16px', background: 'linear-gradient(135deg, rgba(16,185,129,0.2), rgba(16,185,129,0.05))', border: '1px solid rgba(16,185,129,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10b981', marginBottom: '24px' }}>
+                    <Trophy size={32} />
                   </div>
                   <h3 style={{ marginBottom: '16px', fontSize: '1.5rem' }}>Verifiable Certificates</h3>
                   <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>Complete module assignments, pass the final assessment, and earn verifiable certificates to prove your skills to employers.</p>
                 </div>
                 
                 <div className="card glass-panel hover-lift" style={{ backgroundColor: 'var(--color-bg-tertiary)', border: '1px solid var(--color-glass)' }}>
-                  <div style={{ width: '56px', height: '56px', borderRadius: '12px', background: 'linear-gradient(135deg, rgba(245,158,11,0.2), rgba(245,158,11,0.05))', border: '1px solid rgba(245,158,11,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#f59e0b', marginBottom: '24px' }}>
-                    <Handshake size={28} />
+                  <div style={{ width: '64px', height: '64px', borderRadius: '16px', background: 'linear-gradient(135deg, rgba(245,158,11,0.2), rgba(245,158,11,0.05))', border: '1px solid rgba(245,158,11,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#f59e0b', marginBottom: '24px' }}>
+                    <Handshake size={32} />
                   </div>
                   <h3 style={{ marginBottom: '16px', fontSize: '1.5rem' }}>Community Support</h3>
                   <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>Join a thriving community of learners. Discuss concepts, share projects, and collaborate with peers and mentors.</p>
@@ -288,10 +357,10 @@ export default async function LandingPage() {
             <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '64px', flexWrap: 'wrap', gap: '24px' }}>
                 <div>
-                  <h2 style={{ fontSize: '3rem', marginBottom: '8px' }}>Explore Our Curriculums</h2>
+                  <h2 style={{ fontSize: '3.5rem', marginBottom: '8px' }}>Explore Our Curriculums</h2>
                   <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.25rem' }}>Start learning with our most requested career paths.</p>
                 </div>
-                <Link href="/careers" className="btn btn-secondary glass-panel hover-glow" style={{ padding: '16px 32px' }}>View All Paths</Link>
+                <Link href="/careers" className="btn btn-secondary glass-panel hover-glow" style={{ padding: '16px 32px', borderRadius: '12px' }}>View All Paths</Link>
               </div>
               
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '32px' }}>
@@ -303,29 +372,27 @@ export default async function LandingPage() {
                     position: 'relative',
                     overflow: 'hidden',
                     border: '1px solid var(--color-glass)',
-                    padding: '32px',
+                    padding: '40px',
                     borderRadius: '24px'
                   }}>
-                    {/* Animated top border line */}
-                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: index % 2 === 0 ? 'linear-gradient(90deg, #3b82f6, #8b5cf6)' : 'linear-gradient(90deg, #10b981, #3b82f6)', opacity: 0.8 }} />
-                    {/* Subtle Background Glow */}
-                    <div style={{ position: 'absolute', top: '-50px', right: '-50px', width: '150px', height: '150px', background: index % 2 === 0 ? '#3b82f6' : '#10b981', filter: 'blur(80px)', opacity: 0.15, borderRadius: '50%', pointerEvents: 'none' }} />
+                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '4px', background: index % 2 === 0 ? 'linear-gradient(90deg, #3b82f6, #8b5cf6)' : 'linear-gradient(90deg, #10b981, #3b82f6)', opacity: 0.8 }} />
+                    <div style={{ position: 'absolute', top: '-50px', right: '-50px', width: '200px', height: '200px', background: index % 2 === 0 ? '#3b82f6' : '#10b981', filter: 'blur(80px)', opacity: 0.15, borderRadius: '50%', pointerEvents: 'none' }} />
 
-                    <h3 style={{ fontSize: '1.75rem', marginBottom: '16px', color: 'var(--color-text-primary)', position: 'relative', zIndex: 1 }}>{career.title}</h3>
-                    <p style={{ color: 'var(--color-text-secondary)', marginBottom: '32px', flex: 1, lineHeight: 1.6, position: 'relative', zIndex: 1 }}>{career.description}</p>
+                    <h3 style={{ fontSize: '2rem', marginBottom: '16px', color: 'var(--color-text-primary)', position: 'relative', zIndex: 1 }}>{career.title}</h3>
+                    <p style={{ color: 'var(--color-text-secondary)', marginBottom: '40px', flex: 1, lineHeight: 1.6, position: 'relative', zIndex: 1, fontSize: '1.1rem' }}>{career.description}</p>
                     
-                    <div style={{ display: 'flex', gap: '16px', fontSize: '0.875rem', color: 'var(--color-text-muted)', borderTop: '1px solid var(--color-glass)', paddingTop: '24px', marginBottom: '24px', position: 'relative', zIndex: 1 }}>
+                    <div style={{ display: 'flex', gap: '24px', fontSize: '0.9rem', color: 'var(--color-text-muted)', borderTop: '1px solid var(--color-glass)', paddingTop: '24px', marginBottom: '32px', position: 'relative', zIndex: 1 }}>
                       <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                         {career.estimatedDuration}
                       </span>
                       <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
                         {career._count.courses} Courses
                       </span>
                     </div>
                     
-                    <Link href={`/careers/${career.slug}`} className="btn btn-primary" style={{ width: '100%', padding: '16px', borderRadius: '12px', position: 'relative', zIndex: 1, display: 'flex', justifyContent: 'center', gap: '8px', alignItems: 'center' }}>
+                    <Link href={`/careers/${career.slug}`} className="btn btn-primary" style={{ width: '100%', padding: '16px', borderRadius: '12px', position: 'relative', zIndex: 1, display: 'flex', justifyContent: 'center', gap: '8px', alignItems: 'center', fontSize: '1.1rem' }}>
                       Start Learning <span>&rarr;</span>
                     </Link>
                   </div>
@@ -340,10 +407,10 @@ export default async function LandingPage() {
           </section>
 
           {/* New Path to Success Section */}
-          <section className="section-padding" style={{ position: 'relative', overflow: 'hidden' }}>
+          <section className="section-padding" style={{ position: 'relative', overflow: 'hidden', backgroundColor: 'var(--color-bg-secondary)', borderTop: '1px solid var(--color-border)', borderBottom: '1px solid var(--color-border)' }}>
             <div style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
-              <div style={{ textAlign: 'center', marginBottom: '80px' }}>
-                <h2 style={{ fontSize: '3rem', marginBottom: '16px' }}>Your Path to Success</h2>
+              <div style={{ textAlign: 'center', marginBottom: '100px' }}>
+                <h2 style={{ fontSize: '3.5rem', marginBottom: '16px' }}>Your Path to <span className="text-gradient">Success</span></h2>
                 <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.25rem', maxWidth: '600px', margin: '0 auto' }}>
                   A clear, proven pipeline to take you from absolute beginner to industry-ready professional.
                 </p>
@@ -356,18 +423,18 @@ export default async function LandingPage() {
                 </div>
 
                 {[
-                  { icon: <Map size={36} color="currentColor" />, title: "Assessment", desc: "Find your ideal career path" },
-                  { icon: <BookOpen size={36} color="currentColor" />, title: "Learn", desc: "Follow structured roadmaps" },
-                  { icon: <Terminal size={36} color="currentColor" />, title: "Build", desc: "Create real-world projects" },
-                  { icon: <Award size={36} color="currentColor" />, title: "Certify", desc: "Earn verifiable credentials" },
-                  { icon: <Rocket size={36} color="currentColor" />, title: "Get Hired", desc: "Start your tech career" }
+                  { icon: <Map size={40} color="currentColor" />, title: "Assessment", desc: "Find your ideal career path" },
+                  { icon: <BookOpen size={40} color="currentColor" />, title: "Learn", desc: "Follow structured roadmaps" },
+                  { icon: <Terminal size={40} color="currentColor" />, title: "Build", desc: "Create real-world projects" },
+                  { icon: <Award size={40} color="currentColor" />, title: "Certify", desc: "Earn verifiable credentials" },
+                  { icon: <Rocket size={40} color="currentColor" />, title: "Get Hired", desc: "Start your tech career" }
                 ].map((step, i) => (
                   <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', flex: '1 1 150px', position: 'relative', zIndex: 1 }}>
-                    <div className="path-node active hover-glow" style={{ width: '80px', height: '80px', marginBottom: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <div className="path-node active hover-glow" style={{ width: '100px', height: '100px', marginBottom: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       {step.icon}
                     </div>
-                    <h3 style={{ fontSize: '1.25rem', marginBottom: '8px' }}>{step.title}</h3>
-                    <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem' }}>{step.desc}</p>
+                    <h3 style={{ fontSize: '1.5rem', marginBottom: '12px' }}>{step.title}</h3>
+                    <p style={{ color: 'var(--color-text-secondary)', fontSize: '1rem' }}>{step.desc}</p>
                   </div>
                 ))}
               </div>
@@ -375,29 +442,29 @@ export default async function LandingPage() {
           </section>
 
           {/* 6. Testimonials */}
-          <section className="section-padding" style={{ backgroundColor: 'var(--color-bg-secondary)', borderTop: '1px solid var(--color-border)' }}>
+          <section className="section-padding">
             <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
               <div style={{ textAlign: 'center', marginBottom: '80px' }}>
-                <h2 style={{ fontSize: '3rem', marginBottom: '16px' }}>Student Success Stories</h2>
+                <h2 style={{ fontSize: '3.5rem', marginBottom: '16px' }}>Student <span className="text-gradient">Success Stories</span></h2>
                 <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.25rem', maxWidth: '600px', margin: '0 auto' }}>
                   Don't just take our word for it. See what our community has achieved.
                 </p>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '32px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px' }}>
                 {[
                   { quote: "I was overwhelmed by all the tutorials out there. LearnFlow gave me the exact roadmap I needed. I landed my first frontend role in 6 months!", author: "Sarah J.", role: "Frontend Developer" },
                   { quote: "The curated resources are top-notch. I didn't have to spend a single dime to get a world-class education in full-stack development.", author: "Michael T.", role: "Software Engineer" },
                   { quote: "The structured assignments validated my skills. Showing my LearnFlow certificates and portfolio projects during interviews was a game-changer.", author: "Elena R.", role: "UI/UX Designer" }
                 ].map((item, i) => (
-                  <div key={i} className="card glass-panel hover-lift" style={{ padding: '40px 32px', backgroundColor: 'var(--color-bg-tertiary)' }}>
-                    <div style={{ color: 'var(--color-brand-primary)', fontSize: '3rem', lineHeight: 1, marginBottom: '16px', opacity: 0.5 }}>"</div>
-                    <p style={{ fontSize: '1.125rem', color: 'var(--color-text-primary)', marginBottom: '32px', fontStyle: 'italic', lineHeight: 1.6 }}>{item.quote}</p>
+                  <div key={i} className="card glass-panel hover-lift" style={{ padding: '40px', backgroundColor: 'var(--color-bg-tertiary)', borderRadius: '24px' }}>
+                    <div style={{ color: 'var(--color-brand-primary)', fontSize: '4rem', lineHeight: 1, marginBottom: '16px', opacity: 0.3, fontFamily: 'serif' }}>"</div>
+                    <p style={{ fontSize: '1.125rem', color: 'var(--color-text-primary)', marginBottom: '32px', fontStyle: 'italic', lineHeight: 1.7 }}>{item.quote}</p>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                      <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'linear-gradient(135deg, var(--color-brand-primary), var(--color-brand-secondary))' }} />
+                      <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: 'linear-gradient(135deg, var(--color-brand-primary), var(--color-brand-secondary))', border: '2px solid var(--color-border)' }} />
                       <div>
-                        <div style={{ fontWeight: 600, color: 'var(--color-text-primary)' }}>{item.author}</div>
-                        <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>{item.role}</div>
+                        <div style={{ fontWeight: 600, color: 'var(--color-text-primary)', fontSize: '1.1rem' }}>{item.author}</div>
+                        <div style={{ fontSize: '0.95rem', color: 'var(--color-brand-primary)' }}>{item.role}</div>
                       </div>
                     </div>
                   </div>
@@ -407,7 +474,7 @@ export default async function LandingPage() {
           </section>
 
           {/* 7. FAQ Section */}
-          <section className="section-padding">
+          <section className="section-padding" style={{ backgroundColor: 'var(--color-bg-secondary)', borderTop: '1px solid var(--color-border)' }}>
             <div style={{ maxWidth: '800px', margin: '0 auto' }}>
               <div style={{ textAlign: 'center', marginBottom: '64px' }}>
                 <h2 style={{ fontSize: '3rem', marginBottom: '16px' }}>Frequently Asked Questions</h2>
@@ -416,14 +483,14 @@ export default async function LandingPage() {
 
               <div>
                 {faqs.map((faq, i) => (
-                  <details key={i} className="faq-item">
-                    <summary className="faq-question">
+                  <details key={i} className="faq-item" style={{ borderRadius: '16px', marginBottom: '24px' }}>
+                    <summary className="faq-question" style={{ padding: '24px 32px', fontSize: '1.25rem' }}>
                       {faq.q}
                       <svg className="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <polyline points="6 9 12 15 18 9"></polyline>
                       </svg>
                     </summary>
-                    <div className="faq-answer">
+                    <div className="faq-answer" style={{ padding: '0 32px 32px', fontSize: '1.1rem' }}>
                       <p>{faq.a}</p>
                     </div>
                   </details>
@@ -436,12 +503,12 @@ export default async function LandingPage() {
           <section style={{ padding: '160px 24px', textAlign: 'center', position: 'relative', overflow: 'hidden', borderTop: '1px solid var(--color-border)' }}>
             <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at center, rgba(99, 102, 241, 0.15) 0%, var(--color-bg-primary) 70%)', zIndex: 0 }} />
             <div style={{ maxWidth: '800px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
-              <h2 style={{ fontSize: '4rem', marginBottom: '32px', lineHeight: 1.1 }}>Ready to start your <br/><span className="text-gradient">tech journey?</span></h2>
+              <h2 style={{ fontSize: '4.5rem', marginBottom: '32px', lineHeight: 1.1, fontWeight: 800 }}>Ready to start your <br/><span className="text-gradient">tech journey?</span></h2>
               <p style={{ fontSize: '1.5rem', color: 'var(--color-text-secondary)', marginBottom: '56px' }}>
                 Join thousands of students who are building their tech careers without the debt.
               </p>
               <div style={{ display: 'flex', gap: '24px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                <Link href="/register" className="btn btn-primary" style={{ padding: '20px 48px', fontSize: '1.25rem', borderRadius: '12px', boxShadow: '0 10px 40px rgba(99, 102, 241, 0.4)' }}>
+                <Link href="/register" className="btn btn-primary" style={{ padding: '20px 48px', fontSize: '1.25rem', borderRadius: '16px', boxShadow: '0 10px 40px rgba(99, 102, 241, 0.4)', fontWeight: 600 }}>
                   Create Free Account
                 </Link>
               </div>
@@ -458,22 +525,22 @@ export default async function LandingPage() {
                   LearnFlow
                 </span>
               </div>
-              <p style={{ color: 'var(--color-text-secondary)', fontSize: '1rem', lineHeight: 1.6 }}>
+              <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.1rem', lineHeight: 1.6 }}>
                 Democratizing tech education by organizing the world's best free learning resources into actionable career roadmaps.
               </p>
             </div>
             <div style={{ display: 'flex', gap: '80px', flexWrap: 'wrap' }}>
               <div>
-                <h4 style={{ color: 'var(--color-text-primary)', fontWeight: 600, marginBottom: '24px', fontSize: '1.125rem' }}>Platform</h4>
-                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '16px', fontSize: '1rem', color: 'var(--color-text-secondary)' }}>
+                <h4 style={{ color: 'var(--color-text-primary)', fontWeight: 600, marginBottom: '24px', fontSize: '1.25rem' }}>Platform</h4>
+                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '16px', fontSize: '1.1rem', color: 'var(--color-text-secondary)' }}>
                   <li><Link href="/careers" className="hover-white">Career Paths</Link></li>
                   <li><Link href="/assessment" className="hover-white">Assessment</Link></li>
                   <li><Link href="/login" className="hover-white">Sign In</Link></li>
                 </ul>
               </div>
               <div>
-                <h4 style={{ color: 'var(--color-text-primary)', fontWeight: 600, marginBottom: '24px', fontSize: '1.125rem' }}>Legal</h4>
-                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '16px', fontSize: '1rem', color: 'var(--color-text-secondary)' }}>
+                <h4 style={{ color: 'var(--color-text-primary)', fontWeight: 600, marginBottom: '24px', fontSize: '1.25rem' }}>Legal</h4>
+                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '16px', fontSize: '1.1rem', color: 'var(--color-text-secondary)' }}>
                   <li><Link href="#" className="hover-white">Privacy Policy</Link></li>
                   <li><Link href="#" className="hover-white">Terms of Service</Link></li>
                 </ul>
