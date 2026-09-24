@@ -25,7 +25,7 @@ export default async function RootLayout({
           <main className="min-h-screen">
             {children}
           </main>
-          {session && <AiTutor />}
+          <AiTutor />
         </ThemeProvider>
       </body>
     </html>
