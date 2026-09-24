@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send, Bot, User } from "lucide-react";
+import { Sparkles, X, Send, Bot, User } from "lucide-react";
 
 type Message = {
   id: string;
@@ -92,7 +92,7 @@ export default function AiTutor() {
           onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "var(--color-brand-primary-hover)")}
           onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "var(--color-brand-primary)")}
         >
-          <MessageCircle size={24} />
+          <Sparkles size={24} />
         </button>
       )}
 
