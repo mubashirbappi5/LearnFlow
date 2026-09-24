@@ -68,62 +68,141 @@ export default function AiTutor() {
 
   return (
     <>
-      {/* Floating Button */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 p-4 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 transition-colors z-[9999] flex items-center justify-center"
           title="Open AI Tutor"
+          style={{
+            position: "fixed",
+            bottom: "24px",
+            right: "24px",
+            padding: "16px",
+            backgroundColor: "var(--color-brand-primary)",
+            color: "#fff",
+            borderRadius: "50%",
+            border: "none",
+            boxShadow: "0 10px 25px rgba(0,0,0,0.3)",
+            cursor: "pointer",
+            zIndex: 9999,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            transition: "all 0.2s"
+          }}
+          onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "var(--color-brand-primary-hover)")}
+          onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "var(--color-brand-primary)")}
         >
           <MessageCircle size={24} />
         </button>
       )}
 
-      {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 w-80 sm:w-96 h-[500px] max-h-[80vh] bg-white dark:bg-slate-900 rounded-2xl shadow-2xl flex flex-col z-[9999] border border-slate-200 dark:border-slate-800 overflow-hidden">
+        <div
+          style={{
+            position: "fixed",
+            bottom: "24px",
+            right: "24px",
+            width: "350px",
+            height: "500px",
+            maxHeight: "80vh",
+            backgroundColor: "var(--color-bg-secondary)",
+            borderRadius: "16px",
+            boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
+            display: "flex",
+            flexDirection: "column",
+            zIndex: 9999,
+            border: "1px solid var(--color-border)",
+            overflow: "hidden"
+          }}
+        >
           {/* Header */}
-          <div className="bg-indigo-600 p-4 text-white flex justify-between items-center">
-            <div className="flex items-center gap-2">
+          <div
+            style={{
+              backgroundColor: "var(--color-brand-primary)",
+              padding: "16px",
+              color: "#fff",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center"
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
               <Bot size={20} />
-              <h3 className="font-semibold">AI Tutor</h3>
+              <h3 style={{ margin: 0, fontSize: "1rem", fontWeight: 600 }}>AI Tutor</h3>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-white/80 hover:text-white transition-colors"
+              style={{
+                background: "none",
+                border: "none",
+                color: "rgba(255,255,255,0.8)",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                padding: "4px"
+              }}
+              onMouseOver={(e) => (e.currentTarget.style.color = "#fff")}
+              onMouseOut={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.8)")}
             >
               <X size={20} />
             </button>
           </div>
 
           {/* Messages Area */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          <div
+            style={{
+              flex: 1,
+              overflowY: "auto",
+              padding: "16px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "16px",
+              backgroundColor: "var(--color-bg-primary)"
+            }}
+            className="sleek-scrollbar"
+          >
             {messages.length === 0 ? (
-              <div className="h-full flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 text-center space-y-3">
-                <Bot size={48} className="opacity-50" />
-                <p className="text-sm">Hi! I'm your AI Tutor. Ask me anything about your current lesson!</p>
+              <div style={{ height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", color: "var(--color-text-secondary)", textAlign: "center", gap: "12px" }}>
+                <Bot size={48} style={{ opacity: 0.5 }} />
+                <p style={{ fontSize: "0.875rem", margin: 0 }}>Hi! I'm your AI Tutor. Ask me anything about your current lesson!</p>
               </div>
             ) : (
               messages.map((msg) => (
                 <div
                   key={msg.id}
-                  className={`flex gap-3 ${msg.role === "USER" ? "flex-row-reverse" : ""}`}
+                  style={{
+                    display: "flex",
+                    gap: "12px",
+                    flexDirection: msg.role === "USER" ? "row-reverse" : "row"
+                  }}
                 >
                   <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${
-                      msg.role === "USER"
-                        ? "bg-indigo-100 text-indigo-600 dark:bg-indigo-900/50 dark:text-indigo-400"
-                        : "bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400"
-                    }`}
+                    style={{
+                      width: "32px",
+                      height: "32px",
+                      borderRadius: "50%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
+                      backgroundColor: msg.role === "USER" ? "var(--color-brand-primary)" : "var(--color-bg-tertiary)",
+                      color: msg.role === "USER" ? "#fff" : "var(--color-text-primary)"
+                    }}
                   >
                     {msg.role === "USER" ? <User size={16} /> : <Bot size={16} />}
                   </div>
                   <div
-                    className={`px-4 py-2 rounded-2xl text-sm ${
-                      msg.role === "USER"
-                        ? "bg-indigo-600 text-white rounded-tr-none"
-                        : "bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-tl-none"
-                    }`}
+                    style={{
+                      padding: "10px 16px",
+                      borderRadius: "16px",
+                      fontSize: "0.875rem",
+                      backgroundColor: msg.role === "USER" ? "var(--color-brand-primary)" : "var(--color-bg-tertiary)",
+                      color: msg.role === "USER" ? "#fff" : "var(--color-text-primary)",
+                      borderTopRightRadius: msg.role === "USER" ? "0" : "16px",
+                      borderTopLeftRadius: msg.role === "USER" ? "16px" : "0",
+                      maxWidth: "80%",
+                      lineHeight: 1.5
+                    }}
                   >
                     {msg.content}
                   </div>
@@ -131,14 +210,14 @@ export default function AiTutor() {
               ))
             )}
             {isLoading && (
-              <div className="flex gap-3">
-                <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400">
+              <div style={{ display: "flex", gap: "12px" }}>
+                <div style={{ width: "32px", height: "32px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "var(--color-bg-tertiary)", color: "var(--color-text-primary)" }}>
                   <Bot size={16} />
                 </div>
-                <div className="px-4 py-3 rounded-2xl rounded-tl-none bg-slate-100 dark:bg-slate-800 flex items-center gap-1">
-                  <div className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                  <div className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                  <div className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                <div style={{ padding: "12px 16px", borderRadius: "16px", borderTopLeftRadius: 0, backgroundColor: "var(--color-bg-tertiary)", display: "flex", alignItems: "center", gap: "4px" }}>
+                  <div style={{ width: "6px", height: "6px", backgroundColor: "var(--color-text-secondary)", borderRadius: "50%", animation: "pulseHeavy 1s infinite" }}></div>
+                  <div style={{ width: "6px", height: "6px", backgroundColor: "var(--color-text-secondary)", borderRadius: "50%", animation: "pulseHeavy 1s infinite", animationDelay: "0.2s" }}></div>
+                  <div style={{ width: "6px", height: "6px", backgroundColor: "var(--color-text-secondary)", borderRadius: "50%", animation: "pulseHeavy 1s infinite", animationDelay: "0.4s" }}></div>
                 </div>
               </div>
             )}
@@ -146,20 +225,47 @@ export default function AiTutor() {
           </div>
 
           {/* Input Area */}
-          <div className="p-4 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50">
-            <form onSubmit={handleSubmit} className="relative">
+          <div
+            style={{
+              padding: "16px",
+              borderTop: "1px solid var(--color-border)",
+              backgroundColor: "var(--color-bg-secondary)"
+            }}
+          >
+            <form onSubmit={handleSubmit} style={{ position: "relative" }}>
               <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask your tutor..."
-                className="w-full pl-4 pr-12 py-3 rounded-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"
                 disabled={isLoading}
+                style={{
+                  width: "100%",
+                  padding: "12px 48px 12px 16px",
+                  borderRadius: "24px",
+                  border: "1px solid var(--color-border)",
+                  backgroundColor: "var(--color-bg-primary)",
+                  color: "var(--color-text-primary)",
+                  fontSize: "0.875rem",
+                  outline: "none"
+                }}
               />
               <button
                 type="submit"
                 disabled={!input.trim() || isLoading}
-                className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 rounded-full disabled:opacity-50 transition-colors"
+                style={{
+                  position: "absolute",
+                  right: "8px",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  background: "none",
+                  border: "none",
+                  color: (!input.trim() || isLoading) ? "var(--color-text-muted)" : "var(--color-brand-primary)",
+                  cursor: (!input.trim() || isLoading) ? "not-allowed" : "pointer",
+                  padding: "8px",
+                  display: "flex",
+                  alignItems: "center"
+                }}
               >
                 <Send size={18} />
               </button>
