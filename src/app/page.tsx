@@ -108,7 +108,7 @@ export default async function LandingPage() {
                 marginBottom: '32px', 
                 letterSpacing: '-0.04em', 
                 fontWeight: 800,
-                background: 'linear-gradient(to bottom right, #ffffff 30%, #a1a1aa)',
+                background: 'linear-gradient(to bottom right, var(--color-text-primary) 30%, var(--color-text-muted))',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 maxWidth: '1000px'
@@ -157,7 +157,7 @@ export default async function LandingPage() {
               <div style={{ position: 'absolute', top: '-20px', left: '10%', right: '10%', height: '40px', background: 'linear-gradient(to right, transparent, var(--color-brand-primary), var(--color-brand-secondary), transparent)', filter: 'blur(30px)', opacity: 0.6 }} />
               
               <div style={{ 
-                background: 'linear-gradient(to bottom, var(--color-bg-tertiary), #000)',
+                background: 'linear-gradient(to bottom, var(--color-bg-tertiary), var(--color-bg-primary))',
                 border: '1px solid var(--color-glass-border)',
                 borderTop: '1px solid rgba(255,255,255,0.2)',
                 borderRadius: '24px 24px 0 0',
@@ -179,7 +179,7 @@ export default async function LandingPage() {
                     <div style={{ height: '24px', background: 'var(--color-glass)', borderRadius: '8px', width: '90%' }} />
                     <div style={{ height: '24px', background: 'var(--color-glass)', borderRadius: '8px', width: '60%' }} />
                   </div>
-                  <div style={{ background: '#0a0a0b', border: '1px solid var(--color-glass)', borderRadius: '12px', padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                  <div style={{ background: 'var(--color-bg-primary)', border: '1px solid var(--color-glass)', borderRadius: '12px', padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                        <div style={{ height: '40px', background: 'rgba(99, 102, 241, 0.2)', borderRadius: '8px', width: '200px' }} />
                        <div style={{ height: '40px', background: 'var(--color-glass)', borderRadius: '8px', width: '100px' }} />
@@ -220,7 +220,7 @@ export default async function LandingPage() {
               <div style={{ flex: '1 1 400px', position: 'relative' }}>
                 <div className="glass-panel hover-lift" style={{ padding: '32px', borderRadius: '24px', position: 'relative', zIndex: 2, background: 'var(--color-bg-tertiary)' }}>
                   <div style={{ display: 'flex', gap: '16px', marginBottom: '24px' }}>
-                    <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--color-brand-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', flexShrink: 0 }}>
+                    <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--color-brand-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-bg-primary)', flexShrink: 0 }}>
                        <Sparkles size={20} />
                     </div>
                     <div style={{ background: 'var(--color-bg-secondary)', padding: '16px', borderRadius: '16px', borderTopLeftRadius: 0, flex: 1, border: '1px solid var(--color-border)' }}>
@@ -231,7 +231,7 @@ export default async function LandingPage() {
                      <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--color-bg-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-text-primary)', flexShrink: 0 }}>
                        <User size={20} />
                     </div>
-                    <div style={{ background: 'var(--color-brand-primary)', padding: '16px', borderRadius: '16px', borderTopRightRadius: 0, color: '#fff' }}>
+                    <div style={{ background: 'var(--color-brand-primary)', padding: '16px', borderRadius: '16px', borderTopRightRadius: 0, color: 'var(--color-bg-primary)' }}>
                       <p style={{ fontSize: '0.95rem', margin: 0, lineHeight: 1.6 }}>Yes please! Give me a real world example.</p>
                     </div>
                   </div>
