@@ -64,110 +64,130 @@ export default async function LandingPage() {
         
         <main style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
           
-          {/* 1. Enhanced Hero Section */}
+          {/* 1. Ultra-Premium Hero Section */}
           <section style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+            display: 'flex',
+            flexDirection: 'column',
             alignItems: 'center',
-            minHeight: '95vh',
-            padding: '40px 24px',
-            maxWidth: '1400px',
+            justifyContent: 'center',
+            minHeight: '100vh',
+            padding: '120px 24px 60px',
+            maxWidth: '1200px',
             margin: '0 auto',
-            gap: '64px'
+            textAlign: 'center',
+            position: 'relative',
+            zIndex: 10
           }}>
-            <div style={{ maxWidth: '700px' }} className="animate-slide-up-fade">
+            {/* Huge Background Glow */}
+            <div style={{ position: 'absolute', top: '20%', left: '50%', transform: 'translate(-50%, -50%)', width: '80vw', height: '600px', background: 'radial-gradient(ellipse at top, rgba(99, 102, 241, 0.25), transparent 70%)', filter: 'blur(80px)', zIndex: -1, pointerEvents: 'none' }} className="animate-pulse-glow" />
+
+            <div className="animate-slide-up-fade" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <div style={{ 
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '8px',
+                gap: '12px',
                 padding: '8px 24px', 
                 borderRadius: '9999px',
-                backgroundColor: 'rgba(99, 102, 241, 0.08)',
-                color: 'var(--color-brand-primary)',
-                fontSize: '0.9rem',
-                fontWeight: 600,
-                marginBottom: '32px',
-                border: '1px solid rgba(99, 102, 241, 0.3)',
-                boxShadow: '0 0 30px rgba(99, 102, 241, 0.15)'
+                backgroundColor: 'rgba(255, 255, 255, 0.03)',
+                color: 'var(--color-text-primary)',
+                fontSize: '0.95rem',
+                fontWeight: 500,
+                marginBottom: '40px',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                backdropFilter: 'blur(10px)',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.5)'
               }}>
-                <Sparkles size={16} className="animate-pulse" />
-                Now featuring AI-Powered Learning
+                <Sparkles size={16} className="text-gradient animate-pulse" />
+                <span style={{ opacity: 0.9 }}>Introducing LearnFlow 2.0</span>
+                <span style={{ color: 'var(--color-brand-secondary)', opacity: 0.8 }}>&rarr;</span>
               </div>
               
-              <h1 style={{ fontSize: '5.5rem', lineHeight: 1.05, marginBottom: '24px', letterSpacing: '-0.04em', fontWeight: 800 }}>
-                Learn. Build.<br/><span className="text-gradient">Get Hired.</span>
+              <h1 style={{ 
+                fontSize: 'clamp(4rem, 8vw, 7rem)', 
+                lineHeight: 1, 
+                marginBottom: '32px', 
+                letterSpacing: '-0.04em', 
+                fontWeight: 800,
+                background: 'linear-gradient(to bottom right, #ffffff 30%, #a1a1aa)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                maxWidth: '1000px'
+              }}>
+                Master your craft.<br/>
+                <span className="text-gradient">Build the future.</span>
               </h1>
               
-              <p style={{ fontSize: '1.25rem', color: 'var(--color-text-secondary)', marginBottom: '48px', maxWidth: '600px', lineHeight: 1.7 }}>
-                Join our structured, project-based bootcamps built entirely from world-class free resources. Master frontend, backend & security without spending thousands.
+              <p style={{ 
+                fontSize: '1.25rem', 
+                color: 'var(--color-text-secondary)', 
+                marginBottom: '56px', 
+                maxWidth: '650px', 
+                lineHeight: 1.6,
+                fontWeight: 400
+              }}>
+                The #1 free tech ecosystem. Join our structured, project-based bootcamps built entirely from world-class free resources. Master frontend, backend & security without spending thousands.
               </p>
               
-              <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-                <Link href="/assessment" className="btn btn-primary" style={{ padding: '20px 40px', fontSize: '1.125rem', borderRadius: '16px', boxShadow: '0 10px 40px rgba(99, 102, 241, 0.4)', fontWeight: 600 }}>
+              <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap', justifyContent: 'center' }}>
+                <Link href="/assessment" className="btn btn-primary" style={{ 
+                  padding: '20px 48px', 
+                  fontSize: '1.125rem', 
+                  borderRadius: '99px', 
+                  boxShadow: '0 0 40px rgba(99, 102, 241, 0.4)', 
+                  fontWeight: 600,
+                  transition: 'all 0.3s ease'
+                }}>
                   Start Your Journey
                 </Link>
-                <Link href="/careers" className="btn btn-secondary glass-panel hover-glow" style={{ padding: '20px 40px', fontSize: '1.125rem', borderRadius: '16px', fontWeight: 600 }}>
+                <Link href="/careers" className="btn btn-secondary glass-panel hover-glow" style={{ 
+                  padding: '20px 48px', 
+                  fontSize: '1.125rem', 
+                  borderRadius: '99px', 
+                  fontWeight: 600,
+                  backgroundColor: 'rgba(255,255,255,0.03)',
+                  border: '1px solid rgba(255,255,255,0.1)'
+                }}>
                   Explore Curriculums
                 </Link>
               </div>
             </div>
-            
-            {/* Vector Graphic */}
-            <div style={{ position: 'relative', height: '100%', minHeight: '500px', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <svg width="100%" height="100%" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ maxWidth: '600px' }}>
-                <defs>
-                  <linearGradient id="gradBackend" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#10b981" stopOpacity="0.8" />
-                    <stop offset="100%" stopColor="#059669" stopOpacity="0.8" />
-                  </linearGradient>
-                  <linearGradient id="gradFrontend" x1="100%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.8" />
-                    <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.8" />
-                  </linearGradient>
-                  <linearGradient id="gradSecurity" x1="0%" y1="100%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#ef4444" stopOpacity="0.8" />
-                    <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.8" />
-                  </linearGradient>
-                  <filter id="heavyGlow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="25" result="blur" />
-                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                  </filter>
-                </defs>
-                <g className="animate-dash-draw" stroke="var(--color-glass-strong)" strokeWidth="1.5" strokeDasharray="5 5">
-                  <path d="M300 300 L150 150" />
-                  <path d="M300 300 L450 150" />
-                  <path d="M300 300 L150 450" />
-                  <path d="M300 300 L450 450" />
-                  <circle cx="300" cy="300" r="150" />
-                  <circle cx="300" cy="300" r="220" />
-                </g>
-                <g className="animate-pulse-heavy">
-                  <circle cx="300" cy="300" r="70" fill="url(#gradBackend)" filter="url(#heavyGlow)" />
-                  <circle cx="300" cy="300" r="65" fill="var(--color-bg-secondary)" />
-                  <path d="M270 290 Q300 310 330 290" stroke="#10b981" strokeWidth="4" fill="none" strokeLinecap="round" />
-                  <path d="M270 310 Q300 330 330 310" stroke="#10b981" strokeWidth="4" fill="none" strokeLinecap="round" />
-                  <path d="M270 270 Q300 290 330 270 Q300 250 270 270 Z" stroke="#10b981" strokeWidth="4" fill="none" />
-                </g>
-                <g className="animate-orbit-spin">
-                  <g transform="translate(150, 150) rotate(-45)">
-                    <rect x="-40" y="-40" width="80" height="80" rx="16" fill="url(#gradFrontend)" filter="url(#heavyGlow)"/>
-                    <rect x="-38" y="-38" width="76" height="76" rx="14" fill="var(--color-bg-secondary)"/>
-                    <path d="M-20 -10 L-20 20 L20 20 L20 -10 Z" stroke="#3b82f6" strokeWidth="3" fill="none"/>
-                    <path d="M-20 -10 L20 -10" stroke="#3b82f6" strokeWidth="3"/>
-                    <circle cx="-10" cy="-20" r="3" fill="#3b82f6" />
-                  </g>
-                  <g transform="translate(450, 450) rotate(135)">
-                    <polygon points="0,-40 35,-15 35,25 0,50 -35,25 -35,-15" fill="url(#gradSecurity)" filter="url(#heavyGlow)"/>
-                    <polygon points="0,-36 32,-14 32,23 0,46 -32,23 -32,-14" fill="var(--color-bg-secondary)"/>
-                    <rect x="-12" y="0" width="24" height="18" rx="2" stroke="#ef4444" strokeWidth="3" fill="none"/>
-                    <path d="M-8 0 V-8 Q-8 -15 0 -15 Q8 -15 8 -8 V0" stroke="#ef4444" strokeWidth="3" fill="none"/>
-                  </g>
-                  <circle cx="300" cy="80" r="8" fill="#f59e0b" filter="url(#heavyGlow)" />
-                  <circle cx="80" cy="300" r="8" fill="#3b82f6" filter="url(#heavyGlow)" />
-                  <circle cx="520" cy="300" r="8" fill="#10b981" filter="url(#heavyGlow)" />
-                  <circle cx="300" cy="520" r="8" fill="#ef4444" filter="url(#heavyGlow)" />
-                </g>
-              </svg>
+
+            {/* Premium UI Mockup Presentation */}
+            <div className="animate-slide-up-fade" style={{ animationDelay: '0.2s', marginTop: '100px', width: '100%', position: 'relative' }}>
+              <div style={{ position: 'absolute', top: '-20px', left: '10%', right: '10%', height: '40px', background: 'linear-gradient(to right, transparent, var(--color-brand-primary), var(--color-brand-secondary), transparent)', filter: 'blur(30px)', opacity: 0.6 }} />
+              
+              <div style={{ 
+                background: 'linear-gradient(to bottom, var(--color-bg-tertiary), #000)',
+                border: '1px solid var(--color-glass-border)',
+                borderTop: '1px solid rgba(255,255,255,0.2)',
+                borderRadius: '24px 24px 0 0',
+                padding: '16px',
+                boxShadow: '0 -20px 60px rgba(0,0,0,0.8)',
+                overflow: 'hidden'
+              }}>
+                {/* Mockup Header */}
+                <div style={{ display: 'flex', gap: '8px', paddingBottom: '16px', borderBottom: '1px solid var(--color-glass)' }}>
+                  <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
+                  <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
+                  <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: '#10b981' }} />
+                </div>
+                {/* Mockup Content Grid */}
+                <div style={{ display: 'grid', gridTemplateColumns: '250px 1fr', gap: '24px', paddingTop: '24px', minHeight: '300px' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', opacity: 0.7 }}>
+                    <div style={{ height: '32px', background: 'var(--color-glass)', borderRadius: '8px', width: '100%' }} />
+                    <div style={{ height: '24px', background: 'var(--color-glass)', borderRadius: '8px', width: '80%' }} />
+                    <div style={{ height: '24px', background: 'var(--color-glass)', borderRadius: '8px', width: '90%' }} />
+                    <div style={{ height: '24px', background: 'var(--color-glass)', borderRadius: '8px', width: '60%' }} />
+                  </div>
+                  <div style={{ background: '#0a0a0b', border: '1px solid var(--color-glass)', borderRadius: '12px', padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                       <div style={{ height: '40px', background: 'rgba(99, 102, 241, 0.2)', borderRadius: '8px', width: '200px' }} />
+                       <div style={{ height: '40px', background: 'var(--color-glass)', borderRadius: '8px', width: '100px' }} />
+                    </div>
+                    <div style={{ flex: 1, background: 'var(--color-glass)', borderRadius: '8px', width: '100%' }} />
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
 
